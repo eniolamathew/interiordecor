@@ -1,0 +1,250 @@
+.pricing {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 28px;
+    margin-top: 60px;
+}
+
+.pricing .pricing-header h2.title {
+    font-size: 3rem;
+    color: white;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.pricing {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-bottom: 28px;
+    margin-top: 60px;
+}
+.pricing-container .toggle-switch {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.pricing-container .pricing-wrapper {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.pricing-container {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.pricing-container .pricing-wrapper {
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.pricing-container .pricing-plan {
+    flex: 1 1 300px; 
+    max-width: 100%;
+    margin: 10px; 
+}
+
+@media screen and (max-width: 768px) {
+    .pricing-container .pricing-plan {
+        flex: 1 1 100%; 
+        max-width: 100%;
+    }
+}
+
+.pricing-container .pricing-plan h2 {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.pricing-container h2, .pricing-container p {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.pricing-container .price span.number {
+    font-size: 45px;
+    color: #fff;
+    font-weight: bold;
+    margin-right: 7px;
+}
+
+.pricing-container .pricing-plan .pricing-badge-container {
+    height: 30px;
+} 
+
+.action-switch-to-monthly-billing, .action-switch-to-annual-billing {
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 14px;
+}
+
+.pricing-container .pricing-plan .pricing-badge {
+    padding: 5px 10px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(0, 0, 0, .2);
+    display: inline-block;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.pricing-container .features li {
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 0;
+    padding-right: 0;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+}
+
+.pricing-container .features strong li .check {
+    opacity: 1;
+}
+
+.pricing-container .features li .check {
+    opacity: 0.7;
+    background-image: url(/icons/pricing-table-check.svg);
+    background-size: cover;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-right: 7px;
+    vertical-align: middle;
+}
+
+.pricing-container .pricing-plan .pricing-badge:before {
+    animation: badgeShimmer 3.5s infinite ease-out 1.8s;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .18) 25%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .18) 75%, rgba(255, 255, 255, 0) 100%);
+    content: "";
+    display: block;
+    height: 90px;
+    left: -60%;
+    position: absolute;
+    top: -150px;
+    transform: rotate(-25deg);
+    width: 200px;
+}
+
+shaded_border
+
+.pricing-container .pricing-plan.yearly {
+    display: none;
+}
+.pricing-container .pricing-plan.popular {
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+.pricing-container .pricing-plan.popular {
+    opacity: 1;
+}
+@media (max-width: 1200px) {
+    .pricing-container .pricing-plan {
+        width: calc(33% - 30px - 30px - 30px);
+    }
+}
+.pricing-container .pricing-plan {
+    opacity: 0.8;
+}
+.pricing-container .pricing-plan {
+    cursor: pointer;
+    text-align: left;
+    border-radius: 12px;
+    padding: 30px;
+    width: 260px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    width: calc(25% - 30px - 30px - 30px);
+    width: calc(25% - 30px);
+    width: calc(33% - 30px);
+}
+
+.shaded_border:before, .div_output_image:not(.video):not(.edit):before {
+    top: 0;
+    background: linear-gradient(90deg, rgba(72, 75, 81, .3), hsla(180, 7%, 97%, .5), rgba(72, 75, 81, .3));
+}
+
+  .shaded_border:before, .shaded_border:after, .div_output_image:not(.video):not(.edit):before, .div_output_image:not(.video):not(.edit):after {
+    content: "";
+    display: block;
+    position: absolute;
+    box-sizing: content-box;
+    left: 15%;
+    width: 70%;
+    height: 1px;
+}
+
+.pricing-container .pricing-plan:hover {
+    opacity: 1;
+    border-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.pricing-container .pricing-plan .pricing-badge-container {
+    display: flex;
+    align-items: center;
+    height: 35px;
+}
+
+.pricing-container .pricing-plan .pricing-badge {
+    padding: 5px 10px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(0, 0, 0, .2);
+    display: inline-block;
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+/* .pricing-container .pricing-plan .pricing-badge:before {
+    animation: badgeShimmer 3.5s infinite ease-out 1.8s;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .18) 25%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .18) 75%, rgba(255, 255, 255, 0) 100%);
+    content: "";
+    display: block;
+    height: 90px;
+    left: -60%;
+    position: absolute;
+    top: -150px;
+    transform: rotate(-25deg);
+    width: 200px;
+}
+
+@keyframes badgeShimmer {
+    0% {
+      opacity: 0.2;
+      transform: translate(0, 0);
+    }
+    50% {
+      opacity: 1;
+      transform: translate(50%, 50%);
+    }
+    100% {
+      opacity: 0.2;
+      transform: translate(100%, 100%);
+    }
+}
+
+.shimmer-effect {
+    animation-name: badgeShimmer;
+    animation-duration: 3.5s; 
+    animation-timing-function: ease-out;
+    animation-delay: 1.8s; 
+    animation-iteration-count: infinite;
+    animation-direction: normal; 
+    animation-fill-mode: none;
+    animation-play-state: running; 
+    animation-timeline: auto; 
+    animation-range-start: normal; 
+    animation-range-end: normal;
+} */  

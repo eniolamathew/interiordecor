@@ -1,0 +1,238 @@
+{
+  "carousels": [
+    {
+      "name": "Kitchen",
+      "description": "A collection of stylish kitchen designs showcasing modern layouts and sleek appliances.",
+      "images": [
+        {
+          "src": "https://roomify.org/kitchen1.jpg",
+          "description": "Kitchen design 1.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/kitchen2.jpg",
+          "description": "Kitchen design 2.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/kitchen3.jpg",
+          "description": "Kitchen design 3.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/kitchen4.jpg",
+          "description": "Kitchen design 4.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/kitchen5.jpg",
+          "description": "Kitchen design 5.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/kitchen6.jpg",
+          "description": "Kitchen design 6.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/kitchen7.jpg",
+          "description": "Kitchen design 7.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/kitchen8.jpg",
+          "description": "Kitchen design 8.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/kitchen9.jpg",
+          "description": "Kitchen design 9.",
+          "liked": false
+        }
+      ]
+    },
+    {
+      "name": "Bedroom",
+      "description": "Serene bedroom designs featuring cozy decor, soft lighting, and inviting atmospheres.",
+      "images": [
+        {
+          "src": "https://roomify.org/bedroom1.jpg",
+          "description": "Bedroom design 1.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bedroom2.jpg",
+          "description": "Bedroom design 2.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bedroom3.jpg",
+          "description": "Bedroom design 3.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bedroom4.jpg",
+          "description": "Bedroom design 4.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bedroom5.jpg",
+          "description": "Bedroom design 5.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bedroom6.jpg",
+          "description": "Bedroom design 6.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bedroom7.jpg",
+          "description": "Bedroom design 7.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bedroom8.jpg",
+          "description": "Bedroom design 8.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bedroom9.jpg",
+          "description": "Bedroom design 9.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bedroom10.jpg",
+          "description": "Bedroom design 10.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bedroom11.jpg",
+          "description": "Bedroom design 11.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bedroom12.jpg",
+          "description": "Bedroom design 12.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bedroom13.jpg",
+          "description": "Bedroom design 13.",
+          "liked": false
+        }
+      ]
+    },
+    {
+      "name": "LivingRoom",
+      "description": "Elegant sitting room designs with comfortable seating, warm tones, and tasteful decor.",
+      "images": [
+        {
+          "src": "https://roomify.org/livingroom1.jpg",
+          "description": "Living room design 1.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/livingroom2.jpg",
+          "description": "Living room design 2.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/livingroom3.jpg",
+          "description": "Living room design 3.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/livingroom4.jpg",
+          "description": "Living room design 4.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/livingroom5.jpg",
+          "description": "Living room design 5.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/livingroom6.jpg",
+          "description": "Living room design 6.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/livingroom7.jpg",
+          "description": "Living room design 7.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/livingroom8.jpg",
+          "description": "Living room design 8.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/livingroom9.jpg",
+          "description": "Living room design 9.",
+          "liked": false
+        }
+      ]
+    },
+    {
+      "name": "Bathroom",
+      "description": "Elegant bathroom designs featuring modern fixtures, sleek tiles, and relaxing atmospheres.",
+      "images": [
+        {
+          "src": "https://roomify.org/bathroom1.jpg",
+          "description": "Bathroom design 1.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bathroom2.jpg",
+          "description": "Bathroom design 2.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bathroom3.jpg",
+          "description": "Bathroom design 3.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bathroom4.jpg",
+          "description": "Bathroom design 4.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bathroom5.jpg",
+          "description": "Bathroom design 5.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bathroom6.jpg",
+          "description": "Bathroom design 6.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bathroom7.jpg",
+          "description": "Bathroom design 7.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bathroom8.jpg",
+          "description": "Bathroom design 8.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bathroom9.jpg",
+          "description": "Bathroom design 9.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bathroom10.jpg",
+          "description": "Bathroom design 10.",
+          "liked": false
+        },
+        {
+          "src": "https://roomify.org/bathroom11.jpg",
+          "description": "Bathroom design 11.",
+          "liked": false
+        }
+      ]
+    }
+  ]
+}
