@@ -1,0 +1,195 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  outline: none;
+  text-decoration: none;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+:root {
+  --background: 0, 0, 0;
+  --foreground: 255, 255, 255;
+  --color: 255, 255, 255;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --colour-red: rgb(218, 48, 48);
+  --colour-ash: #acacac;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, Ubuntu, sans-serif;
+  font-weight: 300;
+  color: rgb(var(--color));
+  background-color: rgb(0, 0, 0);
+}
+
+input:-internal-autofill-selected {
+  background-image: none !important;
+  background-color: light-dark(
+    rgb(232, 240, 254),
+    rgba(70, 90, 126, 0.4)
+  ) !important;
+  color: fieldtext !important;
+}
+
+.chevronLeft {
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+}
+
+.user {
+  width: 24px !important;
+}
+
+.backgroundColor {
+  background-color: rgb(2, 2, 2) !important;
+  transition: background-color 0.3s ease;
+}
+
+input:-webkit-autofill {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  box-shadow: none !important;
+  background-color: transparent !important;
+  color: #000 !important;
+}
+
+.hometitle {
+  margin: 0;
+  padding: 20px;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 3rem;
+  box-sizing: border-box;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.logo {
+  display: flex;
+  width: 150px;
+  height: 60px;
+}
+
+.logoIcon {
+  width: 20px;
+  height: 20px;
+  margin-left: 5px;
+  margin-top: 5px;
+  vertical-align: middle;
+  background: -webkit-linear-gradient(45deg, #680aca, #ff897e);
+  background: linear-gradient(
+    60deg,
+    #f79533,
+    #f37055,
+    #ef4e7b,
+    #a166ab,
+    #5073b8,
+    #1098ad,
+    #07b39b,
+    #6fba82
+  );
+  -webkit-animation: rotate 6s linear infinite;
+  animation: rotate 6s linear infinite;
+  background-size: 300% 300%;
+  mask-image: url(/logoIcon.svg);
+  mask-repeat: no-repeat;
+  mask-size: contain;
+  -webkit-mask-image: url(/logoIcon.svg);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  display: inline-block;
+}
+
+.logoImage {
+  width: 120px;
+  height: 60px;
+  background-image: url("https://roomify.org/roomify.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.Toastify__close-button {
+  width: 16px;
+}
+
+.loading-children-container {
+  align-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  width: 100%;
+  transform: translateZ(0);
+}
+
+.nfp .player-loading, .watch-video .player-loading {
+  background: #000;
+  pointer-events: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.PlayerSpinner--container, .loading-spinner {
+  height: 7vh;
+  width: 7vh;
+  min-height: 5rem;
+  min-width: 5rem;
+}
+
+@keyframes load_spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.loading-spinner {
+  animation: load_spinner .9s linear infinite;
+  background-image: url(/icons/site-spinner.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  position: relative;
+  margin: auto;
+}
+
+/* Account Section */
+.account {
+  margin-top: 60px;
+}
+.accountContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 1200px;
+  margin: auto;
+  padding: 25px 0;
+}
