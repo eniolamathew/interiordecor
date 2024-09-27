@@ -2,8 +2,6 @@ module user
 
 go 1.21.3
 
-replace mail => ../mail
-
 require (
 	github.com/gin-gonic/gin v1.10.0
 	github.com/go-playground/validator/v10 v10.22.1
