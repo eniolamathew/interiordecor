@@ -13,7 +13,7 @@ RUN go mod download
 COPY . .
 
 # Build the Go application
-RUN CGO_ENABLED=0 GOOS=linux go build -o imageResponseService .
+RUN CGO_ENABLED=0 GOOS=linux go build -o imageGenerationService .
 
 # Stage 2: Run
 FROM alpine:3.18
@@ -22,11 +22,11 @@ FROM alpine:3.18
 WORKDIR /app
 
 # Copy the binary from the builder stage
-COPY --from=builder /app/imageResponseService /app/imageResponseService
+COPY --from=builder /app/imageGenerationService /app/imageGenerationService
 
 # Expose the port the application will run on
-EXPOSE 7075
+EXPOSE 7074
 # Adjust this if your app uses a different port
 
 # Run the application
-ENTRYPOINT [ "./imageResponseService" ]
+ENTRYPOINT [ "./imageGenerationService" ]

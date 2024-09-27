@@ -1,0 +1,8 @@
+version: "2"
+sql:
+  - schema: "/sql/schema"  # Directory containing your database schema (SQL files for table creation, etc.)
+    queries: "/sql/queries"     # Directory containing your SQL queries
+    engine: "postgresql"        # Database engine, can be "mysql", "sqlite", or "postgresql"
+    gen:
+      go:
+        out: "internal/database"      # Output directory for the generated Go code
