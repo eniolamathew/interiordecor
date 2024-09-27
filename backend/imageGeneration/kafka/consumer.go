@@ -8,8 +8,8 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-
 	"os"
+
 	"time"
 
 	"github.com/IBM/sarama"
@@ -147,7 +147,13 @@ func generateImage(prompt string) string {
 	}
 
 	// Retrieve OpenAI API key from environment variables
-	apiKey := os.Getenv("OPENAI_API_KEY")
+	part1 := os.Getenv("API_KEY_PART1")
+	part2 := os.Getenv("API_KEY_PART2")
+	part3 := os.Getenv("API_KEY_PART3")
+	part4 := os.Getenv("API_KEY_PART4")
+
+	apiKey := part1 + part2 + part3 + part4
+
 	if apiKey == "" {
 		log.Fatal("OPENAI_API_KEY environment variable not set")
 	}
