@@ -19,7 +19,7 @@ func NewKafkaDomain() *kafkaDomain {
 const (
 	DefaultKafkaBroker = "kafka_interior:9092"
 	ConsumerGroupID    = "image-result-group"
-	maxRetries         = 5
+	maxRetries         = 15
 	retryInterval      = 5 * time.Second
 )
 

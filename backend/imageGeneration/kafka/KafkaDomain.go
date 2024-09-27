@@ -21,7 +21,7 @@ const (
 	DefaultKafkaBroker = "kafka_interior:9092"
 	DefaultTopic       = "image-generation-request-topic"
 	ConsumerGroupID    = "image-generation-group"
-	maxRetries         = 5               
+	maxRetries         = 15               
 	retryInterval      = 5 * time.Second 
 )
 

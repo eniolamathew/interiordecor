@@ -9,7 +9,6 @@
 *.out
 
 # Go module files
-/go.sum
 /go.work
 
 # Build output
