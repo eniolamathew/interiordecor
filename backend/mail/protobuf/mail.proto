@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package mail;
+
+option go_package = "interiordesignbackend/mail/protoc/EmailService;mail";
+
+
+service EmailService {
+  rpc SendPasswordResetEmail(SendPasswordResetRequest) returns (SendEmailResponse);
+}
+
+message SendPasswordResetRequest {
+  string email = 1;
+  string resetToken = 2;
+}
+
+message SendEmailResponse {
+  string message = 1;
+}

@@ -1,0 +1,46 @@
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# Go module files
+/go.sum
+/go.work
+
+# Build output
+/bin
+/pkg
+
+# Dependency directory created by `go mod vendor`
+/vendor/
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+*.swo
+*.bak
+
+# IDE and editor specific
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Docker related files
+.dockerignore
+
+# Env files containing sensitive information
+*.env
+
+# Git-related files
+.git/

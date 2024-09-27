@@ -1,0 +1,32 @@
+# Stage 1: Build
+FROM golang:1.22 as builder
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy Go modules manifest and download dependencies
+COPY go.mod go.sum ./
+RUN go mod tidy
+RUN go mod download
+
+# Copy the rest of the application code
+COPY . .
+
+# Build the Go application
+RUN CGO_ENABLED=0 GOOS=linux go build -o userService .
+
+# Stage 2: Run
+FROM alpine:3.18
+
+# Set the working directory inside the final container
+WORKDIR /app
+
+# Copy the binary from the builder stage
+COPY --from=builder /app/userService /app/userService
+
+# Expose the port the application will run on
+EXPOSE 7071
+# Adjust this if your app uses a different port
+
+# Run the application
+ENTRYPOINT [ "./userService" ]
