@@ -44,44 +44,80 @@ services:
     networks:
       - interior_design_network
 
-  # user-interior-service:
-  #   container_name: interior_user_container
-  #   image: interior_user_image
-  #   build:
-  #     context: ./backend/user
-    #   dockerfile: dockerfile
-    # environment:
-    #   - DATABASE_HOST=userInteriorDb
-    #   - DATABASE_PORT=5432
-    #   - DATABASE_NAME=user_db
-    #   - DATABASE_USER=user_user
-    #   - DATABASE_PASSWORD=userinterior
-    # depends_on:
-    #   - userInteriorDb
-    # networks:
-    #   - interior_design_network
-    # ports:
-    #   - "7071:7071"
-    # env_file:
-    #   - ./backend/user/.env  
-    # volumes:
-    #   - ./backend/user/.env:/app/.env
+  migration-user:
+    image: golang:1.22
+    container_name: db_migration_user
+    depends_on:
+    - userInteriorDb
+    volumes:
+    - ./backend/user:/app/user  
+    - ./backend/mail:/app/mail  
+    working_dir: /app/user
+    entrypoint: >
+      /bin/sh -c "
+      go mod tidy &&  
+      GOBIN=/usr/local/bin go install github.com/pressly/goose/v3/cmd/goose@latest &&
+      goose -dir /app/user/sql/schema postgres postgres://user_user:userinterior@userInteriorDb:5432/user_db?sslmode=disable up
+      "
+    networks:
+     - interior_design_network  
 
-  # mail-interior-service:
-  #   container_name: interior_mail_container
-  #   image: interior_mail_image
-  #   build:
-  #     context: ./backend/mail
-  #     dockerfile: dockerfile
-  #   networks:
-  #     - interior_design_network
-  #   ports:
-  #     - "7072:7072"
-  #   env_file:
-  #     - ./backend/mail/.env  
-  #   volumes:
-  #     - ./backend/mail/.env:/app/.env
-  #     - ./backend/mail/emailTemplates:/app/emailTemplates
+  migration-design:
+    image: golang:1.22
+    container_name: db_migration_design
+    depends_on:
+      - generatedImageDb
+    volumes:
+      - ./backend/design:/app  
+    working_dir: /app
+    entrypoint: >
+      /bin/sh -c "
+      go mod tidy &&
+      GOBIN=/usr/local/bin go install github.com/pressly/goose/v3/cmd/goose@latest &&
+      goose -dir /app/sql/schema postgres postgres://generatedimage_user:imageinterior@generatedImageDb:5432/generatedimage_db?sslmode=disable up
+      "
+    networks:
+      - interior_design_network
+
+  user-interior-service:
+    container_name: interior_user_container
+    image: interior_user_image
+    build:
+      context: ./backend/user
+      dockerfile: dockerfile
+    environment:
+      - DATABASE_HOST=userInteriorDb
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=user_db
+      - DATABASE_USER=user_user
+      - DATABASE_PASSWORD=userinterior
+      - DATABASE_URL=postgres://user_user:userinterior@userInteriorDb:5432/user_db?sslmode=disable
+    depends_on:
+      - userInteriorDb
+    networks:
+      - interior_design_network
+    ports:
+      - "7071:7071"
+    env_file:
+      - ./backend/user/.env  
+    volumes:
+      - ./backend/user/.env:/app/.env
+
+  mail-interior-service:
+    container_name: interior_mail_container
+    image: interior_mail_image
+    build:
+      context: ./backend/mail
+      dockerfile: dockerfile
+    networks:
+      - interior_design_network
+    ports:
+      - "7072:7072"
+    env_file:
+      - ./backend/mail/.env  
+    volumes:
+      - ./backend/mail/.env:/app/.env
+      - ./backend/mail/emailTemplates:/app/emailTemplates
   
   design-interior-service:
     container_name: interior_design_container
@@ -92,6 +128,7 @@ services:
       - DATABASE_NAME=generatedimage_db
       - DATABASE_USER=generatedimage_user
       - DATABASE_PASSWORD=imageinterior
+      - DATABASE_URL=DB_URL=postgres://generatedimage_user:imageinterior@generatedImageDb:5432/generatedimage_db?sslmode=disable
     depends_on:
       - generatedImageDb
       - kafka
@@ -168,6 +205,19 @@ services:
       - interior_design_network
     ports:
       - "5453:5432"
+    
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+    env_file:
+      - ./frontend/.env.production 
+    networks:
+      - interior_design_network
 
 networks:
   interior_design_network:

@@ -7,7 +7,7 @@ import ChildrenWrapper from "./childrenWrapper";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: 'Roomify App',
+  title: 'roomify.org',
   description: 'An Interior Design app',
 };
 

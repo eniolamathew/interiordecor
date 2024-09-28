@@ -6,8 +6,11 @@ import Image from "next/image";
 const Input: React.FC<IInputProps> = (props) => {
     const [isFocused, setIsFocused] = useState(false);
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  
-    const handleFocus = () => setIsFocused(true);
+    const handleFocus = (e:React.FocusEvent<HTMLInputElement>) => { 
+      e.preventDefault();
+      setIsFocused(true)
+    }
+
     const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
       setIsFocused(false);
       if (props.onBlur) props.onBlur(e);
@@ -28,14 +31,14 @@ const Input: React.FC<IInputProps> = (props) => {
             type={isPasswordVisible ? "text" : "password"}
             placeholder="" 
           />
-          <FloatingLabel $isFocused={isFocused} $hasValue={!!props.value}>
+          <FloatingLabel $isFocused={isFocused} $hasValue={ props.value.length > 0 ? true : false }>
             {props.label}
           </FloatingLabel>
-          {(isFocused || !!props.value ) && <EyeIcon $isFocused={isFocused} $hasValue={!!props.value} onClick={togglePasswordVisibility}>
+          {(isFocused || !!props.value ) && <EyeIcon onClick={togglePasswordVisibility}>
             {isPasswordVisible ? 
               <Image 
                  alt="icon" 
-                 src={"/icons/eye-slash-regular.svg"}
+                 src={"https://roomify.org/eye-slash-regular.svg"}
                  width={20}
                  height={20}
                  style={{ 
@@ -46,7 +49,7 @@ const Input: React.FC<IInputProps> = (props) => {
              /> :
             <Image 
                 alt="icon" 
-                src={"/icons/eye-regular.svg"}
+                src={"https://roomify.org/eye-regular.svg"}
                 width={20}
                 height={20}
                 style={{ 

@@ -46,14 +46,14 @@ const InputHolder = styled.input<IInputHolderProps>`
     border-radius: 12px;
   }
 
-  &:focus + ${FloatingLabel}, &:not(:placeholder-shown) + ${FloatingLabel} {
+  &:focus + ${FloatingLabel} {
     top: 16px;
     font-size: 0.6rem
     transform: translateY(-50%) scale(0.9);
   }
 `;
 
-const EyeIcon = styled.div<{ $isFocused: boolean; $hasValue: boolean }>`
+const EyeIcon = styled.div`
   position: absolute;
   top: calc(50% - 12px);
   right: 16px;

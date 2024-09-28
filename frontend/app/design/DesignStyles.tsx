@@ -14,7 +14,6 @@ export const Designcontianer = styled.div`
         overflow-y: scroll
     }
 `;
-
    
 export const Designwrapper = styled.div`
     display: flex;
@@ -66,10 +65,11 @@ export const Designdisplay = styled.div`
 `;
 
 export const Infobody = styled.div`
-    overflow-y: scroll;
+    // overflow-y: scroll;
     padding-right: 10px;
     height: calc(100% - 120px);
     scrollbar-width: 12px;
+    z-index: 20;
 `;
 
 export const Infofooter= styled.div`

@@ -9,7 +9,7 @@ import (
 	"user/model"
 	"user/service"
 	"user/utils"
-	validation "user/validtion"
+	validation "user/validation"
 	"user/view"
 
 	"github.com/gin-gonic/gin"

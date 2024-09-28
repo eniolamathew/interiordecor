@@ -4,13 +4,15 @@ import { CustomButton } from "../ui/buttons/button/customButton";
 import { usePathname, useRouter } from "next/navigation";
 import { NavbarContainer, NavItems, NavItem, NavButton, NavIcon, NavRight, NavText} from "./NavbarStyles"
 import { useAuth } from "../../../shared/context/AuthContext";
-import IconContainer from "../ui/icons/IconContainer";
+import Image from "next/image";
 
 const HomeNavbar = () => {
   const { designActivedIndex, setDesignActivedIndex, isLoggedIn } = useAuth();
   const router = useRouter();
   const pathname = usePathname(); 
   const [scrollY, setScrollY] = useState<number>(0);
+
+  // filter: "brightness(100%) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(62%) contrast(100%)"
 
   useEffect(() => {
     const handleScroll = () => {
@@ -59,6 +61,19 @@ const HomeNavbar = () => {
         )}
         {isLoggedIn ? (
           <NavIcon>
+            <Image
+              className="userIcon" 
+              alt="icon" 
+              src={"https://roomify.org/user-regular.svg"}
+              width={30}
+              height={30}
+              onClick={(e)=>{router.push("/account")}}
+              style={{ 
+                  maxWidth: "30px", 
+                  maxHeight: "30px", 
+                  filter: "brightness(100%) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(100%) contrast(100%)"
+              }}
+            />
             </NavIcon>
         ) : ( pathname === "/" &&
           <NavButton>

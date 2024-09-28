@@ -151,6 +151,7 @@ const Design = () => {
  };
 
   return (<>
+   <div className='design'>
     <Designcontianer >
         <Designwrapper >
             <Designinfo className='designinfo shaded_border'>
@@ -209,7 +210,7 @@ const Design = () => {
             { imageLoaded &&
                 <div className='downloadIcon flex flex-center' onClick={handleDownload}>
                     <Image
-                        src="/icons/download-solid.svg"
+                        src="https://roomify.org/download-solid.svg"
                         alt="Upload Icon"
                         className="upload-icon"
                         width={25}
@@ -249,6 +250,7 @@ const Design = () => {
                 </Designdisplay>
         </Designwrapper>
     </Designcontianer>
+  </div>
   </>
   )
 }

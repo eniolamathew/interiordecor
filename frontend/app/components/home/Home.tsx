@@ -55,18 +55,20 @@ export default function Home() {
               <SignUpContainer >
                 <EmailWrapper >
                     <Email >
-                      <InputContainer
-                          label={"Email Address"}
-                          value={email}
-                          obscureText={false}
-                          autoComplete={false}
-                          onChange={(e:ChangeEvent<HTMLInputElement>)=>{ 
-                            setEmail(e.target.value)
-                            setInvalidEmail("")
-                          }}
-                          disabled={false}
-                          error={invalidEmail}
-                      />
+                      <div style={{ display: "flex", alignItems: 'center', justifyContent:'center', width:'30rem'}}>
+                        <InputContainer
+                            label={"Email Address"}
+                            value={email}
+                            obscureText={false}
+                            autoComplete={false}
+                            onChange={(e:ChangeEvent<HTMLInputElement>)=>{ 
+                              setEmail(e.target.value)
+                              setInvalidEmail("")
+                            }}
+                            disabled={false}
+                            error={invalidEmail}
+                        />
+                      </div>
                     </Email>
                   </EmailWrapper>
                   <ButtonWrapper>

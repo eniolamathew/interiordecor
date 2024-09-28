@@ -107,6 +107,9 @@ export const ButtonWrapper = styled.div`
 
 export const Email = styled.div`
   width: 32rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 
   @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
     width: 20rem;
