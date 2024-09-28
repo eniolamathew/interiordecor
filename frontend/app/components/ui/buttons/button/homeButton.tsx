@@ -9,7 +9,7 @@ export const HomeButton = styled(TextButton)`
     justify-content: center;
     font-size: 1rem;
     height: 80px;
-    width: 25rem;
+    width: 30rem;
     padding: 1rem 0 1rem;
     text-align: center;
     background-color: var(--colour-red);

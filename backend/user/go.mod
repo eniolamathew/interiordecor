@@ -1,6 +1,8 @@
 module user
 
-go 1.21.3
+go 1.22
+
+replace mail => ../mail
 
 require (
 	github.com/gin-gonic/gin v1.10.0
@@ -10,6 +12,7 @@ require (
 	github.com/lib/pq v1.10.9
 	golang.org/x/crypto v0.27.0
 	google.golang.org/grpc v1.67.0
+	mail v0.0.0-00010101000000-000000000000
 )
 
 require (

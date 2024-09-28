@@ -173,7 +173,7 @@ input:-webkit-autofill {
 
 .loading-spinner {
   animation: load_spinner .9s linear infinite;
-  background-image: url(/icons/site-spinner.png);
+  background-image: url(https://roomify.org/site-spinner.png);
   background-repeat: no-repeat;
   background-size: 100%;
   position: relative;

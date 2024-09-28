@@ -25,17 +25,15 @@ const DropdownMenu = styled.div`
   pointer-events: auto;
 `;
 
-
-const DropdownItem = styled.div<{ isSelected: boolean }>`
+const DropdownItem = styled.div<{ isSelected: boolean, isHighlighted: boolean}>`
   padding: 0.5rem 1rem;
   cursor: pointer;
-  background-color: ${(props) => (props.isSelected ? 'rgba(218, 48, 48, 0.3)' : 'transparent')};
+  background-color: ${(props) => (props.isSelected ? 'rgba(218, 48, 48, 0.3)' : props.isHighlighted ? "rgba(17, 225, 253, 0.3)" : 'transparent')};
 
-  &:hover {
-    background-color:  ${(props) => (props.isSelected ? 'rgba(218, 48, 48, 0.3)' : 'rgba(17, 225, 253, 0.3)')};
-  }
+  // &:hover {
+  //   background-color:  ${(props) => (props.isSelected ? 'rgba(218, 48, 48, 0.3)' : 'transparent')};
+  // }
 `;
-
 
 interface DropdownProps extends IDropDownProps {
   options: IDropdownOption[];
@@ -45,9 +43,11 @@ const Dropdown: React.FC<DropdownProps> = ({ label, value, onChange, options, er
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(value);
   const [isFocused, setIsFocused] = useState(false);
+  const [highlightedIndex, setHighlightedIndex] = useState<number | null>(null); 
   const wrapperRef = useRef<HTMLDivElement>(null);
   const dropdownHolderRef = useRef<HTMLDivElement>(null);
-
+  const dropdownMenuRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]); 
   const handleClickOutside = (event: MouseEvent) => {
     if (wrapperRef.current && !wrapperRef.current.contains(event.target as Node)) {
       setIsOpen(false);
@@ -61,11 +61,59 @@ const Dropdown: React.FC<DropdownProps> = ({ label, value, onChange, options, er
     };
   }, []);
 
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (!isOpen) return;
+
+      switch (event.key) {
+        case "ArrowDown":
+          event.preventDefault();
+          setHighlightedIndex((prevIndex) =>
+            prevIndex === null ? 0 : Math.min(prevIndex + 1, options.length - 1)
+          );
+          break;
+        case "ArrowUp":
+          event.preventDefault();
+          setHighlightedIndex((prevIndex) =>
+            prevIndex === null ? options.length - 1 : Math.max(prevIndex - 1, 0)
+          );
+          break;
+        case "Enter":
+          if (highlightedIndex !== null) {
+            handleSelect(options[highlightedIndex]);
+          }
+          break;
+        case "Escape":
+          setIsOpen(false);
+          setHighlightedIndex(null);
+          break;
+        default:
+          break;
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, highlightedIndex, options]);
+
+  // Scroll the highlighted item into view
+  useEffect(() => {
+    if (highlightedIndex !== null && itemRefs.current[highlightedIndex]) {
+      itemRefs.current[highlightedIndex]?.scrollIntoView({
+        block: "nearest", 
+        behavior: "smooth", 
+      });
+    }
+  }, [highlightedIndex]);
+
   const handleSelect = (option:{value: string, display:string}) => {
     const value = option.value
     setSelectedValue(option.display);
     onChange({ target: { value } } as React.ChangeEvent<HTMLInputElement>);
     setIsOpen(false);
+    setHighlightedIndex(null);
   };
 
   const handleClear = (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
@@ -74,6 +122,7 @@ const Dropdown: React.FC<DropdownProps> = ({ label, value, onChange, options, er
     setIsOpen(false)
     onChange({ target: { value: "" } } as React.ChangeEvent<HTMLInputElement>); 
     if (dropdownHolderRef.current) { dropdownHolderRef.current.blur() }
+    setHighlightedIndex(null);
   };
 
   return (
@@ -94,12 +143,14 @@ const Dropdown: React.FC<DropdownProps> = ({ label, value, onChange, options, er
         {selectedValue && <ClearButton onClick={handleClear}> × </ClearButton>}
       </DropdownHolder>
       {isOpen && (
-        <DropdownMenu>
-          {options.map((option) => (
+        <DropdownMenu ref={dropdownMenuRef}>
+          {options.map((option, index) => (
             <DropdownItem 
+              ref={(el) => { itemRefs.current[index] = el }}
               key={option.value} 
               isSelected={option.display === selectedValue}
               onClick={() => handleSelect(option)}
+              isHighlighted={index === highlightedIndex}
             >
               {option.display}
             </DropdownItem>

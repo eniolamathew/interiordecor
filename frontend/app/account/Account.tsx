@@ -11,10 +11,10 @@ const Profile = () => {
   const { logout } = useAuth();
   const router = useRouter()
   const profileLayout = [
-    { title: "Your Details", href: "/account/profile", imgSrc:"/icons/menu-item-my-details.svg" },
-    { title: "Plan", href: "/account/plans", imgSrc:"/icons/menu-plan.svg" },
-    { title: "Change Password", href: "/changepassword", imgSrc:"/icons/menu-item-change-password.png" },
-    { title: "Logout", href: "/", imgSrc:"/icons/menu-item-logout.svg" },
+    { title: "Your Details", href: "/account/profile", imgSrc:"https://roomify.org/menu-item-my-details.svg" },
+    { title: "Plan", href: "/account/plans", imgSrc:"https://roomify.org/menu-plan.svg" },
+    { title: "Change Password", href: "/changepassword", imgSrc:"https://roomify.org/menu-item-change-password.png" },
+    { title: "Logout", href: "/", imgSrc:"https://roomify.org/menu-item-logout.svg" },
   ];
 
   return (

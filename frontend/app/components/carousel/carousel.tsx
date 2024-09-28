@@ -1,12 +1,12 @@
 "use client"
 import React, { HTMLAttributes, useState, useEffect, useCallback } from 'react';
-// import Icon, { IconType } from '../ui/icons/icon';
 import Glider from 'react-glider';
 import styled from 'styled-components';
 import "glider-js/glider.min.css";
 import SliderModal from '../../components/ui/modal/SildeModal';
 import { debounce } from '../../../shared/hook/debounce';
 import { ICarouselImage, ICarousel } from '../../../models/interface';
+import Image from 'next/image';
 
 export interface ICarouselProps extends HTMLAttributes<HTMLElement> {
     name: string;
@@ -248,10 +248,33 @@ const Carousel = (props: ICarouselProps) => {
                 slidesToShow={props.slidesToShow}
                 slidesToScroll={props.slidesToScroll}
                 rewind
-                iconLeft={<></>}
-                iconRight={<></>}
-                // iconLeft={<Icon src={IconType.ChevronLeft} width={24} height={24} filter={"invert(100%) brightness(100%) contrast(100%)"} />}
-                // iconRight={<Icon src={IconType.ChevronRight} width={24} height={24} filter={"invert(100%) brightness(100%) contrast(100%)"} />}
+                iconLeft={
+                    <Image
+                        className="" 
+                        alt="icon" 
+                        src={"https://roomify.org/chevron-left-solid.svg"}
+                        width={24}
+                        height={24}
+                        style={{ 
+                            maxWidth: "24px", 
+                            maxHeight: "24px", 
+                            filter:"invert(100%) brightness(100%) contrast(100%)"
+                        }}
+                    />}
+                iconRight={
+                    <Image
+                        className="" 
+                        alt="icon" 
+                        src={"https://roomify.org/chevron-right-solid.svg"}
+                        width={24}
+                        height={24}
+                        style={{ 
+                            maxWidth: "24px", 
+                            maxHeight: "24px", 
+                            filter:"invert(100%) brightness(100%) contrast(100%)"
+                        }}
+                  />
+                }
                 onLoad={() => setLoaded(true)}
             >
                 {React.Children.map(props.children, (child, index) => (

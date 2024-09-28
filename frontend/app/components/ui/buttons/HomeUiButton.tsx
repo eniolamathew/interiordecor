@@ -2,7 +2,7 @@
 import React from "react";
 import styled from "styled-components";
 import { HomeButton } from "./button/homeButton";
-import Icon from "../icons/icon";
+import Image from "next/image";
 
 interface ButtonContainerProps {
   text?: string;
@@ -14,6 +14,8 @@ const ButtonText = styled.div`
   display: contents;
   text-align: center;
   font-size: 1.2rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 `;
 
 const ButtonContainerWrapper = styled.div`
@@ -28,15 +30,19 @@ const HomeUiButton: React.FC<ButtonContainerProps> = ({text, icon, onClick}) => 
     <ButtonContainerWrapper>
       <HomeButton onClick={onClick}>
         {text && <ButtonText>{text}</ButtonText>}
-        {icon && <></>
-        // <Icon
-        //   // className="chevronLeft"
-        //   // src={IconType.ChevronLeft}
-        //   alt="Chevron-left"
-        //   width={16}
-        //   height={16}
-        //   filter={"invert(100%) brightness(100%) contrast(100%)"}
-        // />
+        {icon && 
+            <Image
+                className="homeIcon" 
+                alt="icon" 
+                src={"https://roomify.org/chevron-right-solid.svg"}
+                width={30}
+                height={30}
+                style={{ 
+                    maxWidth: "24px", 
+                    maxHeight: "24px", 
+                    filter:"invert(100%) brightness(100%) contrast(100%)"
+                }}
+            />
         }
       </HomeButton>
     </ButtonContainerWrapper>
