@@ -5,26 +5,29 @@ import { useAuth } from "../context/AuthContext";
 import UserAuthManager from "./UserAuthManager";
 
 class UserData {
-    _baseUnprotectedUrl = ":7071";
-    _baseUrl = ":7071/api";
+    apiUrl = process.env.NEXT_PUBLIC_USER_API_BASE_URL;
+    _baseUrl = `${this.apiUrl}`;
+
+    // _baseUnprotectedUrl = ":7071/user";
+    // _baseUrl = ":7071/user/api";
 
     public async loginAsync(email: string, password: string): Promise<IMicroserviceApiResult<ILoginResult>> {
-        let result = await nextjsApi.postAsync<ILoginResult>(this._baseUnprotectedUrl + "/login", { email: email, password: password })
+        let result = await nextjsApi.postAsync<ILoginResult>(this._baseUrl + "/login", { email: email, password: password })
         return result
     }
 
     public async registerUserAsync(registration: ISignUpPayload): Promise<IMicroserviceApiResult<ISignUpResult>> {
-        let result =  await nextjsApi.postAsync<ISignUpResult>(this._baseUnprotectedUrl + "/signup", registration)
+        let result =  await nextjsApi.postAsync<ISignUpResult>(this._baseUrl + "/signup", registration)
         return result
     }
 
     public async requestPasswordReset(email: string): Promise<IMicroserviceApiResult<string>> {
-        let result =  await nextjsApi.postAsync<string>(this._baseUnprotectedUrl + "/requestpasswordreset", {email})
+        let result =  await nextjsApi.postAsync<string>(this._baseUrl + "/requestpasswordreset", {email})
         return result
     }
 
     public async resetPassword(resetPayload: IResetPassword): Promise<IMicroserviceApiResult<string>> {
-        let result =  await nextjsApi.postAsync<string>(this._baseUnprotectedUrl + "/resetpassword", resetPayload)
+        let result =  await nextjsApi.postAsync<string>(this._baseUrl + "/resetpassword", resetPayload)
         return result
     }
 

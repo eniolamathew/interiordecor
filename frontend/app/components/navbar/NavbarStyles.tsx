@@ -65,6 +65,11 @@ const NavButton = styled.li`
   margin: 0 15px;
   font-size: 1.2rem;
   cursor: pointer;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
+    width: 100px;
+    margin: 0;
+  }
 `;
 
 const NavIcon = styled.li`

@@ -149,7 +149,7 @@ const Carousel = (props: ICarouselProps) => {
         setPosition(null);
         setIsModalOpen(false);
     }, []);
-    
+
     useEffect(() => {
         
         const hoveredElement = document.querySelectorAll(`.${props.name} .glider-slide`)[`${hoveredSlide!}`];        
@@ -196,8 +196,8 @@ const Carousel = (props: ICarouselProps) => {
 
                 // Set a new timeout to open the modal after 300ms
                 modalTimeoutRef.current = setTimeout(() => {
-                    setIsModalOpen(true);
-                }, 100);
+                    if (window.innerWidth >= 1280) { setIsModalOpen(true) }
+                }, 100)
             }
         }
 
@@ -252,7 +252,7 @@ const Carousel = (props: ICarouselProps) => {
                     <Image
                         className="" 
                         alt="icon" 
-                        src={"https://roomify.org/chevron-left-solid.svg"}
+                        src={"https://cdn.roomify.org/chevron-left-solid.svg"}
                         width={24}
                         height={24}
                         style={{ 
@@ -265,7 +265,7 @@ const Carousel = (props: ICarouselProps) => {
                     <Image
                         className="" 
                         alt="icon" 
-                        src={"https://roomify.org/chevron-right-solid.svg"}
+                        src={"https://cdn.roomify.org/chevron-right-solid.svg"}
                         width={24}
                         height={24}
                         style={{ 

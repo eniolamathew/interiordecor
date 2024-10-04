@@ -2,10 +2,11 @@ package route
 
 import (
 	"design/controller"
+
 	"github.com/gin-gonic/gin"
 )
 
-func SetupUnAuthorizedRoutes(server *gin.Engine, designController *controller.DesignController) {
+func SetupUnAuthorizedRoutes(server *gin.RouterGroup, designController *controller.DesignController) {
 	server.POST("/updatestatus", designController.UpdateImageStatus)
 }
 

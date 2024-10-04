@@ -14,11 +14,12 @@ export const FooterWrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  max-width: 980px;
+  max-width: 1000px;
   margin: 0 auto;
 
   @media (max-width: ${props => props.theme.breakpoints.md}px) {
     flex-direction: column;
+    width: 90vw;
   }
 `;
 

@@ -38,7 +38,7 @@ const Input: React.FC<IInputProps> = (props) => {
             {isPasswordVisible ? 
               <Image 
                  alt="icon" 
-                 src={"https://roomify.org/eye-slash-regular.svg"}
+                 src={"https://cdn.roomify.org/eye-slash-regular.svg"}
                  width={20}
                  height={20}
                  style={{ 
@@ -49,7 +49,7 @@ const Input: React.FC<IInputProps> = (props) => {
              /> :
             <Image 
                 alt="icon" 
-                src={"https://roomify.org/eye-regular.svg"}
+                src={"https://cdn.roomify.org/eye-regular.svg"}
                 width={20}
                 height={20}
                 style={{ 

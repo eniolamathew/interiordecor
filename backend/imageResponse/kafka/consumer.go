@@ -94,7 +94,7 @@ func (kc *KafkaConsumer) ConsumeClaim(session sarama.ConsumerGroupSession, claim
 }
 
 func NotifyDesignService(jobId, imageURL string) {
-	url := "http://interior_design_container:7073/updatestatus"
+	url := "http://interior_design_container:7073/design/updatestatus"
 
 	// Create the payload with jobId and imageURL
 	payload := map[string]string{

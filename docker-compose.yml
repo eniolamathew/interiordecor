@@ -44,41 +44,6 @@ services:
     networks:
       - interior_design_network
 
-  migration-user:
-    image: golang:1.22
-    container_name: db_migration_user
-    depends_on:
-    - userInteriorDb
-    volumes:
-    - ./backend/user:/app/user  
-    - ./backend/mail:/app/mail  
-    working_dir: /app/user
-    entrypoint: >
-      /bin/sh -c "
-      go mod tidy &&  
-      GOBIN=/usr/local/bin go install github.com/pressly/goose/v3/cmd/goose@latest &&
-      goose -dir /app/user/sql/schema postgres postgres://user_user:userinterior@userInteriorDb:5432/user_db?sslmode=disable up
-      "
-    networks:
-     - interior_design_network  
-
-  migration-design:
-    image: golang:1.22
-    container_name: db_migration_design
-    depends_on:
-      - generatedImageDb
-    volumes:
-      - ./backend/design:/app  
-    working_dir: /app
-    entrypoint: >
-      /bin/sh -c "
-      go mod tidy &&
-      GOBIN=/usr/local/bin go install github.com/pressly/goose/v3/cmd/goose@latest &&
-      goose -dir /app/sql/schema postgres postgres://generatedimage_user:imageinterior@generatedImageDb:5432/generatedimage_db?sslmode=disable up
-      "
-    networks:
-      - interior_design_network
-
   user-interior-service:
     container_name: interior_user_container
     image: interior_user_image
@@ -86,6 +51,7 @@ services:
       context: ./backend/user
       dockerfile: dockerfile
     environment:
+      - PORT=7071
       - DATABASE_HOST=userInteriorDb
       - DATABASE_PORT=5432
       - DATABASE_NAME=user_db
@@ -123,6 +89,7 @@ services:
     container_name: interior_design_container
     image: interior_design_image
     environment:
+      - PORT=7073 
       - DATABASE_HOST=generatedImageDb
       - DATABASE_PORT=5432
       - DATABASE_NAME=generatedimage_db

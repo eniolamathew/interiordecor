@@ -122,7 +122,7 @@ const Design = () => {
   }
   
   // Polling function to repeatedly check the image generation status
-  async function pollForGeneratedImage(jobId: string, interval: number = 4000, timeout: number = 24000): Promise<IGenratedImageResult> {
+  async function pollForGeneratedImage(jobId: string, interval: number = 4000, timeout: number = 48000): Promise<IGenratedImageResult> {
     const startTime = Date.now();
   
     return new Promise<IGenratedImageResult>((resolve, reject) => {
@@ -204,13 +204,12 @@ const Design = () => {
                     />
                 </Infofooter>
             </Designinfo>
-            {/* </div> */}
 
             <Designdisplay className='designdisplay'>
             { imageLoaded &&
                 <div className='downloadIcon flex flex-center' onClick={handleDownload}>
                     <Image
-                        src="https://roomify.org/download-solid.svg"
+                        src="https://cdn.roomify.org/download-solid.svg"
                         alt="Upload Icon"
                         className="upload-icon"
                         width={25}

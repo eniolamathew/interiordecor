@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const SignupWrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  overflow-x: hidden;
   margin: 0;
   padding: 0;
 `;
@@ -11,21 +10,25 @@ export const SignupWrapper = styled.div`
 export const SignupContainer = styled.div`
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   position: relative;
-
 `;
 
 export const MaxWidth = styled.div`
-  max-width: 50vw;
+  width: 50vw;
   position: relative;
   z-index: 3;
   display: flex;
+  margin-top: 60px;
+  min-height: 100%;
   justify-content: center;
   align-items: center;
-  height: 100%;
   margin: 0 auto;
   text-align: center;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
+    width: 90vw;
+    margin: 0 auto;
+  }s
 `;
 
 export const SignupContent = styled.div`
@@ -76,4 +79,8 @@ export const Text1 = styled.div`
   font-size: 3rem;
   color: white;
   margin-bottom: 1rem;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
+  font-size: 2rem;
+ }
 `;

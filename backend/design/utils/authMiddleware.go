@@ -20,8 +20,8 @@ func CORSMiddleware() gin.HandlerFunc {
 			c.Writer.Header().Set("Access-Control-Allow-Origin", origin)
 			log.Println("Set Access-Control-Allow-Origin to roomify.org")
 		} else {
-			c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
-			log.Println("Set Access-Control-Allow-Origin to *")
+			c.Writer.Header().Set("Access-Control-Allow-Origin", "https://roomify.org")
+			log.Println("Set Access-Control-Allow-Origin to https://roomify.org")
 		}
 
 		c.Writer.Header().Set("Access-Control-Allow-Credentials", "true")
@@ -87,19 +87,36 @@ func AuthMiddleware() gin.HandlerFunc {
 
 func TrustedProxyMiddleware() gin.HandlerFunc {
 	return func(c *gin.Context) {
-		// Check if the request came from a trusted proxy
-		// You can customize this logic as needed
-		if isTrustedProxy(c.Request.Header.Get("X-Forwarded-For")) {
-			c.Next()
-		} else {
+		// Extract the client's real IP from X-Forwarded-For
+		forwardedIP := c.Request.Header.Get("X-Forwarded-For")
+		log.Printf("X-Forwarded-For header (client IP): %s", forwardedIP)
+
+		// Get the IP of the proxy server (Cloudflare or NGINX)
+		proxyIP := c.ClientIP()
+		log.Printf("Proxy IP (ClientIP): %s", proxyIP)
+
+		// Check if the proxy IP is trusted
+		if !isTrustedProxy(proxyIP) {
+			log.Printf("Request blocked due to untrusted proxy IP: %s", proxyIP)
 			c.AbortWithStatus(http.StatusForbidden)
+			return
 		}
+
+		// Continue processing the request
+		c.Next()
 	}
 }
 
+// Check if the proxy IP is trusted (like Cloudflare or NGINX)
 func isTrustedProxy(ip string) bool {
-	// Implement your logic to verify if the IP is from a trusted proxy
-	trustedProxies := []string{"127.0.0.1", "192.168.0.1", "172.67.146.167", "104.21.57.150"}
+	trustedProxies := []string{
+		"127.0.0.1", // Localhost
+		"192.168.0.1",
+		"192.168.65.1",
+		"172.67.146.167",
+		"104.21.57.150",
+	}
+
 	for _, trustedIP := range trustedProxies {
 		if strings.Contains(ip, trustedIP) {
 			return true

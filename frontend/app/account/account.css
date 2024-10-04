@@ -7,10 +7,12 @@
     text-align: center;
 }
 
+
 .landing-content {
   position: relative;
   float: right;
   margin-left: 25px;
+  margin-right: 25px;
   margin-bottom: 25px;
   border: 1px solid #c7c7c7;
   padding: 30px;
@@ -40,6 +42,13 @@
     display: flex;
 }
 
+@media (max-width: 800px) {
+    .landing-content .menu-item {
+        padding: 10px;             
+        margin-top: 15px;          
+    }
+}
+
 .landing-content .menu-item .right-container .label-container {
     float: left;
 }
@@ -49,13 +58,25 @@
     text-transform: uppercase;
     font-size: 24px;
     color: #fff;
-    background: url("https://roomify.org/chevron-right-solid-red.svg") no-repeat right;
+    background: url("https://cdn.roomify.org/chevron-right-solid-red.svg") no-repeat right;
     background-size: 16px;
     padding-right: 25px;
     position: relative;
 }
 
-.mlanding-content.menu-item .left-container .imageIcon {
+@media (max-width:800px) {
+    .landing-content {
+        padding: 15px;
+    }
+    .accountTitle{ font-size: 1.5rem }
+
+    .landing-content .menu-item .right-container .text {
+        font-size: 12px;
+        background-size: 10px
+    }
+}
+
+.landing-content.menu-item .left-container .imageIcon {
     position: relative;
     display: inline-block;
     max-width: 45px;
@@ -80,81 +101,3 @@
     align-items: center;
     justify-content: flex-end; 
   }
-
-  /* .pricing-container .pricing-plan .pricing-badge-container {
-    height: 30px;
-} */
-
-  /* .pricing-container .pricing-plan .pricing-badge {
-    padding: 5px 10px;
-    position: relative;
-    overflow: hidden;
-    background: rgba(0, 0, 0, .2);
-    display: inline-block;
-    border-radius: 12px;
-    font-size: 12px;
-} */
-
-  /* .pricing-container .pricing-plan .pricing-badge:before {
-    animation: badgeShimmer 3.5s infinite ease-out 1.8s;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, .18) 25%, rgba(255, 255, 255, .3) 50%, rgba(255, 255, 255, .18) 75%, rgba(255, 255, 255, 0) 100%);
-    content: "";
-    display: block;
-    height: 90px;
-    left: -60%;
-    position: absolute;
-    top: -150px;
-    transform: rotate(-25deg);
-    width: 200px;
-} */
-
-/* element.style {
-    display: block;
-}
-.pricing-container .pricing-plan.yearly {
-    display: none;
-}
-.pricing-container .pricing-plan.popular {
-    border-color: rgba(255, 255, 255, 0.2);
-    background-color: rgba(255, 255, 255, 0.1);
-}
-.pricing-container .pricing-plan.popular {
-    opacity: 1;
-}
-@media (max-width: 1200px) {
-    .pricing-container .pricing-plan {
-        width: calc(33% - 30px - 30px - 30px);
-    }
-}
-.pricing-container .pricing-plan {
-    opacity: 0.8;
-}
-.pricing-container .pricing-plan {
-    cursor: pointer;
-    text-align: left;
-    border-radius: 12px;
-    padding: 30px;
-    width: 260px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 10px;
-    position: relative;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    width: calc(25% - 30px - 30px - 30px);
-    width: calc(25% - 30px);
-    width: calc(33% - 30px);
-} */
-
-/* .shaded_border:before, .div_output_image:not(.video):not(.edit):before {
-    top: 0;
-    background: linear-gradient(90deg, rgba(72, 75, 81, .3), hsla(180, 7%, 97%, .5), rgba(72, 75, 81, .3));
-} */
-
-  /* .shaded_border:before, .shaded_border:after, .div_output_image:not(.video):not(.edit):before, .div_output_image:not(.video):not(.edit):after {
-    content: "";
-    display: block;
-    position: absolute;
-    box-sizing: content-box;
-    left: 15%;
-    width: 70%;
-    height: 1px;
-} */

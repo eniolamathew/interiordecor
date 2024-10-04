@@ -24,7 +24,7 @@ type DesignService struct {
 	repo interfaces.DesignInterface
 }
 
-// NewUserService creates a new UserService with the given dependencies.
+// NewDesignService creates a new DesignService with the given dependencies.
 func NewDesignService(repo interfaces.DesignInterface) DesignServiceInterface {
 	return &DesignService{repo: repo}
 }

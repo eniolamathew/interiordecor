@@ -35,11 +35,9 @@
 .DS_Store
 Thumbs.db
 
-# Docker related files
-.dockerignore
 
 # Env files containing sensitive information
-*.env
+# *.env
 
 # Git-related files
 .git/

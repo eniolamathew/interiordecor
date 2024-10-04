@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const ProfileWrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  overflow-x: hidden;
   margin: 0;
   padding: 0;
 `;
@@ -11,9 +10,7 @@ export const ProfileWrapper = styled.div`
 export const ProfileContainer = styled.div`
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
   position: relative;
-
 `;
 
 export const MaxWidth = styled.div`
@@ -26,6 +23,10 @@ export const MaxWidth = styled.div`
   height: 100%;
   margin: 0 auto;
   text-align: center;
+
+  @media (max-width: 800px) {
+    width: 90vw;
+  }
 `;
 
 export const ProfileContent = styled.div`

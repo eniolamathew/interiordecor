@@ -4,12 +4,11 @@ import nextjsApi from "../api/nextjsApi"
 import UserAuthManager from "./UserAuthManager";
 
 class DesignData {
-    _baseUnprotectedUrl = ":7073";
-    _baseUrl = ":7073/api";
+    apiUrl = process.env.NEXT_PUBLIC_DESIGN_API_BASE_URL;
+    _baseUrl = `${this.apiUrl}`;
 
     public async generateImage(payload: IGenrateImagePayload): Promise<IMicroserviceApiResult<IGenrateImageResult>> {
         const accessToken =  UserAuthManager.getToken();
-        console.log(accessToken);
         let result =  await nextjsApi.postAsync<IGenrateImageResult>(this._baseUrl + "/generate", payload, { Authorization: `Bearer ${accessToken}` })
         return result
     }

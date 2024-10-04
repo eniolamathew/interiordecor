@@ -112,14 +112,14 @@ export const Email = styled.div`
   justify-content: center;
 
   @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
-    width: 20rem;
+    width: 25rem;
   }
 `;
 
 export const GetStarted = styled.div`
   width: 32rem;
   @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
-    width: 20rem;
+    width: 25rem;
   }
 `;
 
@@ -155,6 +155,10 @@ export const GradientBackground = styled.div`
 export const Text1 = styled.div`
   font-size: 3rem;
   color: white;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
+    font-size: 1.8rem;
+  }
 `;
 
 export const Text2 = styled.div`
@@ -164,15 +168,27 @@ export const Text2 = styled.div`
   span {
     color: #007bff;
   }
+
+   @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
+    font-size: 1.4rem;
+  }
 `;
 
 export const Text3 = styled.div`
   font-size: 1.2rem;
   color: white;
+
+   @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
+    font-size: 1rem;
+  }
 `;
 
 export const Text4 = styled.div`
   font-size: 1.2rem;
   margin-top: 2rem;
   color: white;
+
+   @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
+    font-size: 1rem;
+  }
 `;

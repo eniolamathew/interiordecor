@@ -1,9 +1,9 @@
 package main
 
 import (
+	"design/server"
 	"log"
 	"os"
-	"design/server"
 
 	"context"
 	"net/http"
@@ -22,6 +22,7 @@ func main() {
 	}
 
 	port := os.Getenv("PORT")
+	log.Printf("Port: %s", port)
 	if port == "" {
 		log.Fatal("PORT not found in environment")
 	}

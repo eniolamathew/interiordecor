@@ -202,7 +202,7 @@ const SlideModal: FC<ISlideModalProps> = ({ imageSrc, imageAlt, imageData, setIm
                     {isliked ? 
                         <Image 
                             alt="like" 
-                            src={"https://roomify.org/heart-solid.svg"}
+                            src={"https://cdn.roomify.org/heart-solid.svg"}
                             width={25}
                             height={25}
                             style={{ 
@@ -212,7 +212,7 @@ const SlideModal: FC<ISlideModalProps> = ({ imageSrc, imageAlt, imageData, setIm
                         /> :
                         <Image 
                             alt="like" 
-                            src={"https://roomify.org/heart-regular.svg"}
+                            src={"https://cdn.roomify.org/heart-regular.svg"}
                             width={25}
                             height={25}
                             style={{ 
