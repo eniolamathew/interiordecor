@@ -113,7 +113,7 @@
 
 .pricing-container .features li .check {
     opacity: 0.7;
-    background-image: url(https://roomify.org/pricing-table-check.svg);
+    background-image: url("https://cdn.roomify.org/pricing-table-check.svg");
     background-size: cover;
     width: 15px;
     height: 15px;

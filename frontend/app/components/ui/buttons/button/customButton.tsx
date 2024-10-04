@@ -19,4 +19,8 @@ export const CustomButton = styled(TextButton)`
         border-radius: 6px;
         background-color: transparent;
     }
+
+    @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
+        font-size: 0.8rem;
+    }
 `;

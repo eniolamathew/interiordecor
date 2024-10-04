@@ -17,6 +17,8 @@
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
   --colour-red: rgb(218, 48, 48);
+  --colour-black: rgb(1, 1, 1);
+  --colour-white: rgb(225, 225, 225);
   --colour-ash: #acacac;
 }
 
@@ -118,12 +120,19 @@ input:-webkit-autofill {
 }
 
 .logoImage {
-  width: 120px;
+  width: 100px;
   height: 60px;
-  background-image: url("https://roomify.org/roomify.png");
+  background-image: url(/roomify.png);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+@media (max-width:800px) {
+  .logoImage{
+    width: 80px;
+    height: 40px;
+  }
 }
 
 .Toastify__close-button {
@@ -173,7 +182,7 @@ input:-webkit-autofill {
 
 .loading-spinner {
   animation: load_spinner .9s linear infinite;
-  background-image: url(https://roomify.org/site-spinner.png);
+  background-image: url("/site-spinner.png");
   background-repeat: no-repeat;
   background-size: 100%;
   position: relative;

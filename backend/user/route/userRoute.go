@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func SetupUnAuthorizedRoutes(server *gin.Engine, userController *controller.UserController) {
+func SetupUnAuthorizedRoutes(server *gin.RouterGroup, userController *controller.UserController) {
 	server.POST("/signup", userController.SignupUserHandler)
 	server.POST("/login", userController.LoginUserHandler)
 	server.POST("/requestpasswordreset", userController.RequestPasswordReset)

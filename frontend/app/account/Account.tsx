@@ -11,10 +11,10 @@ const Profile = () => {
   const { logout } = useAuth();
   const router = useRouter()
   const profileLayout = [
-    { title: "Your Details", href: "/account/profile", imgSrc:"https://roomify.org/menu-item-my-details.svg" },
-    { title: "Plan", href: "/account/plans", imgSrc:"https://roomify.org/menu-plan.svg" },
-    { title: "Change Password", href: "/changepassword", imgSrc:"https://roomify.org/menu-item-change-password.png" },
-    { title: "Logout", href: "/", imgSrc:"https://roomify.org/menu-item-logout.svg" },
+    { title: "Your Details", href: "/account/profile", imgSrc:"https://cdn.roomify.org/menu-item-my-details.svg" },
+    { title: "Plan", href: "/account/plans", imgSrc:"https://cdn.roomify.org/menu-plan.svg" },
+    { title: "Change Password", href: "/changepassword", imgSrc:"/menu-item-change-password.png" },
+    { title: "Logout", href: "/", imgSrc:"https://cdn.roomify.org/menu-item-logout.svg" },
   ];
 
   return (
@@ -43,8 +43,8 @@ const Profile = () => {
                             className="imageIcon" 
                             alt="icon" 
                             src={item.imgSrc}
-                            width={20}
-                            height={20}
+                            width={window.innerWidth >= 800 ? 20 : 12}
+                            height={window.innerWidth >= 800 ? 20 : 12}
                             style={{ 
                               maxWidth: "45px", 
                               maxHeight: "45px", 

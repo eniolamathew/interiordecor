@@ -20,7 +20,7 @@ class NextJsApi {
     }
 
     async processAsync<T>(method: string, targetApiUrl: string, body: object | undefined | string, headers: any, extractPayload: boolean = true): Promise<IMicroserviceApiResult<T>> {
-        let url = this.resolvePort(config.rootApiUrl, targetApiUrl);
+        let url = this.resolvePort('',targetApiUrl);
 
         // Remove the body for GET requests
         const fetchOptions: RequestInit = {

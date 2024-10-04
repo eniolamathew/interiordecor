@@ -44,7 +44,7 @@ export default function Home() {
     <HomeNavbar/>
 
     <HomeWrapper>
-      <HomeContainer $background={"https://roomify.org/backgroundImage.jpg"}>
+      <HomeContainer $background={"https://cdn.roomify.org/backgroundImage.jpg"}>
         <ContentWrapper>
           <MaxWidth>
             <HomeContent>

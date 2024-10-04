@@ -18,31 +18,31 @@ const Footer = () => {
     {
       label: "Facebook",
       href: "https://facebook.com",
-      src: "https://roomify.org/facebook-brands-solid.svg",
+      src: "https://cdn.roomify.org/facebook-brands-solid.svg",
       alt: "Facebook Icon",
     },
     {
       label: "Twitter",
       href: "https://twitter.com",
-      src: "https://roomify.org/x-twitter-brands-solid.svg",
+      src: "https://cdn.roomify.org/x-twitter-brands-solid.svg",
       alt: "Twitter Icon",
     },
     {
       label: "Instagram",
       href: "https://instagram.com",
-      src: "https://roomify.org/instagram-brands-solid.svg",
+      src: "https://cdn.roomify.org/instagram-brands-solid.svg",
       alt: "Instagram Icon",
     },
     {
       label: "LinkedIn",
       href: "https://linkedin.com",
-      src: "https://roomify.org/linkedin-brands-solid.svg",
+      src: "https://cdn.roomify.org/linkedin-brands-solid.svg",
       alt: "LinkedIn Icon",
     },
     {
       label: "TikTok",
       href: "https://tiktok.com",
-      src: "https://roomify.org/tiktok-brands-solid.svg",
+      src: "https://cdn.roomify.org/tiktok-brands-solid.svg",
       alt: "TikTok Icon",
     },
   ];

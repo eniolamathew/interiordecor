@@ -82,15 +82,16 @@ func (s *userHttpServer) Serve() *gin.Engine {
 	// Initialize the Gin router
 	server := gin.Default()
 	server.Use(utils.CORSMiddleware())
+	//server.Use(utils.TrustedProxyMiddleware())
+	baseroute := server.Group("/design")
 
 	// Setup public routes
-	route.SetupUnAuthorizedRoutes(server, designController)
+	route.SetupUnAuthorizedRoutes(baseroute, designController)
 
 	// Setup protected routes
-	authorized := server.Group("/api")
-	authorized.Use(utils.AuthMiddleware())
-	server.Use(utils.TrustedProxyMiddleware())
-	route.SetupAuthorizedRoutes(authorized, designController)
+	protectedRoutes := baseroute.Group("/")
+	protectedRoutes.Use(utils.AuthMiddleware())
+	route.SetupAuthorizedRoutes(baseroute, designController)
 
 	return server
 }

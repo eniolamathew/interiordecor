@@ -24,6 +24,9 @@ WORKDIR /app
 # Copy the binary from the builder stage
 COPY --from=builder /app/imageResponseService /app/imageResponseService
 
+# Copy env file
+COPY .env /app/.env
+
 # Expose the port the application will run on
 EXPOSE 7075
 # Adjust this if your app uses a different port

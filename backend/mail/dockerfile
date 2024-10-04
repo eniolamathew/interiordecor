@@ -24,6 +24,9 @@ WORKDIR /app
 # Copy the binary from the builder stage
 COPY --from=builder /app/mailService /app/mailService
 
+# Copy env file
+COPY .env /app/.env
+
 # Expose the port the application will run on
 EXPOSE 7072
 # Adjust this if your app uses a different port

@@ -34,7 +34,7 @@ const HomeUiButton: React.FC<ButtonContainerProps> = ({text, icon, onClick}) => 
             <Image
                 className="homeIcon" 
                 alt="icon" 
-                src={"https://roomify.org/chevron-right-solid.svg"}
+                src={"https://cdn.roomify.org/chevron-right-solid.svg"}
                 width={30}
                 height={30}
                 style={{ 
