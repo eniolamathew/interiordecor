@@ -29,35 +29,57 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   // Effect to load token from localStorage on initial render
-  useEffect(() => {
+  useEffect(() => { 
     const storedToken = UserAuthManager.getToken();
     if (storedToken) {
-      setAccessToken(storedToken);
-      setIsLoggedIn(true);
+      if (!UserAuthManager.isTokenExpired()) {
+        setAccessToken(storedToken);
+        setIsLoggedIn(true);
+      } else {
+        UserAuthManager.removeToken();
+        setIsLoggedIn(false);
+      }
     }
   }, []);
-
-  // Effect to listen for localStorage changes (e.g., logout from another tab)
+  
   useEffect(() => {
     const handleStorageChange = (event: StorageEvent) => {
       if (event.key === 'accessToken') {
         if (!event.newValue) {
+          // Token has been removed, log the user out.
           setAccessToken(null);
           setIsLoggedIn(false);
         } else {
-          setAccessToken(event.newValue);
-          setIsLoggedIn(true);
+          UserAuthManager.setToken(event.newValue);
+  
+          if (UserAuthManager.isTokenExpired()) {
+            setAccessToken(null);
+            setIsLoggedIn(false);
+          } else {
+            setAccessToken(event.newValue);
+            setIsLoggedIn(true);
+          }
         }
       }
     };
-
+  
+    const expirationCheckInterval = setInterval(() => {
+      const token = UserAuthManager.getToken();
+      if (token && UserAuthManager.isTokenExpired()) {
+        setAccessToken(null);
+        setIsLoggedIn(false);
+        UserAuthManager.removeToken();
+      }
+    }, 60 * 1000);
+  
     window.addEventListener('storage', handleStorageChange);
-
+  
     return () => {
       window.removeEventListener('storage', handleStorageChange);
+      clearInterval(expirationCheckInterval);
     };
   }, []);
-
+  
   const login = (token: string) => {
     setAccessToken(token);
     setIsLoggedIn(true);

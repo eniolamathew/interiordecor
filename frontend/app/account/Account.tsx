@@ -13,7 +13,7 @@ const Profile = () => {
   const profileLayout = [
     { title: "Your Details", href: "/account/profile", imgSrc:"https://cdn.roomify.org/menu-item-my-details.svg" },
     { title: "Plan", href: "/account/plans", imgSrc:"https://cdn.roomify.org/menu-plan.svg" },
-    { title: "Change Password", href: "/changepassword", imgSrc:"/menu-item-change-password.png" },
+    { title: "Change Password", href: "/changepassword", imgSrc:"https://cdn.roomify.org/instant-solid.svg" },
     { title: "Logout", href: "/", imgSrc:"https://cdn.roomify.org/menu-item-logout.svg" },
   ];
 

@@ -50,10 +50,7 @@ const Footer = () => {
   return (
     <FooterContainer>
       <FooterWrapper>
-        {/* Logo or Brand Name */}
         <FooterLeftSection style={{ width: "35vw"}}>
-        {/* <div className="logoImage"></div> */}
-
             <FooterLogo ></FooterLogo>
             <SocialMediaContainer>
             {socialMediaIcons.map(({ label, href, src, alt }) => (
@@ -84,9 +81,9 @@ const Footer = () => {
             </SocialMediaContainer>
 
         </FooterLeftSection>
-        <FooterRightSection  style={{ width: "65vw"}}>
+        <FooterRightSection>
             <FooterLinksContainer>
-            <FooterLink href="#">Comapany</FooterLink>
+            <FooterLink href="#">Company</FooterLink>
             <FooterLink href="#">Solutions</FooterLink>
             <FooterLink href="#">Contact</FooterLink>
             <FooterLink href="#">Terms</FooterLink>
