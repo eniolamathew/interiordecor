@@ -1,12 +1,15 @@
 import React from 'react'
 import Profile from './Profile'
+import Layout from '../layout'
 
-const PAGE = () => {
+const Page = () => {
   return (
     <>
-      <Profile />
+      <Layout>
+        <Profile />
+      </Layout>
     </> 
   )
 }
 
-export default PAGE
+export default Page

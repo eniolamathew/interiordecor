@@ -2,12 +2,12 @@
 import React, { useEffect, useState } from "react";
 import { CustomButton } from "../ui/buttons/button/customButton";
 import { usePathname, useRouter } from "next/navigation";
-import { NavbarContainer, NavItems, NavItem, NavButton, NavIcon, NavRight, NavText} from "./NavbarStyles"
+import { NavbarContainer, NavItems, NavItem, NavButton, NavIcon, NavRight } from "./NavbarStyles"
 import { useAuth } from "../../../shared/context/AuthContext";
 import Image from "next/image";
 
 const HomeNavbar = () => {
-  const { designActivedIndex, setDesignActivedIndex, isLoggedIn } = useAuth();
+  const { isLoggedIn } = useAuth();
   const router = useRouter();
   const pathname = usePathname(); 
   const [scrollY, setScrollY] = useState<number>(0);
@@ -43,13 +43,6 @@ const HomeNavbar = () => {
               <div className="logoImage"></div>
               <div className="logoIcon"></div>
           </NavItem>
-              {pathname.startsWith("/design") && (
-                <>
-                  <NavText className={`nav-text ${ designActivedIndex === 0 ? "active" : ""}`} onClick={() => { setDesignActivedIndex(0)
-                    router.push("/design") 
-                }}> Design </NavText>
-                </>
-              )}
         </NavRight>
         ) : (
           <NavItem className="logo" onClick={(e)=>{ isLoggedIn ? router.push("/design") : router.push("/") }}>

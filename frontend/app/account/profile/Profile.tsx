@@ -2,16 +2,16 @@
 import UserAuthManager from "../../../shared/data/UserAuthManager";
 import "./profile.css";
 import InputContainer from "../../components/ui/emailInput/InputContainer";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify';
 import userApiData from "@/shared/data/userApiData";
 import ButtonContainer from "../../components/ui/buttons/HomeUiButton";
-import useDataFetching from "@/shared/hook/useDataFecthing";
-import Loading from "@/app/loading";
+import { useUserProfile } from "../layout";
 
 const Profile = () => {
   const router = useRouter()
+  const { userprofile } = useUserProfile();
   const email: string = UserAuthManager.getEmail()!;
   const [fullname, setFullName] = useState<string>("");
   const [postcode, setPostcode] = useState<string>("");
@@ -21,20 +21,16 @@ const Profile = () => {
   const [invalidAddress, setInvalidAddress] = useState<string>("");
   const [updateProfile, setUpdateProfile] = useState<boolean>(false);
 
-  const fetchUserProfile = async ()=>{
-    const result = await userApiData.getUserProfileByEmail(email)
-    if (result.success){
-      console.log(result.payload);
-      setFullName(result.payload!.Fullname)
-      setAddress(result.payload!.Useraddress)
-      setPostcode(result.payload!.Postcode)
+  useEffect(()=>{
+    if(userprofile){
+      setFullName(userprofile.Fullname)
+      setAddress(userprofile.Useraddress)
+      setPostcode(userprofile.Postcode)
       setUpdateProfile(true)
     } else{
       setUpdateProfile(false)
     }
-  }
-
-  const { isLoading } = useDataFetching(fetchUserProfile, [])
+  }, [])
 
   const clearError = ()=>{
     setInvalidName("");
@@ -74,8 +70,6 @@ const Profile = () => {
       Promise.reject(error)
     }
   }
-
-  if(isLoading){ return <Loading />}
 
   return (
     <>

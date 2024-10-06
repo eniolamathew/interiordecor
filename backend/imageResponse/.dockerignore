@@ -1,0 +1,33 @@
+# Ignore Go-specific files
+*.log
+*.out
+*.exe
+
+# Ignore local environment files (keep the necessary ones)
+.env.local
+.env.development
+
+# Keep the required environment files
+# !.env
+# !.env.production
+
+# Ignore Go vendor dependencies (if using vendoring)
+vendor/
+
+# Ignore node modules (if you're using Node.js)
+node_modules/
+
+# Ignore build directories
+dist/
+build/
+
+# Ignore IDE/editor-specific files
+.vscode/
+.idea/
+*.swp
+
+# Ignore Git files and related
+.git/
+.gitignore
+
+# Do not ignore Dockerfile or docker-compose.yml

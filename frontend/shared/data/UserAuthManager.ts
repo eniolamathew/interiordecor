@@ -83,11 +83,18 @@ class TokenManager {
 
   isTokenExpired(): boolean {
     if (!this._user || !this._user.exp) {
-      return true;
+      const token = this.getToken();
+      if (token) {
+        this.processToken(token);
+      }
+  
+      if (!this._user || !this._user.exp) {
+        return true;
+      }
     }
-
+  
     const currentTime = Date.now() / 1000;
-    return this._user.exp < currentTime;  
+    return this._user.exp < currentTime;
   }
 }
 
