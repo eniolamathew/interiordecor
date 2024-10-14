@@ -7,11 +7,15 @@ import { useRouter } from 'next/navigation'
 import { toast } from 'react-toastify';
 import userApiData from "@/shared/data/userApiData";
 import ButtonContainer from "../../components/ui/buttons/HomeUiButton";
-import { useUserProfile } from "../layout";
+import { ProfileHeader } from "./ProfileStyles";
+import { IGetUserProfileByEmailResult } from '@/models/user';
 
-const Profile = () => {
+interface IProfileProps {
+  userprofile: IGetUserProfileByEmailResult
+}
+
+const Profile:React.FC<IProfileProps> = ({ userprofile }) => {
   const router = useRouter()
-  const { userprofile } = useUserProfile();
   const email: string = UserAuthManager.getEmail()!;
   const [fullname, setFullName] = useState<string>("");
   const [postcode, setPostcode] = useState<string>("");
@@ -76,7 +80,7 @@ const Profile = () => {
       <div className="">
         <div className="profileContainer">
           <div className="mb-2 ">
-          <div className="accountTitle">Your Profile</div>
+            <ProfileHeader >Your Profile</ProfileHeader>
             <InputContainer
               label={"Full Name"}
               value={fullname}

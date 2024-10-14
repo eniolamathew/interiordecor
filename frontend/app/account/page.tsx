@@ -1,11 +1,15 @@
-"use client"
+"use client";
 import React from "react";
-import Profile from "./Account";
+import Account from "./Account";
+import HomeNavbar from '../components/navbar/HomeNavbar';
+import Footer from '../components/footer/Footer';
 
 const page = () => {
   return (
     <>
-      <Profile />
+      <HomeNavbar />
+        <Account />
+      <Footer />
     </>
   );
 };

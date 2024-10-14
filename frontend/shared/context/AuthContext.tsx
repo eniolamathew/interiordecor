@@ -6,7 +6,9 @@ import { usePathname } from 'next/navigation';
 interface AuthContextType {
   designActivedIndex: number;
   isLoggedIn: boolean;
+  isLightMode: boolean;
   accessToken: string | null;
+  setIsLightMode: React.Dispatch<React.SetStateAction<boolean>>;
   setDesignActivedIndex: React.Dispatch<React.SetStateAction<number>>;
   login: (token: string) => void;
   logout: () => void;
@@ -24,7 +26,8 @@ export const useAuth = () => {
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const pathname = usePathname();
-  const [designActivedIndex, setDesignActivedIndex] = useState(pathname === '/design' ? 0 : 1); 
+  const [designActivedIndex, setDesignActivedIndex] = useState(pathname === '/design' ? 0 : 1);
+  const [isLightMode, setIsLightMode] = useState<boolean>(false);
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
@@ -41,12 +44,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       }
     }
   }, []);
+
+  useEffect(() => {
+    document.body.style.color = isLightMode ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)';
+    document.body.style.backgroundColor = isLightMode ? 'rgb(255, 255, 255)' : 'rgb(0, 0, 0)';
+
+    document.documentElement.style.color = isLightMode ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)';
+    document.documentElement.style.backgroundColor = isLightMode ? 'rgb(255, 255, 255)' : 'rgb(0, 0, 0)';
+  }, [isLightMode]);
   
   useEffect(() => {
     const handleStorageChange = (event: StorageEvent) => {
       if (event.key === 'accessToken') {
         if (!event.newValue) {
-          // Token has been removed, log the user out.
           setAccessToken(null);
           setIsLoggedIn(false);
         } else {
@@ -93,7 +103,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ designActivedIndex, setDesignActivedIndex, isLoggedIn, accessToken, login, logout }}>
+    <AuthContext.Provider value={{ designActivedIndex, setDesignActivedIndex, isLightMode, setIsLightMode, isLoggedIn, accessToken, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

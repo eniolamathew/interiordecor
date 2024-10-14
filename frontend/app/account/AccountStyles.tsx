@@ -13,7 +13,7 @@ export const MenuItem = styled.li`
 export const Title = styled.div`
   text-align: start;
   font-size: 3rem;
-  color: white;
+
   margin-bottom: 1rem;
   text-align: center;
 `;

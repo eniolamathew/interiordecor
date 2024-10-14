@@ -19,7 +19,7 @@
     box-sizing: content-box;
     left: 15%;
     width: 70%;
-    height: 2px;
+    height: 1px;
 }
 
 .infoheader{
@@ -68,7 +68,6 @@
     font-size: 1.5rem;
     text-align: center;
     font-weight: bold;
-    color: white;
     font-family:'lato'
 }
 
@@ -81,7 +80,6 @@
     background-color: #da3030;
     border-radius: 16px;
     font-size: 1rem;
-    color: white;
     cursor: pointer;
 
     &:hover{
@@ -155,13 +153,6 @@
     position: relative;
     text-align: left;
     color: var(--colour-red);
-  }
-
-  .roomtype{
-    border: 1px solid rgba(228, 199, 199, 0.2); 
-    background-color: rgb(25, 25, 25);
-    padding: 0.5rem;
-    border-radius: 8px;
   }
 
   .downloadIcon{

@@ -2,14 +2,13 @@ import styled from "styled-components";
 
 export const SignupWrapper = styled.div`
   width: 100vw;
-  height: 100vh;
   margin: 0;
   padding: 0;
+  margin-top: 60px;
 `;
 
 export const SignupContainer = styled.div`
   width: 100vw;
-  height: 100vh;
   position: relative;
 `;
 
@@ -18,7 +17,6 @@ export const MaxWidth = styled.div`
   position: relative;
   z-index: 3;
   display: flex;
-  margin-top: 60px;
   min-height: 100%;
   justify-content: center;
   align-items: center;
@@ -27,13 +25,11 @@ export const MaxWidth = styled.div`
 
   @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
     width: 90vw;
-    margin: 0 auto;
-  }s
+  }
 `;
 
 export const SignupContent = styled.div`
   text-align: center;
-  color: white;
 `;
 
 export const EmailContainer = styled.div`
@@ -77,7 +73,6 @@ export const GradientBackground = styled.div`
 export const Text1 = styled.div`
   text-align: start;
   font-size: 3rem;
-  color: white;
   margin-bottom: 1rem;
 
   @media (max-width: ${(props) => props.theme.breakpoints.md}px) {

@@ -27,9 +27,9 @@ export const Designwrapper = styled.div`
     }
 `;
 
-export const Designinfo = styled.div`
+export const Designinfo = styled.div<{$isLightMode: boolean}>`
     width: 40vw;
-    border: 2px solid rgba(228, 199, 199, 0.2);
+    border: ${(props) => (props.$isLightMode ? '2px solid rgba(228, 199, 199, 1)' : '2px solid rgba(228, 199, 199, 0.2)')};
     height: 100%;
     border-radius: 6px 0px 0px 6px;
     padding: 1rem;
@@ -44,10 +44,10 @@ export const Designinfo = styled.div`
     }
 `;
 
-export const Designdisplay = styled.div`
+export const Designdisplay = styled.div<{$isLightMode: boolean}>`
     width: 60vw;
     height: 100%;
-    background-color: rgb(25, 25, 25);
+    background-color: ${(props) => (props.$isLightMode ? 'rgb(225, 255, 255, 40%)' : 'rgb(25, 25, 25)')};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,4 +86,9 @@ export const Infofooter= styled.div`
     }
 `;
 
-
+export const RoomType = styled.div<{$isLightMode: boolean}>`
+    background-color: ${(props) => (props.$isLightMode ? 'rgb(225, 255, 255, 40%)' : 'rgb(25, 25, 25)')};
+    border: ${(props) => (props.$isLightMode ? '1px solid #B4B4B4' : '1px solid rgba(228, 199, 199, 0.2)')};
+    padding: 0.5rem;
+    border-radius: 8px;
+`;

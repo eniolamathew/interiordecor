@@ -14,7 +14,8 @@ const Profile = () => {
     { title: "Your Details", href: "/account/profile", imgSrc:"https://cdn.roomify.org/menu-item-my-details.svg" },
     { title: "Plan", href: "/account/plans", imgSrc:"https://cdn.roomify.org/menu-plan.svg" },
     { title: "Change Password", href: "/changepassword", imgSrc:"https://cdn.roomify.org/instant-solid.svg" },
-    { title: "Logout", href: "/", imgSrc:"https://cdn.roomify.org/menu-item-logout.svg" },
+    { title: "Setting", href:"#", imgSrc:"/gear-solid.svg"} ,
+    { title: "Logout", href: "/", imgSrc:"/right-from-bracket-solid.svg" },
   ];
 
   return (
@@ -46,8 +47,8 @@ const Profile = () => {
                             width={window.innerWidth >= 800 ? 20 : 12}
                             height={window.innerWidth >= 800 ? 20 : 12}
                             style={{ 
-                              maxWidth: "45px", 
-                              maxHeight: "45px", 
+                              width: `${window.innerWidth >= 800 ? "20px" : "12px"}`, 
+                              height: `${window.innerWidth >= 800 ? "20px" : "12px"}`, 
                               filter: "brightness(0) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(117%) contrast(100%)"
                             }}
                           />

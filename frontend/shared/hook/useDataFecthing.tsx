@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 
 const useDataFetching = (fetchFunction: () => void, dependencies:any[] = []) => {
     const [data, setData] = useState<any | null>(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState<boolean>(true);
     const [error, setError] = useState<Error | null>(null);
   
   useEffect(() => {

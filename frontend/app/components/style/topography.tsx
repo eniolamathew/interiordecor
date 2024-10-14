@@ -10,9 +10,7 @@ const Heading = styled.h3`
     text-align: ${(props: HeadingProps) => props.align};
     text-transform: uppercase;
     text-align: center;
-
-
-    `;
+`;
 
 const TileHolderHeading = styled(Heading)`
     font-size: ${theme.headings.h3.size};

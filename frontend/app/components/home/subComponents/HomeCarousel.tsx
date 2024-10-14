@@ -42,7 +42,6 @@ const Title = styled.div`
   font-size: 1rem;
   margin: 0rem 1rem;
   margin-bottom: 4px;
-  color: white;
 `;
 
 function HomeCarousel(props: ICategoryIntroProps) {

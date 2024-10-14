@@ -96,7 +96,7 @@ const CarouselHolder = styled.div<ICarouselHolder>`
     & .glider-dot {
         width: 20px; 
         height: 4px; 
-        background-color: gray;
+        background-color: rbga(75,75,75,1);
         border-radius: 2px;
         margin: 0 5px;
         cursor: pointer;
@@ -104,7 +104,7 @@ const CarouselHolder = styled.div<ICarouselHolder>`
     }
 
     & .glider-dot.active {
-        background-color: white; /* Active dot color */
+        background-color: rbga(25,25,25,1); /* Active dot color */
         transform: scale(1.2); /* Optional: make active dot slightly larger */
     }
 

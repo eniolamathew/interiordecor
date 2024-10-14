@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 // Main Footer Container
-export const FooterContainer = styled.footer`
+export const FooterContainer = styled.footer<{$isLightMode: boolean}>`
   background-color: transparent;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-top: ${(props) => (props.$isLightMode ? '1px solid rgba(25, 25, 25, 1);' : '1px solid rgba(255, 255, 255, 0.2)' )};
   padding: 2rem 0 2rem 0;
-  color: #fff;
 `;
 
 // Wrapper to control layout
@@ -38,7 +37,7 @@ export const FooterRightSection = styled.div`
 `;
 
 // Logo or Brand Name
-export const FooterLogo = styled.div`
+export const FooterLogo = styled.div<{$isLightMode: boolean}>`
   justify-self: start;
   cursor: pointer;
   text-decoration: none;
@@ -49,7 +48,7 @@ export const FooterLogo = styled.div`
 
   width: 120px;
   height: 60px;
-  background-image: url("/roomify.png");
+  background-image: ${(props) => (props.$isLightMode ? 'url("/roomify-lightmode.png")' : 'url("/roomify.png")' )};
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
@@ -74,7 +73,6 @@ export const FooterLinksContainer = styled.div`
 
 // Individual Link
 export const FooterLink = styled.a`
-  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -103,7 +101,6 @@ export const SocialIconLink = styled.a`
   display: flex;
   justify-content: center;
   align-items: center;
-  color: #fff;
   font-size: 24px;
   margin: 0 0.5rem;
 
@@ -118,5 +115,4 @@ export const FooterBottom = styled.div`
   text-align: center;
   margin-top: 2rem;
   font-size: 0.9rem;
-  color: #fff;
 `;

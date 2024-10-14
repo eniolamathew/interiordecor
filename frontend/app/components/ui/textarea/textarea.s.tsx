@@ -5,6 +5,7 @@ interface ITextAreaHolderProps extends React.HTMLAttributes<HTMLTextAreaElement>
   rows: number;
   type: string;
   onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
+  $isLightMode: boolean;
 }
 
 const TextAreaWrapper = styled.div`
@@ -20,13 +21,13 @@ const TextAreaError = styled.div`
   color: var(--colour-red);
 `;
 
-const FloatingLabel = styled.label<{ $isFocused: boolean; $hasValue: boolean }>`
+const FloatingLabel = styled.label<{ $isFocused: boolean; $hasValue: boolean, $isLightMode:boolean}>`
   position: absolute;
   left: 16px;
+  color: ${(props) => (props.$isLightMode ? '#000' : '#B4B4B4')};
   top: ${(props) => (props.$isFocused || props.$hasValue ? '16px' : `calc(18.75% - 12px)` )};
   transform: ${(props) => (props.$isFocused || props.$hasValue ? 'translateY(-50%) scale(0.8)' : 'translateY(-50%)')};
   transform-origin: left;
-  color: ${(props) => (props.$isFocused ? '#B4B4B4' : '#B4B4B4')};
   transition: all 0.2s ease-out;
   pointer-events: none;
   text-align: left;
@@ -43,7 +44,7 @@ const TextAreaHolder = styled.textarea<ITextAreaHolderProps>`
   background-color: transparent !important;
 
   &:focus {
-    border: 3px solid #FFF;
+    border: ${(props) => (props.$isLightMode ? '3px solid #000' : '3px solid #FFF' )};
     border-radius: 12px;
   }
 
