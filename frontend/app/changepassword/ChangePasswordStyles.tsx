@@ -33,7 +33,6 @@ export const MaxWidth = styled.div`
 
 export const ResetPasswordContent = styled.div`
   text-align: center;
-  color: white;
 `;
 
 export const EmailContainer = styled.div`
@@ -77,6 +76,5 @@ export const GradientBackground = styled.div`
 export const Text1 = styled.div`
   text-align: start;
   font-size: 3rem;
-  color: white;
   margin-bottom: 1rem;
 `;

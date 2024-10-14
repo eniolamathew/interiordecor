@@ -18,7 +18,7 @@ const faqData: FAQItem[] = [
   },
   {
     question: "What AI model do u use?",
-    answer: "Roomify uses our own AI generation pipeline which is trained for high photorealism on Dall-E 3. We keep working on improving it, with better photorealistic data sets, using reinforcement learning from human feedback (RLHF) by users like you which constantly improves our models. All of this to get you better more photorealistic renders.",
+    answer: "Roomify uses our own AI generation pipeline which is trained for high photorealism and passing it to a large language model (LLM) for image generation. We keep working on improving it, with better photorealistic data sets, using reinforcement learning from human feedback (RLHF) by users like you which constantly improves our models. All of this to get you better more photorealistic renders.",
   },
   {
     question: "how much does roomify cost?",

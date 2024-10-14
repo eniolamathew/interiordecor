@@ -1,6 +1,8 @@
+"use client";
 import React, { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { IDropDownProps } from "./dropdown.i";
+import { useAuth } from "@/shared/context/AuthContext";  
 import { DropdownHolder, FloatingLabel, DropdownWrapper, DropdownError, ClearButton, ValueWrapper} from "./dropdown.s"
 
 interface IDropdownOption {
@@ -40,6 +42,7 @@ interface DropdownProps extends IDropDownProps {
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ label, value, onChange, options, error, disabled }) => {
+  const { isLightMode } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(value);
   const [isFocused, setIsFocused] = useState(false);
@@ -133,14 +136,15 @@ const Dropdown: React.FC<DropdownProps> = ({ label, value, onChange, options, er
         onBlur={() => { if (!disabled) setIsFocused(false) }}
         tabIndex={disabled ? -1 : 0}
         $disabled={disabled}
+        $isLightMode={isLightMode}
       >
         <ValueWrapper>
-          <FloatingLabel $isFocused={isFocused} $hasValue={!!selectedValue}>
+          <FloatingLabel $isFocused={isFocused} $hasValue={!!selectedValue} $isLightMode={isLightMode}>
             {label}
           </FloatingLabel>
           {selectedValue}
         </ValueWrapper>
-        {selectedValue && <ClearButton onClick={handleClear}> × </ClearButton>}
+        {selectedValue && <ClearButton onClick={handleClear} $isLightMode={isLightMode}> × </ClearButton>}
       </DropdownHolder>
       {isOpen && (
         <DropdownMenu ref={dropdownMenuRef}>

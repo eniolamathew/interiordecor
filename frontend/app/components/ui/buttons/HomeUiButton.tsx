@@ -14,8 +14,6 @@ const ButtonText = styled.div`
   display: contents;
   text-align: center;
   font-size: 1.2rem;
-  margin-left: 2rem;
-  margin-right: 2rem;
 `;
 
 const ButtonContainerWrapper = styled.div`
@@ -35,11 +33,15 @@ const HomeUiButton: React.FC<ButtonContainerProps> = ({text, icon, onClick}) => 
                 className="homeIcon" 
                 alt="icon" 
                 src={"https://cdn.roomify.org/chevron-right-solid.svg"}
-                width={30}
-                height={30}
+                width={24}
+                height={24}
                 style={{ 
-                    maxWidth: "24px", 
-                    maxHeight: "24px", 
+                    maxWidth: "30px", 
+                    maxHeight: "30px", 
+                    marginRight:"1rem",
+                    marginLeft:"1rem",
+                    textAlign: "center",
+                    cursor: "pointer",
                     filter:"invert(100%) brightness(100%) contrast(100%)"
                 }}
             />

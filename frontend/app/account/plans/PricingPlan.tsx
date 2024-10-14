@@ -1,5 +1,7 @@
 import React from 'react';
 import ButtonWrapper from '../../components/ui/buttons/ButtonWrapper';
+import { useAuth } from "@/shared/context/AuthContext";
+import { Pricing } from "./PlanStyles";
 
 interface PricingPlanProps {
   plan: string;
@@ -12,8 +14,10 @@ interface PricingPlanProps {
 }
 
 const PricingPlan: React.FC<PricingPlanProps> = ({ plan, active, ismonthly, badge, monthly, yearly, properties }) => {
+  const { isLightMode } = useAuth();
+
   return (
-    <div className={`pricing-plan ${active ? 'shaded_border' : ''} monthly`} style={{ display: 'block' }}>
+    <Pricing className={`pricing-plan ${active ? 'shaded_border' : ''} monthly`} style={{ display: 'block' }} $isLightMode={isLightMode}>
         <div className="pricing-badge-container">
                 <div className="pricing-badge">
                     <span> { active ? "Active" : badge }</span>
@@ -43,7 +47,7 @@ const PricingPlan: React.FC<PricingPlanProps> = ({ plan, active, ismonthly, badg
           </li>
         ))}
       </ul>
-    </div>
+    </Pricing>
   );
 };
 

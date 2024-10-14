@@ -12,8 +12,10 @@ import {
   FooterBottom,
 } from './FooterStyles';
 import Image from 'next/image';
+import { useAuth } from "../../../shared/context/AuthContext";
 
 const Footer = () => {
+    const { isLightMode } = useAuth();
     const socialMediaIcons = [
     {
       label: "Facebook",
@@ -48,10 +50,10 @@ const Footer = () => {
   ];
   
   return (
-    <FooterContainer>
+    <FooterContainer $isLightMode={isLightMode}>
       <FooterWrapper>
         <FooterLeftSection style={{ width: "35vw"}}>
-            <FooterLogo ></FooterLogo>
+            <FooterLogo $isLightMode={isLightMode} ></FooterLogo>
             <SocialMediaContainer>
             {socialMediaIcons.map(({ label, href, src, alt }) => (
               <SocialIconLink

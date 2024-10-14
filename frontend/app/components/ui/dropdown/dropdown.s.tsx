@@ -14,20 +14,20 @@ const DropdownWrapper = styled.div`
   overflow: visible; 
 `;
 
-const FloatingLabel = styled.label<{ $isFocused: boolean; $hasValue: boolean }>`
+const FloatingLabel = styled.label<{ $isFocused: boolean; $hasValue: boolean, $isLightMode:boolean }>`
   position: absolute;
   left: 16px;
   top: ${(props) => (props.$isFocused || props.$hasValue ? '16px' : `calc(50% - 12px)` )};
   transform: ${(props) => (props.$isFocused || props.$hasValue ? 'translateY(-50%) scale(0.8)' : 'translateY(-50%)')};
   transform-origin: left;
-  color: ${(props) => (props.$isFocused ? '#B4B4B4' : '#B4B4B4')};
+  color: ${(props) => (props.$isLightMode ? '#000' : '#B4B4B4')};
   transition: all 0.2s ease-out;
   pointer-events: none;
   text-align: left;
 `;
 
 // const DropdownHolder = styled.div`
-const DropdownHolder = styled.div<{ $disabled: boolean }>`
+const DropdownHolder = styled.div<{ $disabled: boolean, $isLightMode:boolean }>`
 
   ${(props) =>
     props.$disabled &&
@@ -50,7 +50,7 @@ const DropdownHolder = styled.div<{ $disabled: boolean }>`
   position: relative; 
 
   &:focus {
-    border: 3px solid #FFF;
+    border: ${(props) => (props.$isLightMode ? '3px solid #000' : '3px solid #FFF' )};
     border-radius: 12px;
   }
 
@@ -60,15 +60,15 @@ const DropdownHolder = styled.div<{ $disabled: boolean }>`
   }
 `;
 
-const ClearButton = styled.span`
+const ClearButton = styled.span<{ $isLightMode:boolean }>`
   margin-left: 8px;
   cursor: pointer;
   font-size: 1.2rem;;
   width: 1.5rem;
-  color: #888;
+  color: ${(props) => (props.$isLightMode ? 'rgba(15, 15, 15,)' : '#888' )};
 
   &:hover {
-    color: rgba(255, 255, 255, 0.7);
+    color: ${(props) => (props.$isLightMode ? 'rgba(1, 1, 1, 0.7)' : 'rgba(255, 255, 255, 0.7)' )};
   }
 `;
 

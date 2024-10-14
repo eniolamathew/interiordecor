@@ -13,8 +13,10 @@ import Roomstyle from './Roomstyle';
 import Roomcolor from './Roomcolor';
 import UserAuthManager from '@/shared/data/UserAuthManager';
 import Image from 'next/image';
+import { useAuth } from "@/shared/context/AuthContext";  
 
 const Design = () => {
+  const { isLightMode } = useAuth();
   const email = UserAuthManager.getEmail()!;
   const [isGenerating, setIsGenerating] = useState(false);
   const [isdisabled, setIsdisabled] = useState<boolean>(false)
@@ -154,7 +156,7 @@ const Design = () => {
    <div className='design'>
     <Designcontianer >
         <Designwrapper >
-            <Designinfo className='designinfo shaded_border'>
+            <Designinfo $isLightMode={isLightMode} className='designinfo shaded_border'>
                 <div className='infoheader'> 
                     <div className='title'>Design Customizer</div>
                 </div>
@@ -205,7 +207,7 @@ const Design = () => {
                 </Infofooter>
             </Designinfo>
 
-            <Designdisplay className='designdisplay'>
+            <Designdisplay $isLightMode={isLightMode} className='designdisplay'>
             { imageLoaded &&
                 <div className='downloadIcon flex flex-center' onClick={handleDownload}>
                     <Image

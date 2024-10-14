@@ -32,7 +32,6 @@ export const MaxWidth = styled.div`
 
 export const ForgotPasswordContent = styled.div`
   text-align: center;
-  color: white;
 `;
 
 export const EmailContainer = styled.div`
@@ -76,7 +75,6 @@ export const GradientBackground = styled.div`
 export const Text1 = styled.div`
   text-align: start;
   font-size: 3rem;
-  color: white;
 
    @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
   font-size: 2rem;

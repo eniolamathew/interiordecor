@@ -1,14 +1,13 @@
 import styled from "styled-components";
 
 // Styled component for the Navbar container
-const NavbarContainer = styled.nav`
+const NavbarContainer = styled.nav<{$isLightMode:boolean}>`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: transparent;
+  background-color: ${(props) => (props.$isLightMode ? '#000' : 'transparent' )};
   transition: background-color 0.3s ease; 
-  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -72,12 +71,26 @@ const NavButton = styled.li`
   }
 `;
 
+const NavGroup = styled.li`
+  display: flex;
+  align-items: center;
+  width: 250px;
+  margin: 0 0px;
+  font-size: 1.2rem;
+  cursor: pointer;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
+    width: 160px;
+  }
+`;
+
 const NavIcon = styled.li`
   display: flex;
-  width: 40px;
+  align-items: center;
+  width: 100px;
   margin: 0 0px;
   font-size: 1.2rem;
   cursor: pointer;
 `;
 
-export{ NavbarContainer,NavItems, NavItem, NavButton, NavIcon, NavLeft, NavRight, NavText}
+export{ NavbarContainer,NavItems, NavItem, NavButton, NavIcon, NavLeft, NavRight, NavText, NavGroup}

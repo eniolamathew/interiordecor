@@ -3,6 +3,7 @@ import styled from "styled-components"
 interface IInputHolderProps extends React.HTMLAttributes<HTMLInputElement> {
     value?: string;
     type: string;
+    $isLightMode: boolean;
 }
 
 const InputWrapper = styled.div`
@@ -18,13 +19,13 @@ const InputError = styled.div`
   color: var(--colour-red);
 `;
 
-const FloatingLabel = styled.label<{ $isFocused: boolean; $hasValue: boolean }>`
+const FloatingLabel = styled.label<{ $isFocused: boolean; $hasValue: boolean; $isLightMode:boolean }>`
   position: absolute;
   left: 16px;
   top: ${(props) => (props.$isFocused || props.$hasValue ? '16px' : `calc(50% - 12px)` )};
   transform: ${(props) => (props.$isFocused || props.$hasValue ? 'translateY(-50%) scale(0.8)' : 'translateY(-50%)')};
+  color: ${(props) => (props.$isLightMode ? '#000' : '#B4B4B4')};
   transform-origin: left;
-  color: ${(props) => (props.$isFocused ? '#B4B4B4' : '#B4B4B4')};
   transition: all 0.2s ease-out;
   pointer-events: none;
   text-align: left;
@@ -42,7 +43,7 @@ const InputHolder = styled.input<IInputHolderProps>`
   background-color: transparent !important;
 
   &:focus {
-    border: 3px solid #FFF;
+    border: ${(props) => (props.$isLightMode ? '3px solid #000' : '3px solid #FFF' )};
     border-radius: 12px;
   }
 

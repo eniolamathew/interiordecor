@@ -2,7 +2,7 @@
 import React, { ChangeEvent, useState } from "react";
 import { validatePassword, formatPasswordErrors } from "../../shared/helperFunctions/helperFunctions";
 import { ResetPasswordWrapper, MaxWidth, ResetPasswordContainer, ResetPasswordContent, Text1 } from "./ChangePasswordStyles";
-import InputContainer from "../components/ui/emailInput/InputContainer";
+import PasswordContainer from "../components/ui/password/PasswordContainer";
 import ButtonContainer from "../components/ui/buttons/HomeUiButton";
 import userApiData from "../../shared/data/userApiData";
 import UserAuthManager from "@/shared/data/UserAuthManager";
@@ -78,7 +78,7 @@ export default function ChangePassword() {
           <ResetPasswordContent>
             <Text1>Change Password</Text1>
                 <div className="mb-2">
-                  <InputContainer
+                  <PasswordContainer
                     label={"Old Password"}
                     value={oldpassword}
                     obscureText={true}
@@ -91,7 +91,7 @@ export default function ChangePassword() {
                   />
                 </div>
                 <div className="mb-2">
-                  <InputContainer
+                  <PasswordContainer
                     label={"New Password"}
                     value={newpassword}
                     obscureText={true}
@@ -103,19 +103,19 @@ export default function ChangePassword() {
                     disabled={false}
                   />
                 </div>
-              <div className="mb-2">
-                <InputContainer
-                  label={"Confirm New Password"}
-                  value={confirmNewPassword}
-                  obscureText={true}
-                  onChange={(e: ChangeEvent<HTMLInputElement>) => { setConfirmNewPassword(e.target.value)
-                    clearError()
-                  }}
-                  error={errors.confirmnewpassword}
-                  autoComplete={false}
-                  disabled={false}
-                />
-              </div>
+                <div className="mb-2">
+                  <PasswordContainer
+                    label={"Confirm New Password"}
+                    value={confirmNewPassword}
+                    obscureText={true}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) => { setConfirmNewPassword(e.target.value)
+                      clearError()
+                    }}
+                    error={errors.confirmnewpassword}
+                    autoComplete={false}
+                    disabled={false}
+                  />
+                </div>
               <div className="mt-4">
                 <ButtonContainer
                   icon={false}

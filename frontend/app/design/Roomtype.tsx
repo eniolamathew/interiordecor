@@ -1,5 +1,7 @@
 "use client";
 import React, { useState } from "react";
+import { RoomType } from "./DesignStyles"
+import { useAuth } from "@/shared/context/AuthContext";  
 import "./design.css";
 import Image from "next/image";
 
@@ -10,6 +12,7 @@ interface RoomtypeProps {
 }
 
 const Roomtype: React.FC<RoomtypeProps> = ({ error, disable, handleRoomChange }) => {
+  const { isLightMode } = useAuth();
   const [selectedRoom, setSelectedRoom] = useState<{id: string, label: string} | null>(null);
 
   const rooms = [
@@ -33,7 +36,7 @@ const Roomtype: React.FC<RoomtypeProps> = ({ error, disable, handleRoomChange })
   };
 
   return (<>
-    <div className="roomtype">
+    <RoomType $isLightMode={isLightMode} >
       <div className="flex items-center">
         <Image 
             className="imageIcon" 
@@ -55,11 +58,7 @@ const Roomtype: React.FC<RoomtypeProps> = ({ error, disable, handleRoomChange })
             onClick={() => { if (!disable) { handleSelect(item) } }}
           >
             <div
-              className={`roomfield ${
-                selectedRoom && selectedRoom!.id === item.id
-                  ? "backgroundcolor"
-                  : ""
-              } `}
+              className={`roomfield ${ selectedRoom && selectedRoom!.id === item.id ? "backgroundcolor" : "" } `}
             >
               <span className="icon ">
                 <Image 
@@ -80,7 +79,7 @@ const Roomtype: React.FC<RoomtypeProps> = ({ error, disable, handleRoomChange })
           </div>
         ))}
       </div>
-    </div>
+    </RoomType>
     <div className="roomError">{error}</div>
 </>);
 };

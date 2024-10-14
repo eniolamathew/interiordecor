@@ -18,6 +18,7 @@
     "react-dom": "^18",
     "react-glider": "^4.0.2",
     "react-toastify": "^10.0.5",
+    "react-toggle-slider-switch": "^1.0.2",
     "styled-components": "^6.1.13"
   },
   "devDependencies": {

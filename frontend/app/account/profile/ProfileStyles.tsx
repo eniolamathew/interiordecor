@@ -13,6 +13,13 @@ export const ProfileContainer = styled.div`
   position: relative;
 `;
 
+export const ProfileHeader = styled.div`
+    text-align: start;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-align: center;
+`;
+
 export const MaxWidth = styled.div`
   max-width: 50vw;
   position: relative;
@@ -31,5 +38,4 @@ export const MaxWidth = styled.div`
 
 export const ProfileContent = styled.div`
   text-align: center;
-  color: white;
 `;

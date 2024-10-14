@@ -74,6 +74,14 @@ const theme = {
     headingSize: "1.2rem",
     heading3Size: "1rem",
     boxShadow: "0 0.5rem 1rem 0 #E2E2E2",
+    lightMode:{
+        backgroundColor: "rgb(255,255,255)",
+        color: "rgb(1, 1, 1)",
+    },
+    darkMode:{
+        backgroundColor: "rgb(25,25,25)",
+        color: "rgb(1,1,1)",
+    },
     colors: {
         backgroundColor: "white",
         lighterGrey: "#F8F8F8",

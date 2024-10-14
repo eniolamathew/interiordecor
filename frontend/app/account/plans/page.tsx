@@ -1,9 +1,14 @@
+"use client";
 import React from 'react'
 import Plan from './Plan'
+import HomeNavbar from '../../components/navbar/HomeNavbar';
+import Footer from '../../components/footer/Footer';
 
 const page = () => {
   return (<>
-    <Plan/>
+    <HomeNavbar />
+      <Plan/>
+    <Footer />
   </>
   )
 }
