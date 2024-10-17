@@ -20,3 +20,14 @@ export const Pricing = styled.div<{$isLightMode: boolean}>`
       background-color: ${(props) => (props.$isLightMode ? 'rgba(25, 25, 25, 0.1)' : 'rgba(255, 255, 255, 0.1)' )};
     }
 `;
+
+export const FeaturesCheck  = styled.div<{publicUrl: string}>`
+    opacity: 0.7;
+    background-image: url(${(props) => `${props.publicUrl}/pricing-table-check.svg"`});
+    background-size: cover;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-right: 7px;
+    vertical-align: middle;
+`;

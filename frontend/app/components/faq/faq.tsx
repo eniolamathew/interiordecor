@@ -13,8 +13,8 @@ const faqData: FAQItem[] = [
     answer: "We offer a 30-day money-back guarantee on all plans. Simply contact our support team for assistance.",
   },
   {
-    question: "Can I change my order after it's been placed?",
-    answer: "You can modify your order within 24 hours of placing it. Please reach out to support as soon as possible.",
+    question: "Can I change my plan after it's been placed?",
+    answer: "You can modify your plan within 24 hours of placing it. Please reach out to support as soon as possible.",
   },
   {
     question: "What AI model do u use?",

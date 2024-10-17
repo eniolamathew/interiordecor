@@ -1,7 +1,7 @@
 import React from 'react';
 import ButtonWrapper from '../../components/ui/buttons/ButtonWrapper';
 import { useAuth } from "@/shared/context/AuthContext";
-import { Pricing } from "./PlanStyles";
+import { FeaturesCheck, Pricing } from "./PlanStyles";
 
 interface PricingPlanProps {
   plan: string;
@@ -15,6 +15,7 @@ interface PricingPlanProps {
 
 const PricingPlan: React.FC<PricingPlanProps> = ({ plan, active, ismonthly, badge, monthly, yearly, properties }) => {
   const { isLightMode } = useAuth();
+  let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
 
   return (
     <Pricing className={`pricing-plan ${active ? 'shaded_border' : ''} monthly`} style={{ display: 'block' }} $isLightMode={isLightMode}>
@@ -42,7 +43,7 @@ const PricingPlan: React.FC<PricingPlanProps> = ({ plan, active, ismonthly, badg
       <ul className="features">
         {properties.map((property, index) => (
           <li key={index}>
-            <div className="check"></div>
+            <FeaturesCheck publicUrl={url!}  className="check"></FeaturesCheck>
             <span>{property}</span>
           </li>
         ))}

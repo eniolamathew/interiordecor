@@ -103,6 +103,7 @@ const ModalText = styled.p`
 `;
 
 const SlideModal: FC<ISlideModalProps> = ({ imageSrc, imageAlt, imageData, setImageData, setCarouselData, index, name, position, isModalOpen, mousePosition, onClose }) => {
+    let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
     const [openModal, setOpenMdal] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [isliked, setIsLiked] = useState(imageData?.liked);
@@ -118,9 +119,9 @@ const SlideModal: FC<ISlideModalProps> = ({ imageSrc, imageAlt, imageData, setIm
 
         if (!position || !mousePosition) return false;
         
-        const modalLeft = position.left - 175; // Adjust for modal width
+        const modalLeft = position.left - 175; 
         const modalRight = position.left + 175;
-        const modalTop = position.top - 175; // Adjust for modal height
+        const modalTop = position.top - 175;
         const modalBottom = position.top + 175;
         
         const { x, y } = mousePosition;
@@ -202,7 +203,7 @@ const SlideModal: FC<ISlideModalProps> = ({ imageSrc, imageAlt, imageData, setIm
                     {isliked ? 
                         <Image 
                             alt="like" 
-                            src={"https://cdn.roomify.org/heart-solid.svg"}
+                            src={`${url}/heart-solid.svg`}
                             width={25}
                             height={25}
                             style={{ 
@@ -212,7 +213,7 @@ const SlideModal: FC<ISlideModalProps> = ({ imageSrc, imageAlt, imageData, setIm
                         /> :
                         <Image 
                             alt="like" 
-                            src={"https://cdn.roomify.org/heart-regular.svg"}
+                            src={`${url}/heart-regular.svg`}
                             width={25}
                             height={25}
                             style={{ 

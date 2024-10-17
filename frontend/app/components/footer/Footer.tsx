@@ -15,36 +15,37 @@ import Image from 'next/image';
 import { useAuth } from "../../../shared/context/AuthContext";
 
 const Footer = () => {
+  let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
     const { isLightMode } = useAuth();
     const socialMediaIcons = [
     {
       label: "Facebook",
       href: "https://facebook.com",
-      src: "https://cdn.roomify.org/facebook-brands-solid.svg",
+      src: `${url}/facebook-brands-solid.svg`,
       alt: "Facebook Icon",
     },
     {
       label: "Twitter",
       href: "https://twitter.com",
-      src: "https://cdn.roomify.org/x-twitter-brands-solid.svg",
+      src: `${url}/x-twitter-brands-solid.svg`,
       alt: "Twitter Icon",
     },
     {
       label: "Instagram",
       href: "https://instagram.com",
-      src: "https://cdn.roomify.org/instagram-brands-solid.svg",
+      src: `${url}/instagram-brands-solid.svg`,
       alt: "Instagram Icon",
     },
     {
       label: "LinkedIn",
       href: "https://linkedin.com",
-      src: "https://cdn.roomify.org/linkedin-brands-solid.svg",
+      src: `${url}/linkedin-brands-solid.svg`,
       alt: "LinkedIn Icon",
     },
     {
       label: "TikTok",
       href: "https://tiktok.com",
-      src: "https://cdn.roomify.org/tiktok-brands-solid.svg",
+      src: `${url}/tiktok-brands-solid.svg`,
       alt: "TikTok Icon",
     },
   ];
@@ -100,6 +101,3 @@ const Footer = () => {
 };
 
 export default Footer;
-
-
-

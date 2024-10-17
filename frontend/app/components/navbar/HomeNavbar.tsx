@@ -11,6 +11,7 @@ import ThemeMenu from "../menu/ThemeMenu";
 import Image from "next/image";
 
 const HomeNavbar = () => {
+  let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
   const { isLightMode, setIsLightMode, isLoggedIn } = useAuth();
   const router = useRouter();
   const pathname = usePathname(); 
@@ -42,11 +43,11 @@ const HomeNavbar = () => {
   }, [scrollY]);
 
   const menuItems = [
-    { title: "My Details", href: "/account/profile", imgSrc:"https://cdn.roomify.org/menu-item-my-details.svg" },
-    { title: "My Plan", href: "/account/plans", imgSrc:"https://cdn.roomify.org/menu-plan.svg" },
-    { title: "Change Password", href: "/changepassword", imgSrc:"https://cdn.roomify.org/instant-solid.svg" },
-    { title: "Setting", href:"#", imgSrc:"/gear-solid.svg"} ,
-    { title: "Logout", href: "/", imgSrc:"/right-from-bracket-solid.svg" },
+    { title: "My Details", href: "/account/profile", imgSrc:`${url}/menu-item-my-details.svg` },
+    { title: "My Plan", href: "/account/plans", imgSrc:`${url}/menu-plan.svg`},
+    { title: "Change Password", href: "/changepassword", imgSrc:`${url}/instant-solid.svg` },
+    { title: "Setting", href:"#", imgSrc:`${url}/menu-gear-solid.svg`} ,
+    { title: "Logout", href: "/", imgSrc:`${url}/menu-item-logout.svg`},
   ];
 
   const themeItems = [

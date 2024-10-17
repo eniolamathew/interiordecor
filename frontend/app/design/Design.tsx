@@ -16,6 +16,7 @@ import Image from 'next/image';
 import { useAuth } from "@/shared/context/AuthContext";  
 
 const Design = () => {
+  let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
   const { isLightMode } = useAuth();
   const email = UserAuthManager.getEmail()!;
   const [isGenerating, setIsGenerating] = useState(false);
@@ -211,7 +212,7 @@ const Design = () => {
             { imageLoaded &&
                 <div className='downloadIcon flex flex-center' onClick={handleDownload}>
                     <Image
-                        src="https://cdn.roomify.org/download-solid.svg"
+                      src={`${url}/download-solid.svg`}
                         alt="Upload Icon"
                         className="upload-icon"
                         width={25}
