@@ -48,9 +48,12 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   useEffect(() => {
     document.body.style.color = isLightMode ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)';
     document.body.style.backgroundColor = isLightMode ? 'rgb(255, 255, 255)' : 'rgb(0, 0, 0)';
-
+  
     document.documentElement.style.color = isLightMode ? 'rgb(0, 0, 0)' : 'rgb(255, 255, 255)';
     document.documentElement.style.backgroundColor = isLightMode ? 'rgb(255, 255, 255)' : 'rgb(0, 0, 0)';
+
+    document.body.style.transition = 'color 0.3s ease, background-color 0.3s ease';
+    document.documentElement.style.transition = 'color 0.3s ease, background-color 0.3s ease';
   }, [isLightMode]);
   
   useEffect(() => {

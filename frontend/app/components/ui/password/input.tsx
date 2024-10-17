@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useAuth } from "@/shared/context/AuthContext";  
 
 const Input: React.FC<IInputProps> = (props) => {
+    let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
     const { isLightMode } = useAuth();
     const [isFocused, setIsFocused] = useState(false);
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -42,7 +43,7 @@ const Input: React.FC<IInputProps> = (props) => {
             {isPasswordVisible ? 
               <Image 
                  alt="icon" 
-                 src={"https://cdn.roomify.org/eye-slash-regular.svg"}
+                 src={`${url}/eye-slash-regular.svg`}
                  width={20}
                  height={20}
                  style={{ 
@@ -53,7 +54,7 @@ const Input: React.FC<IInputProps> = (props) => {
              /> :
             <Image 
                 alt="icon" 
-                src={"https://cdn.roomify.org/eye-regular.svg"}
+                src={`${url}/eye-regular.svg`}
                 width={20}
                 height={20}
                 style={{ 

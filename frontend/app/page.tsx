@@ -1,7 +1,7 @@
 "use client"
 import { useState } from "react";
 import Home from "./components/home/Home";
-import carouselsData from '../data/carousels.json';
+import CarouselData from '../data/CarouselData';
 import GradientDivider from "./components/home/subComponents/GradientDivider";
 import HomeCarousel from "./components/home/subComponents/HomeCarousel";
 import "./globals.css";
@@ -22,7 +22,7 @@ interface Carouselfile {
 }
 
 export default function Page() {  
-  const [carouselData, setCarouselData]= useState<ICarousel[]>(carouselsData.carousels)
+  const [carouselData, setCarouselData]= useState<ICarousel[]>(CarouselData)
     
   return (
     <>

@@ -2,14 +2,21 @@ import styled from "styled-components";
 
 export const SignupWrapper = styled.div`
   width: 100vw;
-  margin: 0;
-  padding: 0;
+  min-height: 100vh;
   margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing:border-box;
+  padding: 0;
 `;
 
 export const SignupContainer = styled.div`
-  width: 100vw;
-  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const MaxWidth = styled.div`
@@ -17,7 +24,6 @@ export const MaxWidth = styled.div`
   position: relative;
   z-index: 3;
   display: flex;
-  min-height: 100%;
   justify-content: center;
   align-items: center;
   margin: 0 auto;

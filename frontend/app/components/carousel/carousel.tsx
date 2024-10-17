@@ -3,9 +3,10 @@ import React, { HTMLAttributes, useState, useEffect, useCallback } from 'react';
 import Glider from 'react-glider';
 import styled from 'styled-components';
 import "glider-js/glider.min.css";
-import SliderModal from '../../components/ui/modal/SildeModal';
+import SliderModal from '../ui/modal/SlideModal';
 import { debounce } from '../../../shared/hook/debounce';
 import { ICarouselImage, ICarousel } from '../../../models/interface';
+import { useAuth } from "../../../shared/context/AuthContext";
 import Image from 'next/image';
 
 export interface ICarouselProps extends HTMLAttributes<HTMLElement> {
@@ -22,6 +23,7 @@ export interface ICarouselProps extends HTMLAttributes<HTMLElement> {
 
 interface ICarouselHolder extends React.HTMLAttributes<HTMLDivElement> {
     $visible: boolean;
+    $isLightMode: boolean;
 }
 
 const CarouselHolder = styled.div<ICarouselHolder>`
@@ -41,8 +43,8 @@ const CarouselHolder = styled.div<ICarouselHolder>`
         justify-content: center;
         align-items: center;
         cursor: pointer;
-        z-index: 10;
-        background-color: rgba(0, 0, 0, 0.7); 
+        z-index: 9999;
+        background-color: ${(props) => (props.$isLightMode ? 'rgba(255,255,255,0.3)' : 'rgba(0, 0, 0, 0.7)' )};
         opacity: 0; /* Initially hidden */
         transition: opacity 0.3s ease; /* Smooth transition for showing/hiding */
     }
@@ -132,6 +134,8 @@ const CarouselHolder = styled.div<ICarouselHolder>`
 `;
 
 const Carousel = (props: ICarouselProps) => {
+    const { isLightMode } = useAuth();
+    let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
     const [loaded, setLoaded] = useState<boolean>(false);
     const [hoveredSlide, setHoveredSlide] = useState<null | number>(null);  
     const [position, setPosition] = useState<{ top: number; left: number } | null>(null); 
@@ -140,8 +144,13 @@ const Carousel = (props: ICarouselProps) => {
 
     const modalTimeoutRef = React.useRef<NodeJS.Timeout | null>(null); 
 
-    const handleMouseEnter = (index: number) => {
-        setHoveredSlide(()=>{ return index })
+    const handleMouseEnter = (index: number, e: React.MouseEvent) => {
+        const target = e.target as HTMLElement;
+        if (target.closest('.glider-next') || target.closest('.glider-prev')) {
+            return; 
+        }
+
+        setHoveredSlide(index);
     };
     
     const closeModal = useCallback(() => {
@@ -151,63 +160,63 @@ const Carousel = (props: ICarouselProps) => {
     }, []);
 
     useEffect(() => {
-        
-        const hoveredElement = document.querySelectorAll(`.${props.name} .glider-slide`)[`${hoveredSlide!}`];        
-        
-        if (hoveredElement) {
-                        
-            const bounding = hoveredElement.getBoundingClientRect();
-
-            let centerX = bounding.left + bounding.width / 2;
-            let centerY = bounding.top + bounding.height / 2 ;
-
-
-            // Modal dimensions (adjust these based on your modal's size)
-            const modalWidth = 350; 
-            const modalHeight = 350;
-
-            // Viewport dimensions
-            const viewportRect = document.documentElement.getBoundingClientRect();
-            const margin = 16; 
-
-            // Check if the modal would be out of bounds and adjust
-            if (centerX - modalWidth / 2 < viewportRect.left + margin) {
-                centerX = viewportRect.left + margin + modalWidth / 2;
-            } else if (centerX + modalWidth / 2 > viewportRect.right - margin) {
-                centerX = viewportRect.right - margin - modalWidth / 2;
-            }
-
-            if (centerY - modalHeight / 2 < viewportRect.top + margin) {
-                centerY = viewportRect.top + margin + modalHeight / 2;
-            } else if (centerY + modalHeight / 2 > viewportRect.bottom - margin) {
-                centerY = viewportRect.bottom - margin - modalHeight / 2;
-            }
-
-            setPosition(() =>{ return { top: centerY, left: centerX }});
-
-            if (hoveredSlide !== null) {
-                const result = checkForImageSrc(props.carouselData!, props.name, hoveredSlide);
-                setImageData(result);
-
-                // Clear the previous timeout if any
-                if (modalTimeoutRef.current) {
-                    clearTimeout(modalTimeoutRef.current);
+        const updateModalPosition = () => {
+            const hoveredElement = document.querySelectorAll(`.${props.name} .glider-slide`)[hoveredSlide!];        
+            
+            if (hoveredElement) {
+                const bounding = hoveredElement.getBoundingClientRect();
+    
+                let centerX = bounding.left + bounding.width / 2;
+                let centerY = bounding.top + bounding.height / 2;
+    
+                const modalWidth = 350; 
+                const modalHeight = 350;
+    
+                const viewportRect = document.documentElement.getBoundingClientRect();
+                const margin = 16; 
+    
+                if (centerX - modalWidth / 2 < viewportRect.left + margin) {
+                    centerX = viewportRect.left + margin + modalWidth / 2;
+                } else if (centerX + modalWidth / 2 > viewportRect.right - margin) {
+                    centerX = viewportRect.right - margin - modalWidth / 2;
                 }
-
-                // Set a new timeout to open the modal after 300ms
-                modalTimeoutRef.current = setTimeout(() => {
-                    if (window.innerWidth >= 1280) { setIsModalOpen(true) }
-                }, 100)
+    
+                if (centerY - modalHeight / 2 < viewportRect.top + margin) {
+                    centerY = viewportRect.top + margin + modalHeight / 2;
+                } else if (centerY + modalHeight / 2 > viewportRect.bottom - margin) {
+                    centerY = viewportRect.bottom - margin - modalHeight / 2;
+                }
+    
+                setPosition(() => { return { top: centerY, left: centerX } });
+    
+                if (hoveredSlide !== null) {
+                    const result = checkForImageSrc(props.carouselData!, props.name, hoveredSlide);
+                    setImageData(result);
+    
+                    if (modalTimeoutRef.current) {
+                        clearTimeout(modalTimeoutRef.current);
+                    }
+    
+                    modalTimeoutRef.current = setTimeout(() => {
+                        if (window.innerWidth >= 1280) { setIsModalOpen(true); }
+                    }, 100);
+                }
             }
-        }
-
-        // Cleanup: Clear the timeout if hoveredSlide changes or component unmounts
+        };
+    
+        updateModalPosition();
+    
+        window.addEventListener('scroll', updateModalPosition);
+    
         return () => {
             if (modalTimeoutRef.current) {
                 clearTimeout(modalTimeoutRef.current);
             }
+    
+            window.removeEventListener('scroll', updateModalPosition);
         };
     }, [hoveredSlide, props.carouselData, props.name]);
+    
 
     function checkForImageSrc(carouselJson: ICarousel[], name: string, elementIndex: number): ICarouselImage | null {
         const carousel = carouselJson.find((item: ICarousel) => item.name.toLowerCase() === name.toLowerCase());
@@ -220,7 +229,10 @@ const Carousel = (props: ICarouselProps) => {
         return null;
     }
 
-    const handleMouseEnterDebounced = debounce(handleMouseEnter, 200);
+    const handleMouseEnterDebounced = debounce((index: number, e: React.MouseEvent) => {
+        handleMouseEnter(index, e);
+    }, 200);
+
 
     return (<>
         {isModalOpen && (
@@ -239,7 +251,7 @@ const Carousel = (props: ICarouselProps) => {
                 onClose={closeModal}
             />
         )}
-        <CarouselHolder $visible={loaded}>
+        <CarouselHolder $visible={loaded} $isLightMode={isLightMode}>
             <Glider
                 // ref={callbackRef}
                 hasArrows={true}
@@ -249,41 +261,64 @@ const Carousel = (props: ICarouselProps) => {
                 slidesToScroll={props.slidesToScroll}
                 rewind
                 iconLeft={
-                    <Image
+                    <div                    
+                        className="glider-prev"
+                        onMouseEnter={(e : React.MouseEvent) => {
+                            e.stopPropagation();
+                            setIsModalOpen(false)}
+                        }>
+                 
+                      <Image
                         className="" 
                         alt="icon" 
-                        src={"https://cdn.roomify.org/chevron-left-solid.svg"}
+                        src={`${url}/chevron-left-solid.svg`}
                         width={24}
                         height={24}
                         style={{ 
                             maxWidth: "24px", 
                             maxHeight: "24px", 
-                            filter:"invert(100%) brightness(100%) contrast(100%)"
+                            filter: isLightMode 
+                                ? "invert(100%) brightness(0%) contrast(100%)" 
+                                : "invert(100%) brightness(100%) contrast(100%)" 
                         }}
-                    />}
+                    />
+                    </div>
+                }
                 iconRight={
-                    <Image
-                        className="" 
-                        alt="icon" 
-                        src={"https://cdn.roomify.org/chevron-right-solid.svg"}
-                        width={24}
-                        height={24}
-                        style={{ 
-                            maxWidth: "24px", 
-                            maxHeight: "24px", 
-                            filter:"invert(100%) brightness(100%) contrast(100%)"
-                        }}
-                  />
+                    <div 
+                        className="glider-next"
+                        onMouseEnter={(e: React.MouseEvent) => {
+                            e.stopPropagation();
+                            setIsModalOpen(false)}
+                        }>
+                        <Image
+                            className="" 
+                            alt="icon" 
+                            src={`${url}/chevron-right-solid.svg`}
+                            width={24}
+                            height={24}
+                            style={{ 
+                                maxWidth: "24px", 
+                                maxHeight: "24px", 
+                                filter: isLightMode 
+                                ? "invert(100%) brightness(0%) contrast(100%)" 
+                                : "invert(100%) brightness(100%) contrast(100%)"
+                            }}
+                        />
+                    </div>
+
                 }
                 onLoad={() => setLoaded(true)}
             >
                 {React.Children.map(props.children, (child, index) => (
                     <div
-                        onMouseEnter={()=> handleMouseEnterDebounced(index)}
+                        onMouseEnter={(e)=> {
+                            handleMouseEnterDebounced(index, e)}
+                        }
                     >
                         {child}
                     </div>
-                ))}
+                ))} 
             </Glider>
         </CarouselHolder>
     </>);

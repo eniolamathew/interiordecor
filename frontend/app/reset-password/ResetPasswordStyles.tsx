@@ -2,15 +2,21 @@ import styled from "styled-components";
 
 export const ResetPasswordWrapper = styled.div`
   width: 100vw;
-  height: 100vh;
-  margin: 0;
+  min-height: 100vh;
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing:border-box;
   padding: 0;
 `;
 
 export const ResetPasswordContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const MaxWidth = styled.div`
@@ -24,7 +30,7 @@ export const MaxWidth = styled.div`
   align-items: center;
   margin: 0 auto;
   text-align: center;
-  
+
   @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
     width: 90vw;
   }

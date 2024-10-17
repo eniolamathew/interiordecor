@@ -12,22 +12,23 @@ interface RoomtypeProps {
 }
 
 const Roomtype: React.FC<RoomtypeProps> = ({ error, disable, handleRoomChange }) => {
+  let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
   const { isLightMode } = useAuth();
   const [selectedRoom, setSelectedRoom] = useState<{id: string, label: string} | null>(null);
 
   const rooms = [
-    { id: "livingroom", label: "Living room", src:"https://cdn.roomify.org/couch-solid.svg" },
-    { id: "Bedroom", label: "Bedroom", src:"https://cdn.roomify.org/bed-solid.svg" },
-    { id: "kitchen", label: "Kitchen", src:"https://cdn.roomify.org/kitchen-set-solid.svg" },
-    { id: "diningroom", label: "Dining room", src:"https://cdn.roomify.org/utensils-solid.svg" },
-    { id: "toilet", label: "Toilet", src:"https://cdn.roomify.org/toilet-solid.svg"  },
-    { id: "homeOffice", label: "Home Office", src:"https://cdn.roomify.org/house-laptop-solid.svg" },
-    { id: "kid'sroom", label: "Kid's room", src:"https://cdn.roomify.org/child-solid.svg"},
-    { id: "mediaroom", label: "Media room", src:"https://cdn.roomify.org/soundcloud-brands-solid.svg"},
-    { id: "patio", label: "Patio", src:"https://cdn.roomify.org/house-solid.svg" },
-    { id: "homegym", label: "Home Gym", src:"https://cdn.roomify.org/dumbbell-solid.svg" },
-    { id: "lundryroom", label: "Lundry room", src:"https://cdn.roomify.org/shirt-solid.svg" },
-    { id: "gamming", label: "Gaming", src:"https://cdn.roomify.org/people-roof-solid.svg" },
+    { id: "livingroom", label: "Living room", src:`${url}/couch-solid.svg` },
+    { id: "Bedroom", label: "Bedroom", src:`${url}/bed-solid.svg` },
+    { id: "kitchen", label: "Kitchen", src:`${url}/kitchen-set-solid.svg` },
+    { id: "diningroom", label: "Dining room", src:`${url}/utensils-solid.svg` },
+    { id: "toilet", label: "Toilet", src:`${url}/toilet-solid.svg` },
+    { id: "homeOffice", label: "Home Office", src:`${url}/house-laptop-solid.svg` },
+    { id: "kid'sroom", label: "Kid's room", src:`${url}/child-solid.svg`},
+    { id: "mediaroom", label: "Media room", src:`${url}/soundcloud-brands-solid.svg`},
+    { id: "patio", label: "Patio", src:`${url}/house-solid.svg` },
+    { id: "homegym", label: "Home Gym", src:`${url}/dumbbell-solid.svg` },
+    { id: "lundryroom", label: "Lundry room", src:`${url}/shirt-solid.svg` },
+    { id: "gamming", label: "Gaming", src:`${url}/people-roof-solid.svg` },
   ];
 
   const handleSelect = (item: { id: string; label: string }) => {
@@ -41,7 +42,7 @@ const Roomtype: React.FC<RoomtypeProps> = ({ error, disable, handleRoomChange })
         <Image 
             className="imageIcon" 
             alt="icon" 
-            src={"https://cdn.roomify.org/sliders-solid.svg"}
+            src={`${url}/sliders-solid.svg`}
             width={15}
             height={15}
             style={{ 
