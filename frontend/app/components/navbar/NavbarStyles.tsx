@@ -77,8 +77,7 @@ const NavGroup = styled.li`
   width: 250px;
   margin: 0 0px;
   font-size: 1.2rem;
-  cursor: pointer;
-
+  
   @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
     width: 160px;
   }

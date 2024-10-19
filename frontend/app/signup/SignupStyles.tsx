@@ -2,14 +2,21 @@ import styled from "styled-components";
 
 export const SignupWrapper = styled.div`
   width: 100vw;
-  margin: 0;
-  padding: 0;
-  margin-top: 60px;
+  min-height: 100vh; /* Changed to min-height to ensure the content can stretch beyond the viewport if necessary */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 60px; /* Adjusted padding to make the content move down */
+  box-sizing: border-box;
 `;
 
 export const SignupContainer = styled.div`
-  width: 100vw;
-  position: relative;
+  width: 100%;
+  max-width: 1200px; /* Limit the max width to prevent content stretching too wide */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const MaxWidth = styled.div`
@@ -17,7 +24,6 @@ export const MaxWidth = styled.div`
   position: relative;
   z-index: 3;
   display: flex;
-  min-height: 100%;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
@@ -76,6 +82,6 @@ export const Text1 = styled.div`
   margin-bottom: 1rem;
 
   @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
-  font-size: 2rem;
- }
+    font-size: 2rem;
+  }
 `;

@@ -1,15 +1,18 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import "./account.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
+import ReactToggleSliderSwitch from "react-toggle-slider-switch";
 import UserAuthManager from "@/shared/data/UserAuthManager";
 import { useAuth } from "@/shared/context/AuthContext";
+import Modal from "../components/ui/modal/Modal";
 
 const Profile = () => {
-  const { logout } = useAuth();
-  const router = useRouter()
+  const {  isLightMode, setIsLightMode, logout } = useAuth();
+  const router = useRouter();
+  const [showSettingModal, setShowSettingModal] = useState<boolean>(false);
   const profileLayout = [
     { title: "Your Details", href: "/account/profile", imgSrc:"https://cdn.roomify.org/menu-item-my-details.svg" },
     { title: "Plan", href: "/account/plans", imgSrc:"https://cdn.roomify.org/menu-plan.svg" },
@@ -18,8 +21,30 @@ const Profile = () => {
     { title: "Logout", href: "/", imgSrc:"/right-from-bracket-solid.svg" },
   ];
 
+  const handleLightMode = (checked:boolean)=>{ setIsLightMode(checked) }
+
   return (
     <>
+       { showSettingModal && 
+          <Modal title={"Settings"}
+              onClose={() => setShowSettingModal(false)}
+              width={"75%"} 
+              height={"75%"}
+          >
+            <ReactToggleSliderSwitch
+              label={"Light Mode"}
+              checked={isLightMode}
+              onChange={handleLightMode}
+              onColor="#0f0"
+              offColor="#f00"
+              height={28}
+              width={70}
+              checkedIcon={true}
+              uncheckedIcon={true}
+              labelStyle={{ fontWeight: "bold", fontSize: "14px" }}
+            />
+          </Modal>
+        }
         <div className="account">
         <div className="accountTitle">Your Account</div>
         <div className="accountContainer">
@@ -33,9 +58,10 @@ const Profile = () => {
                         UserAuthManager.removeToken()
                         router.push(item.href)
                         logout()
-                      } else{
-                        router.push(item.href)
-                      }
+                      } else if(item.title.toLowerCase() === "setting"){
+                        setShowSettingModal(true);
+                      } 
+                      else{ router.push(item.href) }
                     }}
                     >
                       <div style={{ width: "100%", display: "flex", alignItems:"center" }}>
