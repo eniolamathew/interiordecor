@@ -2,19 +2,19 @@ import styled from "styled-components";
 
 export const SignupWrapper = styled.div`
   width: 100vw;
-  min-height: 100vh; /* Changed to min-height to ensure the content can stretch beyond the viewport if necessary */
+  min-height: 100vh;
+  margin-top: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 60px; /* Adjusted padding to make the content move down */
-  box-sizing: border-box;
+  box-sizing:border-box;
+  padding: 0;
 `;
 
 export const SignupContainer = styled.div`
   width: 100%;
-  max-width: 1200px; /* Limit the max width to prevent content stretching too wide */
+  max-width: 1200px;
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
 `;

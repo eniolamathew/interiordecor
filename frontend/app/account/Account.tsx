@@ -8,17 +8,19 @@ import ReactToggleSliderSwitch from "react-toggle-slider-switch";
 import UserAuthManager from "@/shared/data/UserAuthManager";
 import { useAuth } from "@/shared/context/AuthContext";
 import Modal from "../components/ui/modal/Modal";
+import { RightContainerText } from "./AccountStyles";
 
-const Profile = () => {
-  const {  isLightMode, setIsLightMode, logout } = useAuth();
-  const router = useRouter();
+const Profile = () => {       
+  let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
+  const { isLightMode, setIsLightMode, logout } = useAuth();
+  const router = useRouter()
   const [showSettingModal, setShowSettingModal] = useState<boolean>(false);
   const profileLayout = [
-    { title: "Your Details", href: "/account/profile", imgSrc:"https://cdn.roomify.org/menu-item-my-details.svg" },
-    { title: "Plan", href: "/account/plans", imgSrc:"https://cdn.roomify.org/menu-plan.svg" },
-    { title: "Change Password", href: "/changepassword", imgSrc:"https://cdn.roomify.org/instant-solid.svg" },
-    { title: "Setting", href:"#", imgSrc:"/gear-solid.svg"} ,
-    { title: "Logout", href: "/", imgSrc:"/right-from-bracket-solid.svg" },
+    { title: "Your Details", href: "/account/profile", imgSrc:`${url}/menu-item-my-details.svg` },
+    { title: "Plan", href: "/account/plans", imgSrc:`${url}/menu-plan.svg` },
+    { title: "Change Password", href: "/changepassword", imgSrc:`${url}/instant-solid.svg` },
+    { title: "Setting", href:"#", imgSrc:`${url}/menu-gear-solid.svg`},
+    { title: "Logout", href: "/", imgSrc:`${url}/menu-item-logout.svg` },
   ];
 
   const handleLightMode = (checked:boolean)=>{ setIsLightMode(checked) }
@@ -70,11 +72,11 @@ const Profile = () => {
                             className="imageIcon" 
                             alt="icon" 
                             src={item.imgSrc}
-                            width={window.innerWidth >= 800 ? 20 : 12}
-                            height={window.innerWidth >= 800 ? 20 : 12}
+                            width={window.innerWidth >= 800 ? 20 : 16}
+                            height={window.innerWidth >= 800 ? 20 : 16}
                             style={{ 
-                              width: `${window.innerWidth >= 800 ? "20px" : "12px"}`, 
-                              height: `${window.innerWidth >= 800 ? "20px" : "12px"}`, 
+                              width: `${window.innerWidth >= 800 ? "20px" : "16px"}`, 
+                              height: `${window.innerWidth >= 800 ? "20px" : "16px"}`, 
                               filter: "brightness(0) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(117%) contrast(100%)"
                             }}
                           />
@@ -82,9 +84,9 @@ const Profile = () => {
                       <div className="right-container" style={{ width: "55%" }}>
                         <div className="label-container">
                             <Link href={item.href} className="">
-                              <span className="text">
+                              <RightContainerText publicUrl={url!} className="text">
                                 {item.title}
-                              </span>
+                              </RightContainerText>
                             </Link>
                         </div>
                       </div>

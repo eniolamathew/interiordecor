@@ -24,6 +24,7 @@ const ButtonContainerWrapper = styled.div`
 `;
 
 const HomeUiButton: React.FC<ButtonContainerProps> = ({text, icon, onClick}) => {
+  let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
   return (
     <ButtonContainerWrapper>
       <HomeButton onClick={onClick}>
@@ -32,7 +33,7 @@ const HomeUiButton: React.FC<ButtonContainerProps> = ({text, icon, onClick}) => 
             <Image
                 className="homeIcon" 
                 alt="icon" 
-                src={"https://cdn.roomify.org/chevron-right-solid.svg"}
+                src={`${url}/chevron-right-solid.svg`}
                 width={24}
                 height={24}
                 style={{ 

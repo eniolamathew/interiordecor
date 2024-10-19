@@ -12,7 +12,7 @@ const NavbarContainer = styled.nav<{$isLightMode:boolean}>`
   justify-content: center;
   align-items: center;
   height: 60px;
-  z-index: 1000;
+  z-index: 99999999;
 `;
 
 const NavItems = styled.ul`
@@ -64,6 +64,7 @@ const NavButton = styled.li`
   margin: 0 15px;
   font-size: 1.2rem;
   cursor: pointer;
+  color: white;
 
   @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
     width: 100px;
