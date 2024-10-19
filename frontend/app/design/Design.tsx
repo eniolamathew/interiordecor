@@ -13,6 +13,7 @@ import Roomstyle from './Roomstyle';
 import Roomcolor from './Roomcolor';
 import UserAuthManager from '@/shared/data/UserAuthManager';
 import Image from 'next/image';
+import {  toast } from 'react-toastify';
 import { useAuth } from "@/shared/context/AuthContext";  
 
 const Design = () => {
@@ -23,6 +24,7 @@ const Design = () => {
   const [isdisabled, setIsdisabled] = useState<boolean>(false)
   const [imageLoaded, setImageLoaded] = useState<boolean>(false)
   const [generatedImage, setGeneratedImage] = useState<IGenratedImageResult | null >(null)
+  const [generateionTimedOut, setGenerationTimeedOut] = useState<boolean | null >(null)
   const [jobId, setJobId] = useState<string>("")
   const [hasErrors, setHasErrors] = useState<boolean>(false)
   const [formData, setFormData] = useState({
@@ -100,6 +102,7 @@ const Design = () => {
         setHasErrors(false)
         setIsGenerating(true)
         generateImage(formData, email)
+        setGenerationTimeedOut(false)
     }
     else{
         setHasErrors(true)
@@ -136,6 +139,8 @@ const Design = () => {
             resolve(result.payload);
           } else if (Date.now() - startTime >= timeout) {
             reject(new Error('Polling timed out.'));
+            setGenerationTimeedOut(true)
+            toast.error(`Image failed to generate`, {position: "top-right", autoClose: 2000});
           } else {
             setTimeout(checkStatus, interval);
           }
@@ -204,6 +209,7 @@ const Design = () => {
                             setGeneratedImage(null)
                             setImageLoaded(false)
                         }}
+                        disabled={isdisabled}
                     />
                 </Infofooter>
             </Designinfo>
@@ -229,8 +235,8 @@ const Design = () => {
                 }
                 {isGenerating && !hasErrors && (
                     <div className='center-content'>
-                    {generatedImage === null ? (<Loading />) : 
-                        (<div className='image-container'>
+                    {generatedImage === null ? generateionTimedOut ? null : (<Loading />)
+                       : (<div className='image-container'>
                             <img
                                 src={generatedImage.Imageurl} 
                                 alt="Generated Image"

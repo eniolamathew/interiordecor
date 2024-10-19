@@ -82,6 +82,6 @@ export const Text1 = styled.div`
   margin-bottom: 1rem;
 
   @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
-  font-size: 2rem;
- }
+    font-size: 2rem;
+  }
 `;
