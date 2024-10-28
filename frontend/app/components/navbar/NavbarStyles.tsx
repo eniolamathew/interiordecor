@@ -61,7 +61,7 @@ const NavLeft = styled.div`
 const NavButton = styled.li`
   display: flex;
   width: 200px;
-  margin: 0 15px;
+  margin: 0px 16px 0px 0px;
   font-size: 1.2rem;
   cursor: pointer;
   color: white;

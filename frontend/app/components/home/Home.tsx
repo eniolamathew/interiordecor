@@ -18,10 +18,12 @@ import {
 } from './HomeStyles';
 import ButtonContainer from '../ui/buttons/HomeUiButton';
 import InputContainer from '../ui/emailInput/InputContainer';
+import { useAuth } from "../../../shared/context/AuthContext";
 import { useRouter } from 'next/navigation'
 import HomeNavbar from '../navbar/HomeNavbar';
-
+      
 export default function Home() {
+  const { isLoggedIn } = useAuth();
   const router = useRouter()
   const [email, setEmail] = useState<string>("");
   const [invalidEmail, setInvalidEmail] = useState<string>("");
@@ -51,7 +53,19 @@ export default function Home() {
               <Text1>Transform your interior design in seconds with AI.</Text1>
               <Text2>Create your dream space effortlessly, using <span>AI</span></Text2>
               <Text3>Starts at £4.99. Cancel at any time.</Text3>
-              <Text4>Ready to create? Enter your email to signup or restart your membership.</Text4>
+              <Text4>{ isLoggedIn ? "Excited to start? Click on Design to begin": "Ready to create? Enter your email to signup or restart your membership"}.</Text4>
+
+              { isLoggedIn ? <SignUpContainer >
+                    <GetStarted >
+                      <ButtonContainer 
+                        text={"Design"}
+                        icon={false}
+                        onClick={(e)=>{ e.preventDefault()
+                          router.push("/design");
+                        }}  
+                      />
+                    </GetStarted>
+              </SignUpContainer> :
               <SignUpContainer >
                 <EmailWrapper >
                     <Email >
@@ -73,7 +87,7 @@ export default function Home() {
                   </EmailWrapper>
                   <ButtonWrapper>
                     <GetStarted >
-                      <ButtonContainer 
+                        <ButtonContainer 
                           text={"Get Started"}
                           icon={true}
                           onClick={(e)=>{ e.preventDefault()
@@ -82,7 +96,7 @@ export default function Home() {
                         />
                     </GetStarted>
                 </ButtonWrapper>
-              </SignUpContainer >
+              </SignUpContainer >}
             </HomeContent>
           </MaxWidth>
         </ContentWrapper>

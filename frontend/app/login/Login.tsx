@@ -110,14 +110,14 @@ export default function Login() {
               }}
             />
             <div className="mt-4">
-              <Link href="/forgotpassword" style={{fontWeight:"bold",  fontSize:"14px"}}>Forgot Password?</Link>
+              <Link href="/forgotpassword" style={{fontSize:"14px"}}>Forgot Password?</Link>
             </div>
             <div className="mt-4">
-                <span style={{color:"#acacac", fontWeight:"bold", fontSize:"14px"}}>New to us? </span>
-                <Link href="/signup" style={{fontWeight:"bold", fontSize:"14px"}}> Sign up now.</Link>
+                <span style={{color:"#acacac", fontSize:"14px"}}>New to us? </span>
+                <Link href="/signup" style={{fontSize:"14px"}}> Sign up now.</Link>
             </div>
             <div className="mt-4">
-                <Link href="/" style={{fontWeight:"bold", fontSize:"14px"}}>Back to home</Link>
+                <Link href="/" style={{fontSize:"14px"}}>Back to home</Link>
             </div>
           </LoginContent>
         </MaxWidth>

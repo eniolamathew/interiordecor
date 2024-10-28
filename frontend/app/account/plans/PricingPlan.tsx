@@ -35,6 +35,7 @@ const PricingPlan: React.FC<PricingPlanProps> = ({ plan, active, ismonthly, badg
             height={"50px"}
             margin={"0 0rem"}
             text={"Subscribe →"}
+            disabled={false}
             onClick={(e) => { e.preventDefault() }}
         /> 
       <p className="action-switch-to-monthly-billing action-switch-to-annual-billing">

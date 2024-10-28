@@ -144,7 +144,7 @@ export default function Signup() {
                   checked={isTermsChecked}
                   onChange={(e)=>{ handleCheckboxChange(e)}}
                 />
-              <Terms style={{ fontWeight:"bold",fontSize:"14px"}}>By Signing the account, you accept out <span >Terms & condtion</span> and <span>Privacy Policy</span></Terms>
+              <Terms style={{fontSize:"14px"}}>By Signing the account, you accept out <span >Terms & condtion</span> and <span>Privacy Policy</span></Terms>
             </div>
             <div className="mt-4">
               <HomeUiButton
@@ -157,11 +157,11 @@ export default function Signup() {
               />
             </div>
             <div className="mt-4">
-              <span style={{ color: "#acacac",fontWeight:"bold", fontSize:"14px"}}>Have an account? </span>
-              <Link href="/login" style={{fontWeight:"bold", fontSize:"14px"}}>Sign in now.</Link>
+              <span style={{ color: "#acacac", fontSize:"14px"}}>Have an account? </span>
+              <Link href="/login" style={{fontSize:"14px"}}>Sign in now.</Link>
             </div>
             <div className="mt-4 mb-3">
-                <Link href="/" style={{fontWeight:"bold", fontSize:"14px"}}>Back to home</Link>
+                <Link href="/" style={{fontSize:"14px"}}>Back to home</Link>
             </div>
           </SignupContent>
         </MaxWidth>
