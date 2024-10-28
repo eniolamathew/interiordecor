@@ -35,6 +35,9 @@ export default function Page() {
         setCarouselData={setCarouselData}
         carouselData={carouselData}
         carousel={carouselData!.filter(x => x.name.toLowerCase() === "bedroom")}
+        draggable={false}
+        slidesToShow={window.innerWidth >= 800 ? 6 : 4}
+        slidesToScroll={window.innerWidth >= 800 ? 6 : 4}
       />
       <HomeCarousel 
         title="LivingRoom"
@@ -42,20 +45,29 @@ export default function Page() {
         carouselData={carouselData}
         setCarouselData={setCarouselData}
         carousel={carouselData!.filter(x => x.name.toLowerCase() === "livingroom")}
-      />
+        draggable={false}
+        slidesToShow={window.innerWidth >= 800 ? 6 : 4}
+        slidesToScroll={window.innerWidth >= 800 ? 6 : 4}
+        />
       <HomeCarousel 
         title="Kitchen"
         autoplay={false}
         carouselData={carouselData}
         setCarouselData={setCarouselData}
         carousel={carouselData!.filter(x => x.name.toLowerCase() === "kitchen")}
-      />
+        draggable={false}
+        slidesToShow={window.innerWidth >= 800 ? 6 : 4}
+        slidesToScroll={window.innerWidth >= 800 ? 6 : 4}
+        />
       <HomeCarousel 
         title="Bathroom"
         autoplay={false}
         carouselData={carouselData}
         setCarouselData={setCarouselData}
         carousel={carouselData!.filter(x => x.name.toLowerCase() === "bathroom")}
+        draggable={false}
+        slidesToShow={window.innerWidth >= 800 ? 6 : 4}
+        slidesToScroll={window.innerWidth >= 800 ? 6 : 4}
       />
       <FAQ />
       <Footer />

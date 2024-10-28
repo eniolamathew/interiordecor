@@ -72,7 +72,6 @@ const Footer = () => {
                     style={{
                         maxWidth: "25px",
                         maxHeight: "25px",
-                        objectFit: "cover",
                         marginRight: "6px",
                         textAlign: "center",
                         filter: "brightness(0) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(62%) contrast(100%)"
@@ -94,7 +93,7 @@ const Footer = () => {
         </FooterRightSection>
       </FooterWrapper>
       <FooterBottom>
-        &copy; {new Date().getFullYear()} Roomify, Inc. All rights reserved.
+        &copy; 2023 - {new Date().getFullYear()} Roomify, Inc. All rights reserved.
       </FooterBottom>
     </FooterContainer>
   );

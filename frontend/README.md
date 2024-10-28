@@ -1,6 +1,6 @@
 # Roomify.org - AI-Powered Interior Design
 
-Roomify.org is a SaaS platform that leverages artificial intelligence to revolutionize the interior design industry. Launched in October 2023, Roomify empowers users to create personalized, high-quality interior designs tailored to their preferences within seconds. By simply providing details such as room type, preferred style, and color palette, users can generate realistic visuals of their ideal space through a sophisticated AI model.
+Roomify.org is a SaaS platform that leverages artificial intelligence to revolutionize the interior design industry. Roomify empowers users to create personalized, high-quality interior designs tailored to their preferences within seconds. By simply providing details such as room type, preferred style, and color palette, users can generate realistic visuals of their ideal space through a sophisticated AI model.
 
 ## How Roomify Works
 

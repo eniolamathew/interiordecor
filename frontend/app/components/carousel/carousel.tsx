@@ -139,7 +139,7 @@ const Carousel = (props: ICarouselProps) => {
     const [loaded, setLoaded] = useState<boolean>(false);
     const [hoveredSlide, setHoveredSlide] = useState<null | number>(null);  
     const [position, setPosition] = useState<{ top: number; left: number } | null>(null); 
-    const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
+    const [isModalOpen, setIsModalOpen] = useState<boolean | null>(null);
     const [imageData, setImageData] = useState<ICarouselImage | null>(null)
 
     const modalTimeoutRef = React.useRef<NodeJS.Timeout | null>(null); 
@@ -154,14 +154,14 @@ const Carousel = (props: ICarouselProps) => {
     };
     
     const closeModal = useCallback(() => {
-        setHoveredSlide(null);
-        setPosition(null);
         setIsModalOpen(false);
+        setHoveredSlide(null);
+        setPosition(null);        
     }, []);
 
     useEffect(() => {
         const updateModalPosition = () => {
-            const hoveredElement = document.querySelectorAll(`.${props.name} .glider-slide`)[hoveredSlide!];        
+            const hoveredElement = document.querySelectorAll(`.${props.name} .glider-slide`)[hoveredSlide!];                   
             
             if (hoveredElement) {
                 const bounding = hoveredElement.getBoundingClientRect();
@@ -198,7 +198,7 @@ const Carousel = (props: ICarouselProps) => {
                     }
     
                     modalTimeoutRef.current = setTimeout(() => {
-                        if (window.innerWidth >= 1280) { setIsModalOpen(true); }
+                        if (window.innerWidth >= 800) { setIsModalOpen(true) }
                     }, 100);
                 }
             }
@@ -259,6 +259,7 @@ const Carousel = (props: ICarouselProps) => {
                 hasDots={props.hasDots !== undefined ? props.hasDots : (props.children as React.ReactNode[])?.length > 1}
                 slidesToShow={props.slidesToShow}
                 slidesToScroll={props.slidesToScroll}
+                scrollLock
                 rewind
                 iconLeft={
                     <div                    
@@ -306,15 +307,14 @@ const Carousel = (props: ICarouselProps) => {
                             }}
                         />
                     </div>
-
                 }
                 onLoad={() => setLoaded(true)}
             >
                 {React.Children.map(props.children, (child, index) => (
                     <div
-                        onMouseEnter={(e)=> {
-                            handleMouseEnterDebounced(index, e)}
-                        }
+                        onMouseOver={(e)=>{ 
+                            handleMouseEnterDebounced(index, e)
+                        }}
                     >
                         {child}
                     </div>

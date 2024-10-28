@@ -78,15 +78,15 @@ export default function ForgotPassword() {
                 />
               </div>
               <div className="mt-4">
-                <span style={{ color: "#acacac", fontWeight:"bold", fontSize:"14px"}}>Have an account? </span>
-                <Link href="/login" style={{fontWeight:"bold", fontSize:"14px"}}>Sign in</Link>
+                <span style={{ color: "#acacac", fontSize:"14px"}}>Have an account? </span>
+                <Link href="/login" style={{fontSize:"14px"}}>Sign in</Link>
               </div>
               <div className="mt-4">
-                <span style={{ color: "#acacac" , fontWeight:"bold", fontSize:"14px"}}>New to us? </span>
-                <Link href="/signup" style={{fontWeight:"bold", fontSize:"14px"}}>Sign up now.</Link>
+                <span style={{ color: "#acacac" , fontSize:"14px"}}>New to us? </span>
+                <Link href="/signup" style={{fontSize:"14px"}}>Sign up now.</Link>
               </div>
               <div className="mt-4">
-                <Link href="/" style={{fontWeight:"bold", fontSize:"14px"}}>Back to home</Link>
+                <Link href="/" style={{fontSize:"14px"}}>Back to home</Link>
               </div>
             </ForgotPasswordContent>
           </MaxWidth>

@@ -60,6 +60,7 @@ const Plan = () => {
                     height={"100%"}
                     margin={"0 1rem"}
                     text={"Monthly"}
+                    disabled={false}
                     onClick={(e) => { e.preventDefault()
                         setIsmonthly(true)
                      }}
@@ -69,6 +70,7 @@ const Plan = () => {
                     height={"100%"}
                     margin={"0 1rem"}
                     text={"Yearly"}
+                    disabled={false}
                     onClick={(e) => { e.preventDefault()
                         setIsmonthly(false)
                     }}

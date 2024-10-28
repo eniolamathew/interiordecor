@@ -12,6 +12,9 @@ interface ICategoryIntroProps {
     carousel: ICarousel[];
     carouselData: ICarousel[];
     setCarouselData: React.Dispatch<React.SetStateAction<ICarousel[]>>;
+    draggable: boolean;
+    slidesToShow: number;
+    slidesToScroll: number;
 }
 
 const IntroHeaderCarousel = styled.div`
@@ -74,11 +77,11 @@ function HomeCarousel(props: ICategoryIntroProps) {
                                 carouselData={props.carouselData}
                                 setCarouselData={props.setCarouselData}
                                 // interval={5000}
-                                draggable={false}
+                                draggable={props.draggable}
                                 hasDots={true}
-                                slidesToShow={6}
-                                slidesToScroll={6}
-                            >                                    
+                                slidesToShow={props.slidesToShow}
+                                slidesToScroll={props.slidesToScroll}
+                            >                                  
                                 {carousel.images?.length > 0 && carousel.images.map((item: ICarouselImage, index: number) =>
                                 <div key={index} >
                                     <ImageHolder>

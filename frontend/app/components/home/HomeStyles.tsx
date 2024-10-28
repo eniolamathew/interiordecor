@@ -154,6 +154,7 @@ export const GradientBackground = styled.div`
 
 export const Text1 = styled.div`
   font-size: 3rem;
+  font-weight: 300;
   color: white;
 
   @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
@@ -163,6 +164,7 @@ export const Text1 = styled.div`
 
 export const Text2 = styled.div`
   font-size: 2rem;
+  font-weight: 300;
   color: white;
 
   span {
@@ -176,6 +178,7 @@ export const Text2 = styled.div`
 
 export const Text3 = styled.div`
   font-size: 1.2rem;
+  font-weight: 300;
   color: white;
 
    @media (max-width: ${(props) => props.theme.breakpoints.md}px) {
@@ -185,6 +188,7 @@ export const Text3 = styled.div`
 
 export const Text4 = styled.div`
   font-size: 1.2rem;
+  font-weight: 300;
   margin-top: 2rem;
   color: white;
 
