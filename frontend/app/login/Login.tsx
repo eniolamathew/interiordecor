@@ -18,8 +18,9 @@ import { useAuth } from "@/shared/context/AuthContext";
 import UserAuthManager from "@/shared/data/UserAuthManager";
 import HomeNavbar from "../components/navbar/HomeNavbar";
 import PasswordContainer from "../components/ui/password/PasswordContainer";
+import Basepage from "../components/BasePage/Basepage";
 
-export default function Login() {
+const Login = () => {
   const { login } = useAuth();
   const router = useRouter()
   const [email, setEmail] = useState<string>("");
@@ -68,11 +69,7 @@ export default function Login() {
 
   return (
     <>
-    <HomeNavbar />
-
-    <LoginWrapper>
-      <LoginContainer>
-        <MaxWidth>
+        <Basepage>
           <LoginContent>
             <Text1>Sign In</Text1>
             <div className="mb-2 loginEmail">
@@ -120,10 +117,9 @@ export default function Login() {
                 <Link href="/" style={{fontSize:"14px"}}>Back to home</Link>
             </div>
           </LoginContent>
-        </MaxWidth>
-      </LoginContainer>
-    </LoginWrapper>
+        </Basepage>
     </>
-
   );
-}           
+}
+
+export default Login

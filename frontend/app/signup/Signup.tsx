@@ -1,6 +1,6 @@
 "use client";
 import React, { ChangeEvent, useState } from "react";
-import { SignupWrapper, MaxWidth, SignupContainer, SignupContent, Text1 } from "./SignupStyles";
+import { SignupContent, Text1 } from "./SignupStyles";
 import InputContainer from "../components/ui/emailInput/InputContainer";
 import HomeUiButton from "../components/ui/buttons/HomeUiButton";
 import Link from "next/link";
@@ -8,11 +8,11 @@ import styled from "styled-components";
 import { useSearchParams } from 'next/navigation';
 import CheckboxContainer from "../components/ui/checkbox/CheckboxContainer";
 import userApiData from "../../shared/data/userApiData";
-import HomeNavbar  from "../components/navbar/HomeNavbar";
 import { validatePassword, formatPasswordErrors } from "../../shared/helperFunctions/helperFunctions";
 import { useRouter } from 'next/navigation'
 import {  toast } from 'react-toastify';
 import PasswordContainer from "../components/ui/password/PasswordContainer";
+import Basepage from "../components/BasePage/Basepage";
 
 const Terms = styled.div`
   text-align: start;
@@ -92,10 +92,7 @@ export default function Signup() {
   
   return (
     <>
-    <HomeNavbar />
-    <SignupWrapper>
-      <SignupContainer>
-        <MaxWidth>
+        <Basepage>
           <SignupContent>
             <Text1>Sign Up</Text1>
             <div className="mb-2">
@@ -164,8 +161,6 @@ export default function Signup() {
                 <Link href="/" style={{fontSize:"14px"}}>Back to home</Link>
             </div>
           </SignupContent>
-        </MaxWidth>
-      </SignupContainer>
-    </SignupWrapper>
+      </Basepage>
   </>);
 }

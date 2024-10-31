@@ -2,6 +2,7 @@ import { HTMLAttributes } from "react";
 
 export interface ICarouselImage {
   src: string;
+  smallImage: string;
   description: string;
   liked: boolean;
 }

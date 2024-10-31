@@ -19,12 +19,14 @@ const Profile = () => {
     { title: "Your Details", href: "/account/profile", imgSrc:`${url}/menu-item-my-details.svg` },
     { title: "Plan", href: "/account/plans", imgSrc:`${url}/menu-plan.svg` },
     { title: "Change Password", href: "/changepassword", imgSrc:`${url}/instant-solid.svg` },
-    { title: "Setting", href:"#", imgSrc:`${url}/menu-gear-solid.svg`},
+    { title: "Setting", href:"#", imgSrc:`${url}/menu-setting-solid.png`},
     { title: "Logout", href: "/", imgSrc:`${url}/menu-item-logout.svg` },
   ];
 
-  const handleLightMode = (checked:boolean)=>{ setIsLightMode(checked) }
-
+  const handleLightMode = (checked: boolean): void => {
+    setIsLightMode(checked);
+  };
+  
   return (
     <>
        { showSettingModal && 
@@ -77,7 +79,6 @@ const Profile = () => {
                             style={{ 
                               width: `${window.innerWidth >= 800 ? "20px" : "16px"}`, 
                               height: `${window.innerWidth >= 800 ? "20px" : "16px"}`, 
-                              filter: "brightness(0) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(117%) contrast(100%)"
                             }}
                           />
                         </div>

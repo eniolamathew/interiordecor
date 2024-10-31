@@ -1,13 +1,13 @@
 "use client";
 import React, { ChangeEvent, useState } from "react";
-import { ResetPasswordWrapper, MaxWidth, ResetPasswordContainer, ResetPasswordContent, Text1 } from "./ResetPasswordStyles";
+import { ResetPasswordContent, Text1 } from "./ResetPasswordStyles";
 import ButtonContainer from "../components/ui/buttons/HomeUiButton";
 import userApiData from "../../shared/data/userApiData";
 import { validatePassword, formatPasswordErrors } from "../../shared/helperFunctions/helperFunctions";
 import { useRouter, useSearchParams } from 'next/navigation'
 import {  toast } from 'react-toastify';
-import HomeNavbar from "../components/navbar/HomeNavbar";
 import PasswordContainer from "../components/ui/password/PasswordContainer";
+import Basepage from "../components/BasePage/Basepage";
 
 export default function ResetPassword() {
   const router = useRouter()
@@ -64,10 +64,7 @@ export default function ResetPassword() {
   
   return (
     <>
-    <HomeNavbar />
-    <ResetPasswordWrapper>
-      <ResetPasswordContainer>
-        <MaxWidth>
+      <Basepage>
           <ResetPasswordContent>
             <Text1>Create Password</Text1>
                 <div className="mb-2">
@@ -107,8 +104,6 @@ export default function ResetPassword() {
                 />
               </div>
            </ResetPasswordContent>
-         </MaxWidth>
-       </ResetPasswordContainer>
-     </ResetPasswordWrapper>
+        </Basepage>
   </>);
 }

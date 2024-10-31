@@ -1,19 +1,19 @@
 import styled from "styled-components";
 
 // Styled component for the Navbar container
-const NavbarContainer = styled.nav<{$isLightMode:boolean}>`
+const NavbarContainer = styled.nav<{$isLightMode: boolean, $transparentBackground: boolean}>`
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  background-color: ${(props) => (props.$isLightMode ? '#000' : 'transparent' )};
+  background-color: ${(props) => props.$transparentBackground ? 'transparent' : props.$isLightMode ? '#000' : 'transparent'};
   transition: background-color 0.3s ease; 
   display: flex;
   justify-content: center;
   align-items: center;
   height: 60px;
   z-index: 99999999;
-`;
+  `;
 
 const NavItems = styled.ul`
   display: flex;

@@ -23,7 +23,7 @@ export const Pricing = styled.div<{$isLightMode: boolean}>`
 
 export const FeaturesCheck  = styled.div<{publicUrl: string}>`
     opacity: 0.7;
-    background-image: url(${(props) => `${props.publicUrl}/pricing-table-check.svg"`});
+    background-image: url(${(props) => `${props.publicUrl}/pricing-table-check.svg`});
     background-size: cover;
     width: 15px;
     height: 15px;
