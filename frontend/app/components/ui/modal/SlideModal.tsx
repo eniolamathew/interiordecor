@@ -5,6 +5,7 @@ import { ICarouselImage, ICarousel } from "../../../../models/interface"
 
 interface ISlideModalProps {
     imageSrc: string;
+    smallImageSrc: string;
     imageAlt: string;
     footerText: string;
     position: { top: number; left: number } | null;
@@ -76,6 +77,7 @@ const ModalImage = styled.img`
     height: 350px;
     object-fit: cover;
     position: relative;
+    loading: lazy;
 `;
 
 const Likeicon = styled.div`
@@ -102,13 +104,12 @@ const ModalText = styled.p`
     color: #333;
 `;
 
-const SlideModal: FC<ISlideModalProps> = ({ imageSrc, imageAlt, imageData, setImageData, setCarouselData, index, name, position, isModalOpen, mousePosition, onClose }) => {
+const SlideModal: FC<ISlideModalProps> = ({ imageSrc, smallImageSrc, imageAlt, imageData, setImageData, setCarouselData, index, name, position, isModalOpen, mousePosition, onClose }) => {
     let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
     const [openModal, setOpenMdal] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [isliked, setIsLiked] = useState(imageData?.liked);
     const [scrollY, setScrollY] = useState(0);
-
     const isMouseInsideModal = useCallback(() => {
         
         const handleMouseMove = (event: MouseEvent) => {

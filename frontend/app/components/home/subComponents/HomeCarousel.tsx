@@ -86,7 +86,7 @@ function HomeCarousel(props: ICategoryIntroProps) {
                                 <div key={index} >
                                     <ImageHolder>
                                         <ImageLoader
-                                            src={item.src}
+                                            src={item.smallImage}
                                             alt={item.description}
                                             width={150}
                                             height={150}

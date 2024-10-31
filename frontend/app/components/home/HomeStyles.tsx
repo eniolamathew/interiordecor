@@ -48,10 +48,10 @@ export const HomeContainer = styled.div<HomeContainerProps>`
     z-index: 2;
     background: linear-gradient(
       to bottom,
-      rgba(0, 0, 0, 0.8) 15%,
-      rgba(0, 0, 0, 0.8) 50%,
+      rgba(0, 0, 0, 0.6) 15%,
+      rgba(0, 0, 0, 0.6) 50%,
       rgba(0, 0, 0, 0.95) 70%,
-      rgba(0, 0, 0, 0.6) 95%,
+      rgba(0, 0, 0, 0.4) 95%,
       rgba(0, 0, 0, 1) 100%
     );
     opacity: 0.9;

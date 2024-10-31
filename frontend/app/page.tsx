@@ -11,6 +11,7 @@ import { ICarousel } from "@/models/interface";
 
 interface CarouselImage {
   src: string;
+  smallImage: string;
   description: string;
   liked:boolean;
 }

@@ -1,19 +1,13 @@
 "use client";
 import React, { ChangeEvent, useState } from "react";
-import {
-  ForgotPasswordWrapper,
-  MaxWidth,
-  ForgotPasswordContainer,
-  ForgotPasswordContent,
-  Text1,
-} from "./ForgotPasswordStyles";
+import { ForgotPasswordContent, Text1 } from "./ForgotPasswordStyles";
 import InputContainer from "../components/ui/emailInput/InputContainer";
 import HomeUiButton from "../components/ui/buttons/HomeUiButton";
 import Link from "next/link";
 import userApiData from "../../shared/data/userApiData";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import HomeNavbar from "../components/navbar/HomeNavbar";
+import Basepage from "../components/BasePage/Basepage";
 
 export default function ForgotPassword() {
   const router = useRouter();
@@ -47,10 +41,7 @@ export default function ForgotPassword() {
 
   return (
     <>
-      <HomeNavbar />
-      <ForgotPasswordWrapper>
-        <ForgotPasswordContainer>
-          <MaxWidth>
+        <Basepage>
             <ForgotPasswordContent>
               <Text1>Forget Password</Text1>
               <div className="mb-2">
@@ -89,9 +80,7 @@ export default function ForgotPassword() {
                 <Link href="/" style={{fontSize:"14px"}}>Back to home</Link>
               </div>
             </ForgotPasswordContent>
-          </MaxWidth>
-        </ForgotPasswordContainer>
-      </ForgotPasswordWrapper>
+        </Basepage>
     </>
   );
 }

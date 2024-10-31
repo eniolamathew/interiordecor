@@ -238,6 +238,7 @@ const Carousel = (props: ICarouselProps) => {
         {isModalOpen && (
             <SliderModal
                 imageSrc={imageData!.src}
+                smallImageSrc={imageData!.smallImage}
                 imageAlt={imageData!.description}
                 footerText={imageData!.description}
                 position={position}
