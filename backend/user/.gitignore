@@ -37,7 +37,7 @@ Thumbs.db
 
 
 # Env files containing sensitive information
-# *.env
+.env
 
 # Git-related files
 .git/

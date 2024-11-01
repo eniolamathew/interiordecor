@@ -19,6 +19,7 @@ const TextAreaError = styled.div`
   position: relative;
   text-align: left;
   color: var(--colour-red);
+  font-weight: 500;
 `;
 
 const FloatingLabel = styled.label<{ $isFocused: boolean; $hasValue: boolean, $isLightMode:boolean}>`
