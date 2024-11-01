@@ -5,6 +5,7 @@ const DropdownError = styled.div`
   position: relative;
   text-align: left;
   color: var(--colour-red);
+  font-weight: 500;
 `;
 
 const DropdownWrapper = styled.div`
