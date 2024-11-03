@@ -2,6 +2,7 @@ import Image from 'next/image';
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { ICarouselImage, ICarousel } from "../../../../models/interface"
+import Loading from '@/app/loading';
 
 interface ISlideModalProps {
     imageSrc: string;
@@ -80,15 +81,36 @@ const ModalImage = styled.img`
     loading: lazy;
 `;
 
+const ImageLoadingOverlay = styled.div`
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+`;
+
 const Likeicon = styled.div`
     position: absolute;
-    bottom: 0;
+    top: 0;
     right: 0;
     display: flex;
     align-items: center;
     justify-content: flex-end;
     cursor: pointer;
     margin: 1rem;
+`;
+
+const ModalBody = styled.div`
+    position: relative;
+    display: flex;
+    width:'350px',
+    height: '350px',
+    align-items: center;
+    justify-content: center;
 `;
 
 const ModalFooter = styled.div`
@@ -106,10 +128,11 @@ const ModalText = styled.p`
 
 const SlideModal: FC<ISlideModalProps> = ({ imageSrc, smallImageSrc, imageAlt, imageData, setImageData, setCarouselData, index, name, position, isModalOpen, mousePosition, onClose }) => {
     let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
-    const [openModal, setOpenMdal] = useState(false);
-    const [isClosing, setIsClosing] = useState(false);
+    const [openModal, setOpenMdal] = useState<boolean>(false);
+    const [isClosing, setIsClosing] = useState<boolean>(false);
     const [isliked, setIsLiked] = useState(imageData?.liked);
-    const [scrollY, setScrollY] = useState(0);
+    const [scrollY, setScrollY] = useState<number>(0);
+    const [imageLoaded, setImageLoaded] = useState<boolean>(false);
     const isMouseInsideModal = useCallback(() => {
         
         const handleMouseMove = (event: MouseEvent) => {
@@ -199,7 +222,41 @@ const SlideModal: FC<ISlideModalProps> = ({ imageSrc, smallImageSrc, imageAlt, i
                 onClick={(e) => e.stopPropagation()}
                 onMouseLeave={handleMouseLeave} 
             >
-                <ModalImage src={imageSrc} alt={imageAlt}  />
+                {!imageLoaded &&                    
+                    <ModalBody >
+                        <img
+                            src={imageSrc} 
+                            alt={imageAlt}
+                            loading='lazy'
+                            style={{
+                                width:'350px',
+                                height: '350px',
+                                objectFit: 'cover',
+                                opacity: `${imageLoaded ? 1 : 0.5}`,
+                            }}
+                            onLoad={()=>{ setImageLoaded(true) }}
+                        />
+                        {!imageLoaded && (
+                            <ImageLoadingOverlay >
+                                <Loading />
+                            </ImageLoadingOverlay>
+                        )}
+                    </ModalBody>
+                }
+                {imageLoaded && 
+                    <ModalBody >
+                        <img
+                            src={imageSrc} 
+                            alt={imageAlt}
+                            loading='lazy'
+                            style={{
+                                width:'350px',
+                                height: '350px',
+                                objectFit: 'cover',
+                            }}
+                        />
+                    </ModalBody>
+                }
                 <Likeicon onClick={toggleLiked}>
                     {isliked ? 
                         <Image 
