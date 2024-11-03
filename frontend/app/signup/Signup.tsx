@@ -141,7 +141,7 @@ export default function Signup() {
                   checked={isTermsChecked}
                   onChange={(e)=>{ handleCheckboxChange(e)}}
                 />
-              <Terms style={{fontSize:"14px"}}>By Signing the account, you accept out <span >Terms & condtion</span> and <span>Privacy Policy</span></Terms>
+              <Terms style={{fontSize:"14px"}}>By Signing the account, you accept our <span >Terms & condtion</span> and <span>Privacy Policy</span></Terms>
             </div>
             <div className="mt-4">
               <HomeUiButton
