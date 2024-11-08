@@ -126,8 +126,7 @@ class MicroserviceApi {
                 let payload = await result.json() as IMicroserviceApiResult<T>
                 if (result.status == 400) {
                     console.log(targetApiUrl)
-                    console.log(payload)
-                    console.log((payload as any).errors[0])
+                  
                 }
                 payload.statusCode = result.status
                 return payload
@@ -145,7 +144,6 @@ class MicroserviceApi {
             }
             throw `Api ${method} failed ${result.status} ${this._baseUrl + targetApiUrl} ${await result.text()}`
         } catch (e) {
-            console.log(e)
             throw e
         }
     }
