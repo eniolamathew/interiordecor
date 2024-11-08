@@ -1,0 +1,104 @@
+body {
+    background-color: var(--cui-tertiary-bg);
+  }
+  
+  .wrapper {
+    width: 100%;
+    @include ltr-rtl("padding-left", var(--cui-sidebar-occupy-start, 0));
+    @include ltr-rtl("padding-right", var(--cui-sidebar-occupy-end, 0));
+    will-change: auto;
+    @include transition(padding .15s);
+  }
+  
+  .header > .container-fluid,
+  .sidebar-header {
+    min-height: calc(4rem + 1px);
+  }
+  
+  .sidebar-brand-full {
+    margin-left: 3px;
+  }
+  
+  .sidebar-header {
+    .nav-underline-border {
+      --cui-nav-underline-border-link-padding-x: 1rem;
+      --cui-nav-underline-border-gap: 0;
+    }
+  
+    .nav-link {
+      display: flex;
+      align-items: center;
+      min-height: calc(4rem + 1px); 
+    }
+  }
+
+  .sidebar-nav .nav-title {
+    padding: var(--cui-sidebar-nav-title-padding-y) var(--cui-sidebar-nav-title-padding-x);
+    margin-top: var(--cui-sidebar-nav-title-margin-top);
+    font-size: 80%;
+    font-weight: 700;
+    color: var(--cui-sidebar-nav-title-color);
+    text-transform: uppercase;
+    transition: height 0.15s, margin 0.15s;
+  }
+  
+  .sidebar-toggler {
+    @include ltr-rtl("margin-left", auto);
+  }
+
+  .sidebar-brandLogo {
+    width: 120px;
+    height: 60px;
+    background-image: url('../../public/roomify.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .sidebar-narrow,
+  .sidebar-narrow-unfoldable:not(:hover) {
+    .sidebar-toggler {
+      @include ltr-rtl("margin-right", auto);
+    }
+  }
+  
+  .header > .container-fluid + .container-fluid {
+    min-height: 3rem;
+  }
+  
+  .footer {
+    min-height: calc(3rem + 1px); 
+  }
+  
+  @if $enable-dark-mode {
+    @include color-mode(dark) {
+      body {
+        background-color: var(--cui-dark-bg-subtle);
+      }
+  
+      .footer {
+        --cui-footer-bg: var(--cui-body-bg);
+      }
+    }
+  }
+
+  .form-control {
+    -webkit-appearance: none;
+    appearance: none;
+    background-clip: padding-box;
+    background-color: var(--cui-body-bg);
+    border: var(--cui-border-width) solid var(--cui-border-color);
+    border-radius: var(--cui-border-radius);
+    color: var(--cui-body-color);
+    display: block;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: .375rem .75rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+    width: 100%;
+}

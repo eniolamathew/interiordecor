@@ -1,0 +1,41 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    --tw-bg-opacity: 1;
+    background-color: rgb(31 41 55 / var(--tw-bg-opacity));
+    color: #fff;
+    padding: 20px;
+    margin-top: 4rem;
+  }
+  
+  .sidebar h2 {
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar nav ul li.parent {
+    padding: 15px 0;
+  }
+
+  .sidebar nav ul li.child {
+    padding: 5px 0;
+  }
+  
+  .sidebar nav ul li a {
+    color: #ddd;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  .sidebar nav ul li a:hover {
+    color: #fff;
+  }
