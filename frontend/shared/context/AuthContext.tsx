@@ -31,7 +31,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
-  // Effect to load token from localStorage on initial render
   useEffect(() => { 
     const storedToken = UserAuthManager.getToken();
     if (storedToken) {

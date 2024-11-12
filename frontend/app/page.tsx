@@ -1,5 +1,5 @@
 "use client"
-import { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import Home from "./components/home/Home";
 import CarouselData from '../data/CarouselData';
 import GradientDivider from "./components/home/subComponents/GradientDivider";
@@ -8,6 +8,7 @@ import "./globals.css";
 import FAQ from "./components/faq/faq";
 import Footer from "./components/footer/Footer";
 import { ICarousel } from "@/models/interface";
+import Framer from "./components/frame/Framer";
 
 interface CarouselImage {
   src: string;
@@ -24,6 +25,19 @@ interface Carouselfile {
 
 export default function Page() {  
   const [carouselData, setCarouselData]= useState<ICarousel[]>(CarouselData)
+  const [slides, setSlides] = useState<number>(window?.innerWidth >= 800 ? 6 : 4);
+
+  useEffect(() => {
+    const handleResize = () => { 
+      if(window?.innerWidth >= 800){ setSlides(6) }
+      else { setSlides(4) } 
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []); 
     
   return (
     <>
@@ -37,8 +51,8 @@ export default function Page() {
         carouselData={carouselData}
         carousel={carouselData!.filter(x => x.name.toLowerCase() === "bedroom")}
         draggable={false}
-        slidesToShow={window.innerWidth >= 800 ? 6 : 4}
-        slidesToScroll={window.innerWidth >= 800 ? 6 : 4}
+        slidesToShow={slides}
+        slidesToScroll={slides}
       />
       <HomeCarousel 
         title="LivingRoom"
@@ -47,8 +61,8 @@ export default function Page() {
         setCarouselData={setCarouselData}
         carousel={carouselData!.filter(x => x.name.toLowerCase() === "livingroom")}
         draggable={false}
-        slidesToShow={window.innerWidth >= 800 ? 6 : 4}
-        slidesToScroll={window.innerWidth >= 800 ? 6 : 4}
+        slidesToShow={slides}
+        slidesToScroll={slides}
         />
       <HomeCarousel 
         title="Kitchen"
@@ -57,8 +71,8 @@ export default function Page() {
         setCarouselData={setCarouselData}
         carousel={carouselData!.filter(x => x.name.toLowerCase() === "kitchen")}
         draggable={false}
-        slidesToShow={window.innerWidth >= 800 ? 6 : 4}
-        slidesToScroll={window.innerWidth >= 800 ? 6 : 4}
+        slidesToShow={slides}
+        slidesToScroll={slides}
         />
       <HomeCarousel 
         title="Bathroom"
@@ -67,9 +81,10 @@ export default function Page() {
         setCarouselData={setCarouselData}
         carousel={carouselData!.filter(x => x.name.toLowerCase() === "bathroom")}
         draggable={false}
-        slidesToShow={window.innerWidth >= 800 ? 6 : 4}
-        slidesToScroll={window.innerWidth >= 800 ? 6 : 4}
+        slidesToShow={slides}
+        slidesToScroll={slides}
       />
+      <Framer />
       <FAQ />
       <Footer />
     </>

@@ -12,7 +12,7 @@ const ModalHolder = styled.div<React.HTMLAttributes<HTMLDivElement>>`
     left:0px;
     bottom:0px;
     background: rgba(0,0,0,0.7);
-    z-index:9999999;
+    z-index:9999;
 `
 
 interface IModalDivProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -32,7 +32,7 @@ const ModalDiv = styled.div<IModalDivProps>`
     margin-right:auto;
     top:50%;
     transform: translateY(-50%);
-    z-index:9999999;
+    z-index:9999;
     background-color: ${(props) => props.$isLightMode ? theme.lightMode.backgroundColor : theme.darkMode.backgroundColor};
     max-height:90vh;
     overflow-y:auto;
@@ -55,7 +55,7 @@ const ModalDiv = styled.div<IModalDivProps>`
 const CloseButton = styled.div<React.HTMLAttributes<HTMLElement>>`
     width: 2rem;
     text-align: center;
-    z-index:9999999;
+    z-index:9999;
     cursor: pointer;
 `
 

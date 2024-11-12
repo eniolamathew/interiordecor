@@ -9,9 +9,11 @@ import Loading from './loading';
 
 const ChildrenWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(true);
+  const [isMounted, setIsMounted] = useState<boolean>(false); 
   const router = useRouter()
 
     useEffect(() => {
+        setIsMounted(true); 
         const token = UserAuthManager.getToken();
         if (token && UserAuthManager.isTokenExpired()) {
           UserAuthManager.removeToken();
@@ -33,6 +35,8 @@ const ChildrenWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) 
     }, []);
   
     if (loading) { return <Loading /> }
+
+    if (!isMounted) { return null }
   
   return (
     <AuthProvider>

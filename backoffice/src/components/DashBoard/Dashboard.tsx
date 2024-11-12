@@ -1,6 +1,7 @@
 import React from "react";
 import FormCard from "../UI/FormCard";
 import Traffic from "./Traffic";
+import EmailCampaign from "./EmailCampaign";
 import AnalyticsSection from "./AnalyticsSection";
 import DashboardCard from "./DashboardCard";
 
@@ -204,7 +205,7 @@ const Dashboard = () => {
             
           <FormCard
             title="Sessions"
-            value="24k"
+            value="12k"
             bgColor="bg-warning"
             percentage={-23.6}
             chartId="card-chart4"
@@ -262,6 +263,10 @@ const Dashboard = () => {
         </div>
         <div className="row g-4 mb-4 mt-4">
           <Traffic />
+        </div>
+        
+        <div className="row g-4 mb-4 mt-4">
+          <EmailCampaign />
         </div>
 
         <div className="row">

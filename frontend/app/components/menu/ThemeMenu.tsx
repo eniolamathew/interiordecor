@@ -41,7 +41,7 @@ const EllipseMenuWrapper = styled.div`
   height: 260px;
   width: 250px;
   float: right;
-  z-index: 1000;
+  z-index: 99999999;
 `;
 
 const ThemeDataRow = styled.div<{$isLightMode:boolean}>`

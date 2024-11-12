@@ -28,6 +28,8 @@ const Traffic: React.FC = () => {
     { label: 'Bounce Rate', value: '40.15%', percentage: 40, color: '' },
   ];
 
+  const chartlabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October']
+
   return (
     <div >
       <Card
@@ -39,7 +41,59 @@ const Traffic: React.FC = () => {
         options={options}
         chartClassname={'mt-3 mx-3'}
         chartType={'line'}
-        chartlabels = {['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October']}
+        chartData={{
+          labels: chartlabels,
+          datasets: [
+            {
+              label: '', 
+              data: [45, 245, 260, 278, 390, 402, 620, 554, 489, 432],
+              borderColor: 'rgba(100, 92, 255, 1)', 
+              borderWidth: 2,
+              fill: true, 
+              backgroundColor: 'rgba(100, 92, 255, 0.1)', 
+              tension: 0.4, 
+              pointRadius: 0, 
+              pointHoverRadius: 7,
+            },
+            {
+              label: '', 
+              data: [345, 212, 76, 188, 397, 432, 520, 454, 629, 545],
+              borderColor: 'rgba(3, 250, 30, 1)', 
+              borderWidth: 2,
+              fill: true, 
+              backgroundColor: 'rgba(3, 250, 24, 0.1)', 
+              tension: 0.4, 
+              pointRadius: 0, 
+              pointHoverRadius: 7,
+            },
+          ],
+      }}
+      chartConfig={{
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            x: {
+              display: true,
+            },
+            y: {
+              display: true,
+              beginAtZero: true,
+            },
+          },
+          plugins: {
+            legend: {
+              display: false, 
+            },
+            tooltip: {
+              enabled: true,
+              callbacks: {
+                title: (context: any) => chartlabels[context[0].dataIndex], 
+                label: (context: any) => `Value: ${context.raw}`,
+              },
+            },
+          },
+        }}
+        chartlabels = {chartlabels}
       />
     </div>
   );
