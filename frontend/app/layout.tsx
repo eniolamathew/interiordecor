@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 import { Suspense } from "react";
 import Toastify from "./components/ui/toastify/Toastify"; 
-import Loading from "./loading";
+import Loading from "./loadingComp";
 import "./globals.css";
 import ChildrenWrapper from "./childrenWrapper";
 import SVGSprite from "@/shared/svg/SVGSprite";

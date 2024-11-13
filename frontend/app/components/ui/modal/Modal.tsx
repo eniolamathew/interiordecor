@@ -132,7 +132,10 @@ const Modal = (props: IModalProps) => {
                             height={16}
                             style={{ 
                                 maxWidth: "16px", 
-                                maxHeight: "16px", 
+                                maxHeight: "16px",
+                                filter: isLightMode 
+                                ? "invert(100%) brightness(0%) contrast(100%)" 
+                                : "invert(100%) brightness(100%) contrast(100%)" 
                             }}
                         />
                     </CloseButton>

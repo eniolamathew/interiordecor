@@ -1,7 +1,7 @@
 "use client";
 import React, { useState } from 'react'
 import Profile from './Profile'
-import Loading from '@/app/loading';
+import Loading from '@/app/loadingComp';
 import HomeNavbar from '@/app/components/navbar/HomeNavbar';
 import Footer from '../../components/footer/Footer';
 import { useRouter } from 'next/navigation';

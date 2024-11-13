@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import UserAuthManager from '@/shared/data/UserAuthManager';
 import { AuthProvider } from '@/shared/context/AuthContext';
 import { ThemeProvider } from 'styled-components';
-import Loading from './loading';
+import Loading from './loadingComp';
 
 const ChildrenWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [loading, setLoading] = useState<boolean>(true);

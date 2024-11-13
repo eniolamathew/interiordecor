@@ -2,7 +2,7 @@ import Image from 'next/image';
 import React, { FC, useCallback, useEffect, useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { ICarouselImage, ICarousel } from "../../../../models/interface"
-import Loading from '@/app/loading';
+import Loading from '@/app/loadingComp';
 
 interface ISlideModalProps {
     imageSrc: string;

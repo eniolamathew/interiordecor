@@ -8,7 +8,7 @@ import { IGenratedImageResult, IGenrateImagePayload } from '@/models/design';
 import { Designcontianer, Designdisplay, Designwrapper, Designinfo, Infobody, Infofooter }from "./DesignStyles"
 import { saveAs } from 'file-saver';
 import Roomtype  from './Roomtype';
-import Loading from '../loading';
+import Loading from '../loadingComp';
 import Roomstyle from './Roomstyle';
 import Roomcolor from './Roomcolor';
 import UserAuthManager from '@/shared/data/UserAuthManager';
