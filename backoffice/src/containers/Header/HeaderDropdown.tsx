@@ -13,7 +13,7 @@ const HeaderDropdown: React.FC = () => {
         <Icon id={'cil-contrast'} width={24} height={24} />
       </button>
 
-      <ul className="dropdown-menu dropdown-menu-end" style={{ '--cui-dropdown-min-width': '8rem' } as React.CSSProperties} >
+      <ul className="dropdown-menu dropdown-menu-end" style={{ minWidth: '8rem' }} >
         <li>
           <button className="dropdown-item d-flex align-items-center" type="button" data-coreui-theme-value="light">
             <Icon id={'cil-sun'} width={24} height={24} />

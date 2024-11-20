@@ -9,8 +9,9 @@ import UserAuthManager from "@/shared/data/UserAuthManager";
 import { useAuth } from "@/shared/context/AuthContext";
 import Modal from "../components/ui/modal/Modal";
 import { RightContainerText } from "./AccountStyles";
+import { removeCookieToken } from "@/shared/data/cookieManager";
 
-const Profile = () => {       
+const Account = () => {       
   let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
   const { isLightMode, setIsLightMode, logout } = useAuth();
   const router = useRouter()
@@ -19,7 +20,7 @@ const Profile = () => {
     { title: "Your Details", href: "/account/profile", imgSrc:`${url}/menu-item-my-details.svg` },
     { title: "Plan", href: "/account/plans", imgSrc:`${url}/menu-plan.svg` },
     { title: "Change Password", href: "/changepassword", imgSrc:`${url}/instant-solid.svg` },
-    { title: "Setting", href:"#", imgSrc:`${url}/menu-setting-solid.png`},
+    { title: "Setting", href:"#", imgSrc:`${url}/menu-settings-solid.png`},
     { title: "Logout", href: "/", imgSrc:`${url}/menu-item-logout.svg` },
   ];
 
@@ -60,6 +61,7 @@ const Profile = () => {
                       e.preventDefault()
                       if(item.title === "Logout"){
                         UserAuthManager.removeToken()
+                        removeCookieToken()
                         router.push(item.href)
                         logout()
                       } else if(item.title.toLowerCase() === "setting"){
@@ -78,7 +80,8 @@ const Profile = () => {
                             height={window.innerWidth >= 800 ? 20 : 16}
                             style={{ 
                               width: `${window.innerWidth >= 800 ? "20px" : "16px"}`, 
-                              height: `${window.innerWidth >= 800 ? "20px" : "16px"}`, 
+                              height: `${window.innerWidth >= 800 ? "20px" : "16px"}`,
+                              filter: "invert(100%) brightness(100%) contrast(100%)",
                             }}
                           />
                         </div>
@@ -103,4 +106,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Account;

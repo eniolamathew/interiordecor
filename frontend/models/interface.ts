@@ -3,13 +3,13 @@ import { HTMLAttributes } from "react";
 export interface ICarouselImage {
   src: string;
   smallImage: string;
-  description: string;
+  imagedescription: string;
   liked: boolean;
 }
 
 export interface ICarousel {
   name: string;
-  description: string;
+  label: string;
   images: ICarouselImage[];
 }
 

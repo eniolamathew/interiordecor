@@ -2,276 +2,276 @@
   "carousels": [
     {
       "name": "Kitchen",
-      "description": "A collection of stylish kitchen designs showcasing modern layouts and sleek appliances.",
+      "label": "A collection of stylish kitchen designs showcasing modern layouts and sleek appliances.",
       "images": [
         {
           "src": "kitchen1.jpg",
           "smallImage": "kitchen1_small.jpg",
-          "description": "Kitchen design 1.",
+          "imagedescription": "Kitchen design 1.",
           "liked": false
         },
         {
           "src": "kitchen2.jpg",
           "smallImage": "kitchen2_small.jpg",
-          "description": "Kitchen design 2.",
+          "imagedescription": "Kitchen design 2.",
           "liked": false
         },
         {
           "src": "kitchen3.jpg",
           "smallImage": "kitchen3_small.jpg",
-          "description": "Kitchen design 3.",
+          "imagedescription": "Kitchen design 3.",
           "liked": false
         },
         {
           "src": "kitchen4.jpg",
           "smallImage": "kitchen4_small.jpg",
-          "description": "Kitchen design 4.",
+          "imagedescription": "Kitchen design 4.",
           "liked": false
         },
         {
           "src": "kitchen5.jpg",
           "smallImage": "kitchen5_small.jpg",
-          "description": "Kitchen design 5.",
+          "imagedescription": "Kitchen design 5.",
           "liked": false
         },
         {
           "src": "kitchen6.jpg",
           "smallImage": "kitchen6_small.jpg",
-          "description": "Kitchen design 6.",
+          "imagedescription": "Kitchen design 6.",
           "liked": false
         },
         {
           "src": "kitchen7.jpg",
           "smallImage": "kitchen7_small.jpg",
-          "description": "Kitchen design 7.",
+          "imagedescription": "Kitchen design 7.",
           "liked": false
         },
         {
           "src": "kitchen8.jpg",
           "smallImage": "kitchen8_small.jpg",
-          "description": "Kitchen design 8.",
+          "imagedescription": "Kitchen design 8.",
           "liked": false
         },
         {
           "src": "kitchen9.jpg",
           "smallImage": "kitchen9_small.jpg",
-          "description": "Kitchen design 9.",
+          "imagedescription": "Kitchen design 9.",
           "liked": false
         }
       ]
     },
     {
       "name": "Bedroom",
-      "description": "Serene bedroom designs featuring cozy decor, soft lighting, and inviting atmospheres.",
+      "label": "Serene bedroom designs featuring cozy decor, soft lighting, and inviting atmospheres.",
       "images": [
         {
           "src": "bedroom1.jpg",
           "smallImage": "bedroom1_small.jpg",
-          "description": "Bedroom design 1.",
+          "imagedescription": "Bedroom design 1.",
           "liked": false
         },
         {
           "src": "bedroom2.jpg",
           "smallImage": "bedroom2_small.jpg",
-          "description": "Bedroom design 2.",
+          "imagedescription": "Bedroom design 2.",
           "liked": false
         },
         {
           "src": "bedroom3.jpg",
           "smallImage": "bedroom3_small.jpg",
-          "description": "Bedroom design 3.",
+          "imagedescription": "Bedroom design 3.",
           "liked": false
         },
         {
           "src": "bedroom4.jpg",
           "smallImage": "bedroom4_small.jpg",
-          "description": "Bedroom design 4.",
+          "imagedescription": "Bedroom design 4.",
           "liked": false
         },
         {
           "src": "bedroom5.jpg",
           "smallImage": "bedroom5_small.jpg",
-          "description": "Bedroom design 5.",
+          "imagedescription": "Bedroom design 5.",
           "liked": false
         },
         {
           "src": "bedroom6.jpg",
           "smallImage": "bedroom6_small.jpg",
-          "description": "Bedroom design 6.",
+          "imagedescription": "Bedroom design 6.",
           "liked": false
         },
         {
           "src": "bedroom7.jpg",
           "smallImage": "bedroom7_small.jpg",
-          "description": "Bedroom design 7.",
+          "imagedescription": "Bedroom design 7.",
           "liked": false
         },
         {
           "src": "bedroom8.jpg",
           "smallImage": "bedroom8_small.jpg",
-          "description": "Bedroom design 8.",
+          "imagedescription": "Bedroom design 8.",
           "liked": false
         },
         {
           "src": "bedroom9.jpg",
           "smallImage": "bedroom9_small.jpg",
-          "description": "Bedroom design 9.",
+          "imagedescription": "Bedroom design 9.",
           "liked": false
         },
         {
           "src": "bedroom10.jpg",
           "smallImage": "bedroom10_small.jpg",
-          "description": "Bedroom design 10.",
+          "imagedescription": "Bedroom design 10.",
           "liked": false
         },
         {
           "src": "bedroom11.jpg",
           "smallImage": "bedroom11_small.jpg",
-          "description": "Bedroom design 11.",
+          "imagedescription": "Bedroom design 11.",
           "liked": false
         },
         {
           "src": "bedroom12.jpg",
           "smallImage": "bedroom12_small.jpg",
-          "description": "Bedroom design 12.",
+          "imagedescription": "Bedroom design 12.",
           "liked": false
         },
         {
           "src": "bedroom13.jpg",
           "smallImage": "bedroom13_small.jpg",
-          "description": "Bedroom design 13.",
+          "imagedescription": "Bedroom design 13.",
           "liked": false
         }
       ]
     },
     {
       "name": "LivingRoom",
-      "description": "Elegant sitting room designs with comfortable seating, warm tones, and tasteful decor.",
+      "label": "Elegant sitting room designs with comfortable seating, warm tones, and tasteful decor.",
       "images": [
         {
           "src": "livingroom1.jpg",
           "smallImage": "livingroom1_small.jpg",
-          "description": "Living room design 1.",
+          "imagedescription": "Living room design 1.",
           "liked": false
         },
         {
           "src": "livingroom2.jpg",
           "smallImage": "livingroom2_small.jpg",
-          "description": "Living room design 2.",
+          "imagedescription": "Living room design 2.",
           "liked": false
         },
         {
           "src": "livingroom3.jpg",
           "smallImage": "livingroom3_small.jpg",
-          "description": "Living room design 3.",
+          "imagedescription": "Living room design 3.",
           "liked": false
         },
         {
           "src": "livingroom4.jpg",
           "smallImage": "livingroom4_small.jpg",
-          "description": "Living room design 4.",
+          "imagedescription": "Living room design 4.",
           "liked": false
         },
         {
           "src": "livingroom5.jpg",
           "smallImage": "livingroom5_small.jpg",
-          "description": "Living room design 5.",
+          "imagedescription": "Living room design 5.",
           "liked": false
         },
         {
           "src": "livingroom6.jpg",
           "smallImage": "livingroom6_small.jpg",
-          "description": "Living room design 6.",
+          "imagedescription": "Living room design 6.",
           "liked": false
         },
         {
           "src": "livingroom7.jpg",
           "smallImage": "livingroom7_small.jpg",
-          "description": "Living room design 7.",
+          "imagedescription": "Living room design 7.",
           "liked": false
         },
         {
           "src": "livingroom8.jpg",
           "smallImage": "livingroom8_small.jpg",
-          "description": "Living room design 8.",
+          "imagedescription": "Living room design 8.",
           "liked": false
         },
         {
           "src": "livingroom9.jpg",
           "smallImage": "livingroom9_small.jpg",
-          "description": "Living room design 9.",
+          "imagedescription": "Living room design 9.",
           "liked": false
         }
       ]
     },
     {
       "name": "Bathroom",
-      "description": "Elegant bathroom designs featuring modern fixtures, sleek tiles, and relaxing atmospheres.",
+      "label": "Elegant bathroom designs featuring modern fixtures, sleek tiles, and relaxing atmospheres.",
       "images": [
         {
           "src": "bathroom1.jpg",
           "smallImage": "bathroom1_small.jpg",
-          "description": "Bathroom design 1.",
+          "imagedescription": "Bathroom design 1.",
           "liked": false
         },
         {
           "src": "bathroom2.jpg",
           "smallImage": "bathroom2_small.jpg",
-          "description": "Bathroom design 2.",
+          "imagedescription": "Bathroom design 2.",
           "liked": false
         },
         {
           "src": "bathroom3.jpg",
           "smallImage": "bathroom3_small.jpg",
-          "description": "Bathroom design 3.",
+          "imagedescription": "Bathroom design 3.",
           "liked": false
         },
         {
           "src": "bathroom4.jpg",
           "smallImage": "bathroom4_small.jpg",
-          "description": "Bathroom design 4.",
+          "imagedescription": "Bathroom design 4.",
           "liked": false
         },
         {
           "src": "bathroom5.jpg",
           "smallImage": "bathroom5_small.jpg",
-          "description": "Bathroom design 5.",
+          "imagedescription": "Bathroom design 5.",
           "liked": false
         },
         {
           "src": "bathroom6.jpg",
           "smallImage": "bathroom6_small.jpg",
-          "description": "Bathroom design 6.",
+          "imagedescription": "Bathroom design 6.",
           "liked": false
         },
         {
           "src": "bathroom7.jpg",
           "smallImage": "bathroom7_small.jpg",
-          "description": "Bathroom design 7.",
+          "imagedescription": "Bathroom design 7.",
           "liked": false
         },
         {
           "src": "bathroom8.jpg",
           "smallImage": "bathroom8_small.jpg",
-          "description": "Bathroom design 8.",
+          "imagedescription": "Bathroom design 8.",
           "liked": false
         },
         {
           "src": "bathroom9.jpg",
           "smallImage": "bathroom9_small.jpg",
-          "description": "Bathroom design 9.",
+          "imagedescription": "Bathroom design 9.",
           "liked": false
         },
         {
           "src": "bathroom10.jpg",
           "smallImage": "bathroom10_small.jpg",
-          "description": "Bathroom design 10.",
+          "imagedescription": "Bathroom design 10.",
           "liked": false
         },
         {
           "src": "bathroom11.jpg",
           "smallImage": "bathroom11_small.jpg",
-          "description": "Bathroom design 11.",
+          "imagedescription": "Bathroom design 11.",
           "liked": false
         }
       ]

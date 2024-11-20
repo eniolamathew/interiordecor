@@ -49,7 +49,7 @@ const Footer = () => {
       alt: "TikTok Icon",
     },
   ];
-  
+
   return (
     <FooterContainer $isLightMode={isLightMode}>
       <FooterWrapper>
@@ -61,7 +61,7 @@ const Footer = () => {
                 key={label}
                 href={href}
                 target="_blank"
-                rel="noopener noreferrer" 
+                rel="noopener noreferrer"
                 aria-label={label}
               >
                 <Image

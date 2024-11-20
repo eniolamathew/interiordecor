@@ -3,13 +3,13 @@ import carouselsData from './carousels.json';
 interface Image {
   src: string;
   smallImage: string;
-  description: string;
+  imagedescription: string;
   liked: boolean;
 }
 
 interface Carousel {
   name: string;
-  description: string;
+  label: string;
   images: Image[];
 }
 

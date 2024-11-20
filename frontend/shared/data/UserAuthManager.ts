@@ -1,4 +1,5 @@
 import { jwtDecode } from "jwt-decode";
+import { removeCookieToken } from "./cookieManager";
 
 class TokenManager {
   private tokenKey: string = "accesstoken";
@@ -68,6 +69,7 @@ class TokenManager {
   removeToken(): void {
     if (typeof window !== "undefined") {
       window.localStorage.removeItem(this.tokenKey);
+      removeCookieToken();
       this._token = null;
       this._user = null;
     }

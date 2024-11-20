@@ -9,6 +9,7 @@ import Modal from "../ui/modal/Modal";
 import UserMenu from "../menu/Usermenu";
 import ThemeMenu from "../menu/ThemeMenu";
 import Image from "next/image";
+import Icon from "../ui/Icon/Icon";
 
 interface IHomeNavbarProps {
   transparentBackground?: boolean
@@ -32,9 +33,9 @@ const HomeNavbar:React.FC<IHomeNavbarProps> = ({ transparentBackground }) => {
       const navContainer = document.querySelector(".navConatainer");
       if (navContainer) {
         if (currentScrollY > window.innerHeight * 0.10) {
-          navContainer.classList.add("backgroundColor");
+          isLoggedIn ? navContainer.classList.add("navPageBackgroundColor") : navContainer.classList.add("navHomeBackgroundColor");
         } else {
-          navContainer.classList.remove("backgroundColor");
+          isLoggedIn ? navContainer.classList.remove("navPageBackgroundColor") : navContainer.classList.remove("navHomeBackgroundColor"); 
         }
       }
     };
@@ -50,7 +51,7 @@ const HomeNavbar:React.FC<IHomeNavbarProps> = ({ transparentBackground }) => {
     { title: "My Details", href: "/account/profile", imgSrc:`${url}/menu-item-my-details.svg` },
     { title: "My Plan", href: "/account/plans", imgSrc:`${url}/menu-plan.svg`},
     { title: "Change Password", href: "/changepassword", imgSrc:`${url}/instant-solid.svg` },
-    { title: "Setting", href:"#", imgSrc:`${url}/menu-setting-solid.png`} ,
+    { title: "Setting", href:"#", imgSrc:`${url}/menu-settings-solid.png`} ,
     { title: "Logout", href: "/", imgSrc:`${url}/menu-item-logout.svg`},
   ];
 
@@ -119,57 +120,102 @@ const HomeNavbar:React.FC<IHomeNavbarProps> = ({ transparentBackground }) => {
           </NavItem>
         )}
         {isLoggedIn ? (
-          <NavIcon>
-            <Image
-              className="themeIcon" 
-              alt="icon" 
-              src={"/moon-regular.svg"}
-              width={24}
-              height={24}
-              onClick={(e)=>{ setShowTheme(true);
-                setShowMenu(false)
-               }}
-              style={{ 
-                  maxWidth: "24px", 
-                  maxHeight: "24px", 
-                  cursor: "pointer",
-                  filter: "brightness(100%) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(100%) contrast(100%)"
-              }}
-            />
-            <div style={{width:"32px", display:"flex", alignItems:"center", justifyContent: "center", color: 'white'}}> | </div>
-            <Image
-              className="userIcon" 
-              alt="icon" 
-              src={"/user-regular.svg"}
-              width={24}
-              height={24}
-              onClick={(e)=>{ window.innerWidth > 800 ? handleShowMenu() : router.push("/account")}}
-              style={{ 
-                  maxWidth: "24px", 
-                  maxHeight: "24px", 
-                  cursor: "pointer",
-                  filter: "brightness(100%) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(100%) contrast(100%)"
-              }}
-            />
+          // <NavIcon>
+          //   <Image
+          //     className="themeIcon" 
+          //     alt="icon" 
+          //     src={"/moon-regular.svg"}
+          //     width={24}
+          //     height={24}
+          //     onClick={(e)=>{ setShowTheme(true);
+          //       setShowMenu(false)
+          //      }}
+          //     style={{ 
+          //         maxWidth: "24px", 
+          //         maxHeight: "24px", 
+          //         cursor: "pointer",
+          //         filter: "brightness(100%) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(100%) contrast(100%)"
+          //     }}
+          //   />
+          //   <div style={{width:"32px", display:"flex", alignItems:"center", justifyContent: "center", color: 'white'}}> | </div>
+          //   <Image
+          //     className="userIcon" 
+          //     alt="icon" 
+          //     src={"/user-regular.svg"}
+          //     width={24}
+          //     height={24}
+          //     onClick={(e)=>{ window.innerWidth > 800 ? handleShowMenu() : router.push("/account")}}
+          //     style={{ 
+          //         maxWidth: "24px", 
+          //         maxHeight: "24px", 
+          //         cursor: "pointer",
+          //         filter: "brightness(100%) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(100%) contrast(100%)"
+          //     }}
+          //   />
+          //   </NavIcon>
+            <NavIcon>
+              { isLightMode ?
+                <button 
+                  className="btn btn-primary" 
+                  type="button"
+                  onClick={(e)=>{ setIsLightMode(false) }}
+                  style={{color : "white" , maxWidth: "24px"}}
+                >
+                  <Icon id="cil-moon" width={24} height={24} />
+                </button> :
+                <Image
+                  className="themeIcon" 
+                  alt="icon" 
+                  src={"/sun-regular.svg"}
+                  width={24}
+                  height={24}
+                  onClick={(e)=>{ setIsLightMode(true) }}
+                  style={{ 
+                      maxWidth: "24px", 
+                      maxHeight: "24px", 
+                      cursor: "pointer",
+                      filter: "brightness(100%) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(100%) contrast(100%)"
+                  }}
+                />
+              }
+              <div style={{ display:"flex", alignItems:"center", justifyContent: "center", color: 'white'}}> 
+                <div className="text-opacity-90 vbar"></div>
+              </div>
+              <button 
+                className="btn btn-primary" 
+                type="button"
+                style={{color : "white"}}
+                onClick={(e)=>{ window.innerWidth > 800 ? handleShowMenu() : router.push("/account")}}
+              >
+                <Icon id="cil-user" width={24} height={24} />
+              </button>
             </NavIcon>
         ) : ( pathname === "/" &&
           <NavGroup>
-            <Image
-              className="themeIcon" 
-              alt="icon" 
-              src={"/sun-regular.svg"}
-              width={20}
-              height={20}
-              onClick={(e)=>{ setShowTheme(true);
-                setShowMenu(false) 
-              }}
-              style={{ 
-                  maxWidth: "20px", 
-                  maxHeight: "20px", 
-                  cursor: "pointer",
-                  filter: "brightness(100%) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(100%) contrast(100%)"
-              }}
-            />
+              { isLightMode ?
+                <button 
+                  className="btn btn-primary" 
+                  type="button"
+                  onClick={(e)=>{ setIsLightMode(false) }}
+                  style={{color : "white" , maxWidth: "20px"}}
+                >
+                  <Icon id="cil-moon" width={20} height={20} />
+                </button> :
+                <Image
+                  className="themeIcon" 
+                  alt="icon" 
+                  src={"/sun-regular.svg"}
+                  width={20}
+                  height={20}
+                  onClick={(e)=>{ setIsLightMode(true) }}
+                  style={{ 
+                      maxWidth: "20px", 
+                      maxHeight: "20px", 
+                      cursor: "pointer",
+                      filter: "brightness(100%) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(100%) contrast(100%)"
+                  }}
+                />
+            }
             <div style={{width:"32px", display:"flex", alignItems:"center", justifyContent: "center", color: 'white'}}> | </div>
             <NavButton>
               <CustomButton onClick={(e) => {

@@ -1,10 +1,14 @@
 import React from 'react'
 
-const LoadingComp = () => {
+interface ILoadingComp {
+    opacity?: number
+}
+
+const LoadingComp: React.FC<ILoadingComp> = (props) => {
   return (<>
     <div>
         <div className="loading-children-container">
-            <div className="loading-spinner"></div>
+            <div className="loading-spinner" style={{opacity: props.opacity}}></div>
         </div>
     </div>
     </>)
