@@ -32,7 +32,7 @@ const NavItem = styled.li`
   cursor: pointer;
 `;
 
-const NavText = styled.li`
+const NavText = styled.div`
   margin: 0 15px;
   font-size: 1.1rem;
   cursor: pointer;
@@ -55,7 +55,6 @@ const NavLeft = styled.div`
   display: flex;
   width: 40px;
   margin: 0 0px;
-
 `;
 
 const NavButton = styled.li`
@@ -72,7 +71,7 @@ const NavButton = styled.li`
   }
 `;
 
-const NavGroup = styled.li`
+const NavGroup = styled.div`
   display: flex;
   align-items: center;
   width: 250px;
@@ -84,7 +83,7 @@ const NavGroup = styled.li`
   }
 `;
 
-const NavIcon = styled.li`
+const NavIcon = styled.div`
   display: flex;
   align-items: center;
   width: 100px;

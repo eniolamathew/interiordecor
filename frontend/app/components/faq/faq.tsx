@@ -21,7 +21,7 @@ const faqData: FAQItem[] = [
     answer: "Roomify uses our own AI generation pipeline which is trained for high photorealism and passing it to a large language model (LLM) for image generation. We keep working on improving it, with better photorealistic data sets, using reinforcement learning from human feedback (RLHF) by users like you which constantly improves our models. All of this to get you better more photorealistic renders.",
   },
   {
-    question: "how much does roomify cost?",
+    question: "How much does roomify cost?",
     answer: "You can check current pricing by entering your email in the sign up box and following the link to see the pricing table. You can cancel at any time.",
   },
   {

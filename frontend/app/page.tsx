@@ -13,19 +13,19 @@ import Framer from "./components/frame/Framer";
 interface CarouselImage {
   src: string;
   smallImage: string;
-  description: string;
+  imagedescription: string;
   liked:boolean;
 }
 
 interface Carouselfile {
   name: string;
-  description: string;
+  label: string;
   images: CarouselImage[];
 }
 
 export default function Page() {  
   const [carouselData, setCarouselData]= useState<ICarousel[]>(CarouselData)
-  const [slides, setSlides] = useState<number>(window?.innerWidth >= 800 ? 6 : 4);
+  const [slides, setSlides] = useState<number>(6);
 
   useEffect(() => {
     const handleResize = () => { 
@@ -33,11 +33,12 @@ export default function Page() {
       else { setSlides(4) } 
     }
 
+    handleResize();
     window.addEventListener('resize', handleResize);
     return () => {
       window.removeEventListener('resize', handleResize);
     };
-  }, []); 
+  }, []);   
     
   return (
     <>
@@ -63,7 +64,7 @@ export default function Page() {
         draggable={false}
         slidesToShow={slides}
         slidesToScroll={slides}
-        />
+      />
       <HomeCarousel 
         title="Kitchen"
         autoplay={false}
@@ -83,7 +84,7 @@ export default function Page() {
         draggable={false}
         slidesToShow={slides}
         slidesToScroll={slides}
-      />
+      /> 
       <Framer />
       <FAQ />
       <Footer />

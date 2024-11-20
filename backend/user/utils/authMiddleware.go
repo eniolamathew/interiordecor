@@ -91,7 +91,7 @@ func TrustedProxyMiddleware() gin.HandlerFunc {
 		forwardedIP := c.Request.Header.Get("X-Forwarded-For")
 		log.Printf("X-Forwarded-For header (client IP): %s", forwardedIP)
 
-		// Get the IP of the proxy server (Cloudflare or NGINX)
+		// Get the IP of the proxy server (NGINX)
 		proxyIP := c.ClientIP()
 		log.Printf("Proxy IP (ClientIP): %s", proxyIP)
 

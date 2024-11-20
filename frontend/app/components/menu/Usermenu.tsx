@@ -1,10 +1,11 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import Image from "next/image";
 import UserAuthManager from "@/shared/data/UserAuthManager";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/shared/context/AuthContext";
+import { removeCookieToken } from "@/shared/data/cookieManager";
 
 // Types for the props and menu item structure
 interface MenuItem {
@@ -91,13 +92,15 @@ const UserMenu: React.FC<UserMenuProps> = (props) => {
   const { isLightMode, setIsLightMode, logout } = useAuth();
   const wrapperRef = useRef<HTMLDivElement>(null);
 
-
   useClickOutside(wrapperRef, () => {
     props.setShowMenu((prev) =>{ return !prev })
   });
 
   const onChange = (href: string, title: string) => {
-    if(title.toLowerCase() === "logout"){ UserAuthManager.removeToken()
+    console.log("aaa");
+    if(title.toLowerCase() === "logout"){ 
+        UserAuthManager.removeToken()
+        removeCookieToken();
         router.push(href)
         props.setShowMenu(false);
         logout()

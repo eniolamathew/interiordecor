@@ -121,13 +121,14 @@ export const CardBody = styled.div`
 
 const Basepage = (props: IChildrenProps) => {
   const theme = useTheme();
-  const [isTransparent, setIsTransparent] = useState<boolean>(window.innerWidth >= theme.breakpoints.md);
+  const [isTransparent, setIsTransparent] = useState<boolean>(true);
   
   useEffect(() => {
     const handleResize = () => {
       setIsTransparent(window.innerWidth >= theme.breakpoints.md);
     };
 
+    handleResize()
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);

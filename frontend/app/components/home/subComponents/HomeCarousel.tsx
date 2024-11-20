@@ -20,6 +20,7 @@ interface ICategoryIntroProps {
 const IntroHeaderCarousel = styled.div`
     padding: 0rem 1rem;
     position: relative;
+    height: 240px;
 `;
 
 const ImageHolder = styled.div`
@@ -55,7 +56,6 @@ function HomeCarousel(props: ICategoryIntroProps) {
     };
  
     useEffect(() => {
-        // Add event listener to track mouse position
         window.addEventListener('mousemove', handleMouseMove);
 
         return () => {
@@ -68,7 +68,7 @@ function HomeCarousel(props: ICategoryIntroProps) {
             {props.carousel?.length > 0 && props.carousel.map((carousel: ICarousel, index: number) => <div key={index}> {
                 carousel.name.toLowerCase() === props.title.toLowerCase() &&
                 <div className={props.title.toLowerCase()}>
-                        <Title >{carousel.description}</Title>
+                        <Title >{carousel.label}</Title>
                         <IntroHeaderCarousel>
                             <Carousel
                                 name={props.title.toLowerCase()}
@@ -82,21 +82,20 @@ function HomeCarousel(props: ICategoryIntroProps) {
                                 slidesToShow={props.slidesToShow}
                                 slidesToScroll={props.slidesToScroll}
                             >                                  
-                                {carousel.images?.length > 0 && carousel.images.map((item: ICarouselImage, index: number) =>
+                            {carousel.images?.length > 0 && carousel.images.map((item: ICarouselImage, index: number) =>
                                 <div key={index} >
                                     <ImageHolder>
                                         <ImageLoader
                                             src={item.smallImage}
-                                            alt={item.description}
+                                            alt={item.imagedescription}
                                             width={150}
                                             height={150}
                                             $maxSize={5}
                                             $layout="fill"
                                             $breaks={[320, 568, 800, 1280]}
-                                            description={item.description}
                                         />
                                     </ImageHolder>
-                                </div>)}
+                                </div>)} 
                             </Carousel>
                         </IntroHeaderCarousel> 
                         </div>

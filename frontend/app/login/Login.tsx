@@ -1,9 +1,6 @@
 "use client";
 import React, { ChangeEvent, useState } from "react";
 import {
-  LoginWrapper,
-  MaxWidth,
-  LoginContainer,
   LoginContent,
   Text1,
 } from "./LoginStyles";
@@ -16,9 +13,9 @@ import { useRouter } from 'next/navigation'
 import {  toast } from 'react-toastify';
 import { useAuth } from "@/shared/context/AuthContext";
 import UserAuthManager from "@/shared/data/UserAuthManager";
-import HomeNavbar from "../components/navbar/HomeNavbar";
 import PasswordContainer from "../components/ui/password/PasswordContainer";
 import Basepage from "../components/BasePage/Basepage";
+import { setCookieToken } from "@/shared/data/cookieManager";
 
 const Login = () => {
   const { login } = useAuth();
@@ -56,6 +53,7 @@ const Login = () => {
         const result = await userApiData.loginAsync(email, password);
           if (result.success && result.payload?.accesstoken) {
             UserAuthManager.setToken(result.payload.accesstoken)
+            setCookieToken(result.payload.accesstoken)
             login(result.payload.accesstoken); 
             toast.success("User Logged In!", {autoClose: 3000});
             setTimeout(() => { router.push("/design") }, 100)

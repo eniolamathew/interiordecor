@@ -8,6 +8,7 @@ import { debounce } from '../../../shared/hook/debounce';
 import { ICarouselImage, ICarousel } from '../../../models/interface';
 import { useAuth } from "../../../shared/context/AuthContext";
 import Image from 'next/image';
+import LoadingComp from '@/app/loadingComp';
 
 export interface ICarouselProps extends HTMLAttributes<HTMLElement> {
     name: string;
@@ -98,7 +99,7 @@ const CarouselHolder = styled.div<ICarouselHolder>`
     & .glider-dot {
         width: 20px; 
         height: 4px; 
-        background-color: rbga(75,75,75,1);
+        background-color: rgba(75,75,75,1);
         border-radius: 2px;
         margin: 0 5px;
         cursor: pointer;
@@ -106,7 +107,7 @@ const CarouselHolder = styled.div<ICarouselHolder>`
     }
 
     & .glider-dot.active {
-        background-color: rbga(25,25,25,1); /* Active dot color */
+        background-color: rgba(125,125,125,1); /* Active dot color */
         transform: scale(1.2); /* Optional: make active dot slightly larger */
     }
 
@@ -152,6 +153,11 @@ const Carousel = (props: ICarouselProps) => {
 
         setHoveredSlide(index);
     };
+
+    useEffect(() => {
+        const timer = setTimeout(() => { setLoaded(true) }, 1); 
+        return () => clearTimeout(timer);
+    }, []);
     
     const closeModal = useCallback(() => {
         setIsModalOpen(false);
@@ -239,8 +245,8 @@ const Carousel = (props: ICarouselProps) => {
             <SliderModal
                 imageSrc={imageData!.src}
                 smallImageSrc={imageData!.smallImage}
-                imageAlt={imageData!.description}
-                footerText={imageData!.description}
+                imageAlt={imageData!.imagedescription}
+                footerText={imageData!.imagedescription}
                 position={position}
                 imageData={imageData}
                 setImageData={setImageData}
@@ -252,6 +258,8 @@ const Carousel = (props: ICarouselProps) => {
                 onClose={closeModal}
             />
         )}
+        { !loaded && <LoadingComp opacity={0.8} /> }
+        { loaded &&
         <CarouselHolder $visible={loaded} $isLightMode={isLightMode}>
             <Glider
                 // ref={callbackRef}
@@ -309,7 +317,7 @@ const Carousel = (props: ICarouselProps) => {
                         />
                     </div>
                 }
-                onLoad={() => setLoaded(true)}
+                onLoad={() =>{ setLoaded(true) }}
             >
                 {React.Children.map(props.children, (child, index) => (
                     <div
@@ -321,7 +329,7 @@ const Carousel = (props: ICarouselProps) => {
                     </div>
                 ))} 
             </Glider>
-        </CarouselHolder>
+        </CarouselHolder> }
     </>);
 };
 

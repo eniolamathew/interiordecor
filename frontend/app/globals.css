@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import '~react-toastify/dist/ReactToastify.min.css';
 
 * {
   box-sizing: border-box;
@@ -94,8 +95,13 @@ input:-internal-autofill-selected {
   width: 24px !important;
 }
 
-.backgroundColor {
-  background-color: rgb(2, 2, 2) !important;
+.navHomeBackgroundColor {
+  background-color: rgba(0, 0, 0, 0.7) !important;
+  transition: background-color 0.3s ease;
+}
+
+.navPageBackgroundColor {
+  background-color: rgba(0, 0, 0 , 1) !important;
   transition: background-color 0.3s ease;
 }
 
@@ -243,4 +249,22 @@ input:-webkit-autofill {
   max-width: 1200px;
   margin: auto;
   padding: 25px 0;
+}
+
+.header-nav {
+  display: flex;
+  flex-direction: row;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.vbar {
+  display: inline-block;
+  align-self: stretch;
+  width: 2px;
+  min-height: 1em;
+  padding: 0;
+  background-color: currentcolor;
+  opacity: 0.25;
 }

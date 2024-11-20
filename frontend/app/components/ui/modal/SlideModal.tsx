@@ -211,6 +211,8 @@ const SlideModal: FC<ISlideModalProps> = ({ imageSrc, smallImageSrc, imageAlt, i
         }
     };
 
+    const customLoader = ({ src }:{ src: string }) => { return src };
+
     return (
         <ModalOverlay isVisible={openModal}>
             <ModalContent
@@ -224,10 +226,13 @@ const SlideModal: FC<ISlideModalProps> = ({ imageSrc, smallImageSrc, imageAlt, i
             >
                 {!imageLoaded &&                    
                     <ModalBody >
-                        <img
-                            src={imageSrc} 
+                        <Image
                             alt={imageAlt}
                             loading='lazy'
+                            width={350}
+                            height={350}
+                            src={imageSrc}
+                            loader={customLoader}
                             style={{
                                 width:'350px',
                                 height: '350px',
@@ -245,9 +250,12 @@ const SlideModal: FC<ISlideModalProps> = ({ imageSrc, smallImageSrc, imageAlt, i
                 }
                 {imageLoaded && 
                     <ModalBody >
-                        <img
-                            src={imageSrc} 
+                        <Image
                             alt={imageAlt}
+                            width={350}
+                            height={350}
+                            src={imageSrc}
+                            loader={customLoader}
                             loading='lazy'
                             style={{
                                 width:'350px',
@@ -260,7 +268,7 @@ const SlideModal: FC<ISlideModalProps> = ({ imageSrc, smallImageSrc, imageAlt, i
                 <Likeicon onClick={toggleLiked}>
                     {isliked ? 
                         <Image 
-                            alt="like" 
+                            alt="like"
                             src={`${url}/heart-solid.svg`}
                             width={25}
                             height={25}
