@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const ErrorWrapper = styled.div`
   width: 100vw;
   min-height: 100vh;
+  margin-top: 60px;
   display: flex;
   justify-content: center;
   align-items: center;

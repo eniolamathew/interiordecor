@@ -5,7 +5,7 @@ import {
   MaxWidth,
   ErrorContainer,
   ErrorContent,
-} from "./500Styles";
+} from "./ErrorStyles";
 import Link from 'next/link';
 import { useAuth } from "../../shared/context/AuthContext";
 import HomeNavbar from "../components/navbar/HomeNavbar";

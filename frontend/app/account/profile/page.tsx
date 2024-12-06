@@ -36,7 +36,7 @@ const Page = () => {
   useDataFetching(fetchUserProfile, [])
   
   if(typeof dataFetched === "boolean" && !dataFetched && !userprofile){ 
-    router.push("/500")    
+    router.push("/Error")    
     return null
   }
   else if(dataFetched === null){ return <Loading /> }
