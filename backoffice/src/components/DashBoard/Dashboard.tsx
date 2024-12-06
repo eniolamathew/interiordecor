@@ -205,7 +205,7 @@ const Dashboard = () => {
             
           <FormCard
             title="Sessions"
-            value="12k"
+            value="6k"
             bgColor="bg-warning"
             percentage={-23.6}
             chartId="card-chart4"

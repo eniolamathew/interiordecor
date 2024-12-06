@@ -28,7 +28,7 @@ const AnalyticsSection = () => {
     <ProgressContainer
       iconHref="cib-google"
       label="Organic Search"
-      value="191,235"
+      value="2,235"
       percentage={56}
       progressBarClass="bg-success"
     />
