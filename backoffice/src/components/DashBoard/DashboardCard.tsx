@@ -16,7 +16,7 @@ const DashboardCard: React.FC = () => {
   return (
     <div className="col-sm-6">
       <div className="row">
-        <ClientStats title="New Users" value="231" borderColor="border-start-info" />
+        <ClientStats title="New Users" value="132" borderColor="border-start-info" />
         <ClientStats title="Recurring Users" value="976" borderColor="border-start-danger" />
       </div>
       <hr className="mt-0" style={{marginBottom:"2rem"}}/>
