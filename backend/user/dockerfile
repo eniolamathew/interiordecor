@@ -1,52 +1,95 @@
-# Stage 1: Build using golang:alpine
-FROM golang:1.22-alpine as builder
-
-# Install necessary build tools in Alpine
-RUN apk add --no-cache build-base bash ca-certificates
-
-# Set the working directory inside the container
+# Stage 1: Builder
+FROM golang:1.24 AS builder
 WORKDIR /app
 
-# Copy Go modules manifest and download dependencies
-COPY go.mod go.sum ./
-RUN go mod tidy
-RUN go mod download
+# Copy Go modules
+COPY backend/user/go.mod backend/user/go.sum ./user/
+COPY backend/mail/protoc/go.mod backend/mail/protoc/go.sum ./mail/protoc/
 
-# Copy the rest of the application code
-COPY . .
+# Download dependencies
+WORKDIR /app/user
+RUN go mod tidy && go mod download
 
-# Build the Go application
+WORKDIR /app/mail/protoc
+RUN go mod tidy && go mod download
+
+# Copy all source code
+COPY backend/user/ ./user/
+COPY backend/mail/protoc/ ./mail/protoc/
+
+# Build user service
+WORKDIR /app/user
 RUN CGO_ENABLED=0 GOOS=linux go build -o userService .
 
-# Install Goose for running migrations
-RUN go install github.com/pressly/goose/v3/cmd/goose@latest
+# Build Goose inside the builder
+RUN go get github.com/pressly/goose/v3/cmd/goose@latest
+RUN CGO_ENABLED=0 GOOS=linux go build -o goose github.com/pressly/goose/v3/cmd/goose
 
-# Stage 2: Final Stage - Run (Alpine)
+# Stage 2: Final image
 FROM alpine:3.18
-
-# Install minimal tools required
 RUN apk add --no-cache bash ca-certificates
 
-# Set the working directory inside the final container
 WORKDIR /app
 
-# Copy the binary and migration files from the builder stage
-COPY --from=builder /app/userService /app/userService
-
-# Copy Goose binary from the builder stage
-COPY --from=builder /go/bin/goose /usr/local/bin/goose
-
-# Copy the migration files into the container
-COPY ./sql/schema /app/sql/schema
-
-# Ensure Goose is executable
+# Copy binaries
+COPY --from=builder /app/user/userService /app/userService
+COPY --from=builder /app/goose /usr/local/bin/goose
 RUN chmod +x /usr/local/bin/goose
+ENV PATH="/usr/local/bin:${PATH}"
 
-# Copy env file
-COPY .env /app/.env
+# Copy migrations and env
+COPY backend/user/sql/schema /app/sql/schema
+COPY backend/user/.env /app/.env
 
-# Expose the port the application will run on
 EXPOSE 7071
 
-# Run the migrations and then start the user service
-ENTRYPOINT ["/bin/sh", "-c", "goose -dir /app/sql/schema postgres postgres://user_user:userinterior@userInteriorDb:5432/user_db?sslmode=disable up && ./userService"]
+# Run migrations then start service
+ENTRYPOINT ["/bin/sh", "-c", "goose -dir /app/sql/schema postgres ${DATABASE_URL} up && ./userService"]
+
+
+
+
+# # Stage 1: Build using golang:alpine
+# FROM golang:1.24 as builder
+
+# WORKDIR /app
+
+# # Copy Go modules and download dependencies
+# COPY go.mod go.sum ./
+# RUN go mod tidy
+# RUN go mod download
+
+# # Copy the rest of the application code
+# COPY . .
+
+# # Build the Go binary
+# RUN CGO_ENABLED=0 GOOS=linux go build -o userService .
+
+# # Install Goose for migrations
+# RUN go install github.com/pressly/goose/v3/cmd/goose@latest
+
+# # Stage 2: Final image
+# FROM alpine:3.18
+
+# RUN apk add --no-cache bash ca-certificates
+
+# WORKDIR /app
+
+# # Copy built binary
+# COPY --from=builder /app/userService /app/userService
+
+# # Copy Goose
+# COPY --from=builder /go/bin/goose /usr/local/bin/goose
+
+# # Copy migrations
+# COPY ./sql/schema /app/sql/schema
+
+# # Copy .env into container
+# COPY .env /app/.env
+
+# RUN chmod +x /usr/local/bin/goose
+
+# EXPOSE 7071
+
+# # Run migrations first, then start the service
+# ENTRYPOINT ["/bin/sh", "-c", "goose -dir /app/sql/schema postgres ${DATABASE_URL} up && ./userService"]

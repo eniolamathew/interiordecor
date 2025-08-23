@@ -5,21 +5,20 @@ import (
 	"log"
 	"os"
 
-	// "time"
-
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 
-	// Import your packages
 	"user/controller"
 	"user/internal/database"
 	"user/repository"
 	"user/route"
 	"user/service"
 	"user/utils"
+
+	mailprotoc "mail/protoc" // import your generated mail package
 
 	_ "github.com/lib/pq"
 )
@@ -32,17 +31,14 @@ func NewUserHttpServer(addr string) *userHttpServer {
 	return &userHttpServer{addr}
 }
 
-func NewGrpcEmailClient(addr string) *grpc.ClientConn {
-	// Attempt to connect to the gRPC server
-	conn, err := grpc.NewClient("interior_mail_container:5051", grpc.WithTransportCredentials(insecure.NewCredentials()))
-	// conn, err := grpc.NewClient("localhost:5051", grpc.WithTransportCredentials(insecure.NewCredentials()))
-
+// NewGrpcEmailClient connects to the mail gRPC service and returns the client
+func NewGrpcEmailClient(addr string) mailprotoc.EmailServiceClient {
+	conn, err := grpc.Dial(addr, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
-		log.Printf("Failed to connect to mail service: %v", err)
-		return nil
+		log.Fatalf("Failed to connect to mail service: %v", err)
 	}
 
-	return conn
+	return mailprotoc.NewEmailServiceClient(conn)
 }
 
 // Initialize configuration and services
@@ -54,18 +50,15 @@ func (s *userHttpServer) Serve() *gin.Engine {
 	}
 
 	emailGrpcPort := os.Getenv("EMAIL_GRPC_PORT")
-
-	grpcConn := NewGrpcEmailClient(emailGrpcPort)
-
-	// defer grpcConn.Close()
-	if grpcConn == nil {
-		log.Printf("Failed to connect to mail service")
-		grpcConn.Close()
+	if emailGrpcPort == "" {
+		log.Fatal("EMAIL_GRPC_PORT environment variable is missing")
 	}
+
+	// Create mail client
+	mailClient := NewGrpcEmailClient(emailGrpcPort)
 
 	// Read environment variables
 	port := os.Getenv("PORT")
-
 	if port == "" {
 		log.Fatal("PORT environment variable is missing")
 	}
@@ -85,7 +78,6 @@ func (s *userHttpServer) Serve() *gin.Engine {
 	if err != nil {
 		log.Fatalf("Failed to connect to the database: %v", err)
 	}
-	// Ping the database to ensure connectivity
 	if err := conn.Ping(); err != nil {
 		log.Fatalf("Failed to ping the database: %v", err)
 	}
@@ -98,8 +90,8 @@ func (s *userHttpServer) Serve() *gin.Engine {
 	// Initialize repositories
 	userRepo := repository.NewUserRepo(&apiCfg)
 
-	// Initialize services
-	userService := service.NewUserService(userRepo, []byte(jwtKey), grpcConn)
+	// Initialize services with injected mail client
+	userService := service.NewUserService(userRepo, []byte(jwtKey), mailClient)
 
 	// Initialize controllers
 	userController := controller.NewUserController(userService)
@@ -107,7 +99,6 @@ func (s *userHttpServer) Serve() *gin.Engine {
 	// Initialize the Gin router
 	server := gin.Default()
 	server.Use(utils.CORSMiddleware())
-	//server.Use(utils.TrustedProxyMiddleware())
 
 	baseroute := server.Group("/user")
 

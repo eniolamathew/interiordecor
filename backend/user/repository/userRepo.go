@@ -82,8 +82,6 @@ func (repo *UserRepo) GetUserProfileByEmail(ctx context.Context, userEmail strin
 	return user, nil
 }
 
-
-
 // func (repo *UserRepo) GetUsersWithDataActions(ctx context.Context, options utils.QueryOptions) ([]database.User, error) {
 // 	 users, err := repo.apiCfg.DB.GetUsersWithDataActions(ctx, options)
 // 	 return users, err

@@ -40,7 +40,7 @@ func (s *DesignService) GenerateImage(ctx context.Context, params model.Generate
 		Useremail:   params.Email,
 	})
 	if err != nil {
-		return "", fmt.Errorf("failed to create a pending generated imag")
+		return "", fmt.Errorf("failed to create a pending generated image")
 	}
 
 	formattedPrompt := fmt.Sprintf(

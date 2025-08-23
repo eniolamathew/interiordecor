@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./account.css";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -10,12 +10,16 @@ import { useAuth } from "@/shared/context/AuthContext";
 import Modal from "../components/ui/modal/Modal";
 import { RightContainerText } from "./AccountStyles";
 import { removeCookieToken } from "@/shared/data/cookieManager";
+import Loading from '@/app/loadingComp';
 
 const Account = () => {       
   let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
   const { isLightMode, setIsLightMode, logout } = useAuth();
   const router = useRouter()
   const [showSettingModal, setShowSettingModal] = useState<boolean>(false);
+  const [windowWidth, setWindowWidth] = useState<number>(0);
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+
   const profileLayout = [
     { title: "Your Details", href: "/account/profile", imgSrc:`${url}/menu-item-my-details.svg` },
     { title: "Plan", href: "/account/plans", imgSrc:`${url}/menu-plan.svg` },
@@ -24,9 +28,27 @@ const Account = () => {
     { title: "Logout", href: "/", imgSrc:`${url}/menu-item-logout.svg` },
   ];
 
+  // Get window width after component mounts
+  useEffect(() => {
+    setIsMounted(true);
+    setWindowWidth(window.innerWidth);
+    
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    
+    window.addEventListener('resize', handleResize);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   const handleLightMode = (checked: boolean): void => {
     setIsLightMode(checked);
   };
+
+  if (!isMounted) { return <Loading /> }
   
   return (
     <>
@@ -76,11 +98,11 @@ const Account = () => {
                             className="imageIcon" 
                             alt="icon" 
                             src={item.imgSrc}
-                            width={window.innerWidth >= 800 ? 20 : 16}
-                            height={window.innerWidth >= 800 ? 20 : 16}
+                            width={windowWidth >= 800 ? 20 : 16}
+                            height={windowWidth >= 800 ? 20 : 16}
                             style={{ 
-                              width: `${window.innerWidth >= 800 ? "20px" : "16px"}`, 
-                              height: `${window.innerWidth >= 800 ? "20px" : "16px"}`,
+                              width: `${windowWidth >= 800 ? "20px" : "16px"}`, 
+                              height: `${windowWidth >= 800 ? "20px" : "16px"}`,
                               filter: "invert(100%) brightness(100%) contrast(100%)",
                             }}
                           />
