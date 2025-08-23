@@ -12,24 +12,6 @@ services:
     networks:
       - interior_design_network 
 
-  kafka: 
-    image: confluentinc/cp-kafka:latest
-    container_name: kafka_interior
-    ports:
-      - "9092:9092"
-    environment:
-      KAFKA_ZOOKEEPER_CONNECT: "zookeeper_interior:2181"
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: "PLAINTEXT_INTERIOR:PLAINTEXT,PLAINTEXT_LOCAL:PLAINTEXT"
-      KAFKA_LISTENERS: "PLAINTEXT_INTERIOR://0.0.0.0:9092,PLAINTEXT_LOCAL://localhost:9093"
-      KAFKA_ADVERTISED_LISTENERS: "PLAINTEXT_INTERIOR://kafka_interior:9092,PLAINTEXT_LOCAL://localhost:9093"
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_CREATE_TOPICS: "image-generation-request-topic:1:1,image-generation-response-topic:1:1"
-      KAFKA_INTER_BROKER_LISTENER_NAME: "PLAINTEXT_INTERIOR"
-    depends_on:
-      - zookeeper
-    networks:
-      - interior_design_network
-
   kafka-ui:
     image: provectuslabs/kafka-ui:latest
     container_name: kafka_ui_interior
@@ -38,36 +20,58 @@ services:
     environment:
       KAFKA_CLUSTERS_0_NAME: "local"
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "kafka_interior:9092"
-      KAFKA_CLUSTERS_0_ZOOKEEPER: "zookeeper:2181"
+      KAFKA_CLUSTERS_0_ZOOKEEPER: "zookeeper_interior:2181"
     depends_on:
       - kafka
     networks:
       - interior_design_network
 
-  user-interior-service:
-    container_name: interior_user_container
-    image: interior_user_image
-    build:
-      context: ./backend/user
-      dockerfile: dockerfile
+  kafka: 
+    image: confluentinc/cp-kafka:7.4.0 
+    container_name: kafka_interior
+    ports:
+      - "9092:9092"
     environment:
-      - PORT=7071
-      - DATABASE_HOST=userInteriorDb
-      - DATABASE_PORT=5432
-      - DATABASE_NAME=user_db
-      - DATABASE_USER=user_user
-      - DATABASE_PASSWORD=userinterior
-      - DATABASE_URL=postgres://user_user:userinterior@userInteriorDb:5432/user_db?sslmode=disable
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper_interior:2181
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT_INTERIOR:PLAINTEXT,PLAINTEXT_LOCAL:PLAINTEXT
+      KAFKA_LISTENERS: PLAINTEXT_INTERIOR://0.0.0.0:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT_INTERIOR://kafka_interior:9092
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_CREATE_TOPICS: "image-generation-request-topic:1:1,image-generation-response-topic:1:1"
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT_INTERIOR
     depends_on:
-      - userInteriorDb
+      - zookeeper
+    networks:
+      - interior_design_network
+
+  userInteriorDb:
+    container_name: userInteriorDb_container
+    image: postgres:16
+    environment:
+      - POSTGRES_USER=user_user
+      - POSTGRES_PASSWORD=userinterior
+      - POSTGRES_DB=user_db
+    volumes:
+      - user_db_data:/var/lib/postgresql/data
     networks:
       - interior_design_network
     ports:
-      - "7071:7071"
-    env_file:
-      - ./backend/user/.env  
+      - "5452:5432"
+
+  generatedImageDb:
+    container_name: generatedImageDb_container
+    image: postgres:16
+    environment:
+      - POSTGRES_USER=generatedimage_user
+      - POSTGRES_PASSWORD=imageinterior
+      - POSTGRES_DB=generatedimage_db
     volumes:
-      - ./backend/user/.env:/app/.env
+      - generatedimage_db_data:/var/lib/postgresql/data
+    networks:
+      - interior_design_network
+    ports:
+      - "5453:5432"
 
   mail-interior-service:
     container_name: interior_mail_container
@@ -84,7 +88,7 @@ services:
     volumes:
       - ./backend/mail/.env:/app/.env
       - ./backend/mail/emailTemplates:/app/emailTemplates
-  
+
   design-interior-service:
     container_name: interior_design_container
     image: interior_design_image
@@ -95,7 +99,7 @@ services:
       - DATABASE_NAME=generatedimage_db
       - DATABASE_USER=generatedimage_user
       - DATABASE_PASSWORD=imageinterior
-      - DATABASE_URL=DB_URL=postgres://generatedimage_user:imageinterior@generatedImageDb:5432/generatedimage_db?sslmode=disable
+      - DATABASE_URL=postgres://generatedimage_user:imageinterior@generatedImageDb:5432/generatedimage_db?sslmode=disable
     depends_on:
       - generatedImageDb
       - kafka
@@ -110,7 +114,7 @@ services:
       - ./backend/design/.env  
     volumes:
       - ./backend/design/.env:/app/.env
-
+    
   imagegeneration-interior-service:
     container_name: interior_imagegeneration_container
     image: interior_imagegeneration_image
@@ -144,35 +148,32 @@ services:
       - ./backend/imageResponse/.env  
     volumes:
       - ./backend/imageResponse/.env:/app/.env
+  
+  # user-interior-service:
+  #   container_name: interior_user_container
+  #   image: interior_user_image
+  #   build:
+  #     context: ./backend/user
+  #     dockerfile: dockerfile
+  #   environment:
+  #     - PORT=7071
+  #     - DATABASE_HOST=userInteriorDb
+  #     - DATABASE_PORT=5432
+  #     - DATABASE_NAME=user_db
+  #     - DATABASE_USER=user_user
+  #     - DATABASE_PASSWORD=userinterior
+  #     - DATABASE_URL=postgres://user_user:userinterior@userInteriorDb:5432/user_db?sslmode=disable
+  #   depends_on:
+  #     - userInteriorDb
+  #   networks:
+  #     - interior_design_network
+  #   ports:
+  #     - "7071:7071"
+  #   env_file:
+  #     - ./backend/user/.env  
+  #   volumes:
+  #     - ./backend/user/.env:/app/.env
 
-  userInteriorDb:
-    container_name: userInteriorDb_container
-    image: postgres:16
-    environment:
-      - POSTGRES_USER=user_user
-      - POSTGRES_PASSWORD=userinterior
-      - POSTGRES_DB=user_db
-    volumes:
-      - user_db_data:/var/lib/postgresql/data
-    networks:
-      - interior_design_network
-    ports:
-      - "5452:5432"
-
-  generatedImageDb:
-    container_name: generatedImageDb_container
-    image: postgres:16
-    environment:
-      - POSTGRES_USER=generatedimage_user
-      - POSTGRES_PASSWORD=imageinterior
-      - POSTGRES_DB=generatedimage_db
-    volumes:
-      - generatedimage_db_data:/var/lib/postgresql/data
-    networks:
-      - interior_design_network
-    ports:
-      - "5453:5432"
-    
   frontend:
     build:
       context: ./frontend

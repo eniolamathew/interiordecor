@@ -1,67 +1,46 @@
-# .dockerignore
-
-# Ignore Go-specific files
-*.log
-*.env
-*.out
-*.exe
-*.mod
-
-# Ignore vendor dependencies
-vendor/
-
-# Ignore Dockerfile and Doc# Ignore Go-specific files
+# -------------------------
+# Logs and binaries
+# -------------------------
 *.log
 *.out
 *.exe
 
-# Ignore local environment files (keep the necessary ones)
+# -------------------------
+# Environment files
+# -------------------------
 .env.local
 .env.development
-
-# Keep the required environment files
-# !.env
-# !.env.production
-
-# Ignore Go vendor dependencies (if using vendoring)
-vendor/
-
-# Ignore node modules (if you're using Node.js)
-node_modules/
-
-# Ignore build directories
-dist/
-build/
-
-# Ignore IDE/editor-specific files
-.vscode/
-.idea/
-*.swp
-
-# Ignore Git files and related
-.git/
-.gitignore
-
-# Do not ignore Dockerfile or docker-compose.ymlker-compose files
-Dockerfile
-docker-compose.yml
-
-# Ignore node modules (if you're using Node.js)
-node_modules/
-
-# Ignore build directories
-dist/
-build/
-
-# Ignore local environment settings
-.env.local
 .env.*
+!.env                # keep the main .env file
 
-# Ignore IDE/editor-specific files
+# -------------------------
+# Dependencies
+# -------------------------
+vendor/
+node_modules/
+
+# -------------------------
+# Build output
+# -------------------------
+dist/
+build/
+
+# -------------------------
+# IDE/editor files
+# -------------------------
 .vscode/
 .idea/
 *.swp
 
-# Ignore Git files
+# -------------------------
+# Git
+# -------------------------
 .git/
 .gitignore
+
+# -------------------------
+# Docker
+# -------------------------
+# Don't ignore these (needed for builds)
+!Dockerfile
+!docker-compose.yml

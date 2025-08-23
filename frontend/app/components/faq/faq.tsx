@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import  "./faq.css";
 
 interface FAQItem {
@@ -35,7 +35,44 @@ const faqData: FAQItem[] = [
 ];
 
 export default function FAQ() {
+  const [hydrated, setHydrated] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+
+  // Only run on client-side
+  useEffect(() => { setHydrated(true); }, []);
+
+  // Function to get class name based on active state
+  const getItemClassName = (index: number) => {
+    if (!hydrated || activeIndex !== index) return "faqItem";
+    return "faqItem active";
+  };
+
+
+  const commonMarkup = (
+    <div className="faqContainer">
+      <div className="faqHaeader">
+        <h2 className="py-3 text-center">Frequently Asked Questions</h2>
+      </div>
+      {faqData.map((item, index) => (
+        <div key={index} className={getItemClassName(index)}>
+          <div className="faqQuestion">
+            <span>{item.question}</span>
+            <button className="toggleButton">{hydrated ? '+' : '+'}</button>
+          </div>
+          <div 
+            className="faqAnswer"
+            style={{ maxHeight: '0', opacity: 0 }}
+          >
+            <p>{item.answer}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+
+  if (!hydrated) {
+    return commonMarkup;
+  }
 
   const toggleAnswer = (index: number) => {
     setActiveIndex(activeIndex === index ? null : index);
@@ -47,11 +84,11 @@ export default function FAQ() {
         <h2 className="py-3 text-center">Frequently Asked Questions</h2>
       </div>
       {faqData.map((item, index) => (
-        <div key={index} className={`${"faqItem"} ${activeIndex === index ? "active" : ''}`}>
+        <div key={index} className={getItemClassName(index)}>
           <div className={"faqQuestion"} onClick={() => toggleAnswer(index)}>
             <span>{item.question}</span>
             <button className={"toggleButton"}>
-              {activeIndex === index ? '-' : '+'}
+                {hydrated ? (activeIndex === index ? '-' : '+') : '+'}
             </button>
           </div>
           <div

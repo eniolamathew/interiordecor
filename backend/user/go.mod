@@ -1,8 +1,12 @@
 module user
 
-go 1.22
+go 1.23.0
 
-replace mail => ../mail
+toolchain go1.24.6
+
+require mail/protoc v0.0.0
+
+replace mail/protoc => ../mail/protoc
 
 require (
 	github.com/gin-gonic/gin v1.10.0
@@ -10,9 +14,8 @@ require (
 	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/joho/godotenv v1.5.1
 	github.com/lib/pq v1.10.9
-	golang.org/x/crypto v0.27.0
-	google.golang.org/grpc v1.67.0
-	mail v0.0.0-00010101000000-000000000000
+	golang.org/x/crypto v0.39.0
+	google.golang.org/grpc v1.75.0
 )
 
 require (
@@ -35,10 +38,10 @@ require (
 	github.com/twitchyliquid64/golang-asm v0.15.1 // indirect
 	github.com/ugorji/go/codec v1.2.12 // indirect
 	golang.org/x/arch v0.8.0 // indirect
-	golang.org/x/net v0.28.0 // indirect
-	golang.org/x/sys v0.25.0 // indirect
-	golang.org/x/text v0.18.0 // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20240814211410-ddb44dafa142 // indirect
-	google.golang.org/protobuf v1.34.2 // indirect
+	golang.org/x/net v0.41.0 // indirect
+	golang.org/x/sys v0.33.0 // indirect
+	golang.org/x/text v0.26.0 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250707201910-8d1bb00bc6a7 // indirect
+	google.golang.org/protobuf v1.36.8 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )

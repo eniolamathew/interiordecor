@@ -31,3 +31,4 @@ build/
 .gitignore
 
 # Do not ignore Dockerfile or docker-compose.yml
+!.env

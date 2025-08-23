@@ -1,52 +1,88 @@
-# Stage 1: Build using golang:alpine
-FROM golang:1.22-alpine as builder
-
-# Install necessary build tools in Alpine
-RUN apk add --no-cache build-base bash ca-certificates
-
-# Set the working directory inside the container
+# Stage 1: Build
+FROM golang:1.22 AS builder
 WORKDIR /app
 
-# Copy Go modules manifest and download dependencies
 COPY go.mod go.sum ./
 RUN go mod tidy
 RUN go mod download
 
-# Copy the rest of the application code
 COPY . .
 
-# Build the Go application
+# Build Go service
 RUN CGO_ENABLED=0 GOOS=linux go build -o designService .
 
-# Install Goose for running migrations
-RUN go install github.com/pressly/goose/v3/cmd/goose@latest
+# Add Goose as a temporary module and build it
+RUN go get github.com/pressly/goose/v3/cmd/goose@v3.23.1
+RUN CGO_ENABLED=0 GOOS=linux go build -o goose github.com/pressly/goose/v3/cmd/goose
 
-# Stage 2: Final Stage - Run (Alpine)
+# Stage 2: Final
 FROM alpine:3.18
-
-# Install minimal tools required
 RUN apk add --no-cache bash ca-certificates
 
-# Set the working directory inside the final container
 WORKDIR /app
 
-# Copy the binary and migration files from the builder stage
 COPY --from=builder /app/designService /app/designService
-
-# Copy Goose binary from the builder stage
-COPY --from=builder /go/bin/goose /usr/local/bin/goose
-
-# Copy the migration files into the container
-COPY ./sql/schema /app/sql/schema
-
-# Ensure Goose is executable
+COPY --from=builder /app/goose /usr/local/bin/goose
 RUN chmod +x /usr/local/bin/goose
+ENV PATH="/usr/local/bin:${PATH}"
 
-# Copy env file
+COPY ./sql/schema /app/sql/schema
 COPY .env /app/.env
 
-# Expose the port the application will run on
 EXPOSE 7073
 
-# Run the migrations and then start the user service
-ENTRYPOINT ["/bin/sh", "-c", "goose -dir /app/sql/schema postgres postgres://generatedimage_user:imageinterior@generatedImageDb:5432/generatedimage_db?sslmode=disable up && ./designService"]
+ENTRYPOINT ["/bin/sh", "-c", "goose -dir /app/sql/schema postgres \"postgres://generatedimage_user:imageinterior@generatedImageDb:5432/generatedimage_db?sslmode=disable\" up && ./designService"]
+
+
+
+
+
+# Stage 1: Build using golang
+# FROM golang:1.22 as builder
+
+# # Set the working directory inside the container
+# WORKDIR /app
+
+# # Copy Go modules manifest and download dependencies
+# COPY go.mod go.sum ./
+# RUN go mod tidy
+# RUN go mod download
+
+# # Copy the rest of the application code
+# COPY . .
+
+# # Build the Go application
+# RUN CGO_ENABLED=0 GOOS=linux go build -o designService .
+
+# # Install Goose for running migrations
+# RUN go install github.com/pressly/goose/v3/cmd/goose@v3.23.1
+
+# # Stage 2: Final Stage - Run (Alpine)
+# FROM alpine:3.18
+
+# # Install minimal tools required
+# RUN apk add --no-cache bash ca-certificates
+
+# # Set the working directory inside the final container
+# WORKDIR /app
+
+# # Copy the binary and migration files from the builder stage
+# COPY --from=builder /app/designService /app/designService
+
+# # Copy Goose binary from the builder stage
+# COPY --from=builder /go/bin/goose /usr/local/bin/goose
+
+# # Copy the migration files into the container
+# COPY ./sql/schema /app/sql/schema
+
+# # Ensure Goose is executable
+# RUN chmod +x /usr/local/bin/goose
+
+# # Copy env file
+# COPY .env /app/.env
+
+# # Expose the port the application will run on
+# EXPOSE 7073
+
+# # Run the migrations and then start the user service
+# ENTRYPOINT ["/bin/sh", "-c", "goose -dir /app/sql/schema postgres postgres://generatedimage_user:imageinterior@generatedImageDb:5432/generatedimage_db?sslmode=disable up && ./designService"]

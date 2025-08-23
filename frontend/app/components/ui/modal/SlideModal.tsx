@@ -44,7 +44,9 @@ const scaleDown = keyframes`
   }
 `;
 
-const ModalOverlay = styled.div<{ isVisible: boolean }>`
+const ModalOverlay = styled.div.withConfig({
+    shouldForwardProp: (prop) => prop !== 'isVisible'
+})<{ isVisible: boolean }>`
     position: fixed;
     top: 0;
     left: 0;
@@ -60,14 +62,16 @@ const ModalOverlay = styled.div<{ isVisible: boolean }>`
     opacity: ${props => (props.isVisible ? 1 : 0)};
 `;
 
-const ModalContent = styled.div<{ isClosing: boolean }>`
+const ModalContent = styled.div.withConfig({
+    shouldForwardProp: (prop) => prop !== 'isclosing'
+})<{ isclosing: boolean }>`
     position: absolute;
     background: white;
     border-radius: 8px;
     width: 350px;
     height: 350px;
     transform: translate(-50%, -50%);
-    animation: ${props => (props.isClosing ? scaleDown : scaleUp)} 0.3s ease-out forwards;
+    animation: ${props => (props.isclosing ? scaleDown : scaleUp)} 0.3s ease-out forwards;
 `;
 
 const ModalImage = styled.img`
@@ -129,7 +133,7 @@ const ModalText = styled.p`
 const SlideModal: FC<ISlideModalProps> = ({ imageSrc, smallImageSrc, imageAlt, imageData, setImageData, setCarouselData, index, name, position, isModalOpen, mousePosition, onClose }) => {
     let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
     const [openModal, setOpenMdal] = useState<boolean>(false);
-    const [isClosing, setIsClosing] = useState<boolean>(false);
+    const [isclosing, setisclosing] = useState<boolean>(false);
     const [isliked, setIsLiked] = useState(imageData?.liked);
     const [scrollY, setScrollY] = useState<number>(0);
     const [imageLoaded, setImageLoaded] = useState<boolean>(false);
@@ -159,24 +163,24 @@ const SlideModal: FC<ISlideModalProps> = ({ imageSrc, smallImageSrc, imageAlt, i
     }, [scrollY])
 
     useEffect(() => {
-        if (isClosing) {
+        if (isclosing) {
             const timer = setTimeout(() => {
                 setOpenMdal(false)
                 onClose();  
             }, 100); 
             return () => clearTimeout(timer);
         }
-    }, [isClosing, onClose]);
+    }, [isclosing, onClose]);
 
     useEffect(() => {
         // Check mouse position before opening the modal
         if (isModalOpen && isMouseInsideModal()) {
             setOpenMdal(true)
-            setIsClosing(false); 
+            setisclosing(false); 
         }
         if (isModalOpen && !isMouseInsideModal()) {
             setOpenMdal(false)
-            setIsClosing(true); 
+            setisclosing(true); 
             onClose();  
         }
     }, [isModalOpen, mousePosition, isMouseInsideModal, onClose]);
@@ -203,20 +207,20 @@ const SlideModal: FC<ISlideModalProps> = ({ imageSrc, smallImageSrc, imageAlt, i
   
     const handleScroll = () => { setScrollY(window.scrollY) };
     
-    if (!isModalOpen && !isClosing) return null;
+    if (!isModalOpen && !isclosing) return null;
     
     const handleMouseLeave = () => {
-        if (!isClosing) {
-            setIsClosing(true); 
+        if (!isclosing) {
+            setisclosing(true); 
         }
     };
 
-    const customLoader = ({ src }:{ src: string }) => { return src };
+    const customLoader = ({ src }: { src: string }) => src;
 
     return (
         <ModalOverlay isVisible={openModal}>
             <ModalContent
-                isClosing={isClosing}
+                isclosing={isclosing}
                 style={{
                     top: `${position!.top}px`,
                     left: `${position!.left}px`

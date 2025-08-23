@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo }  from 'react';
 import './Framer.css';
 import Frame from './Frame';
 
@@ -21,16 +21,19 @@ const Framer = () => {
     { id: 6, body: 'I can see the potential of Roomify in creating my dream home. The AI helps me focus on what matters most!', footer: 'Chris', star: 4 },
   ];
 
+  const duplicatedUpperCards = useMemo(() => upperCards.concat(upperCards), []);
+  const duplicatedLowerCards = useMemo(() => lowerCards.concat(lowerCards), []);
+
   return (
     <div className="framer-container">
       <div className="upper-framer">
-        {upperCards.concat(upperCards).map(card => (
-          <Frame key={card.id} body={card.body} footer={card.footer} star={card.star} />
+        {duplicatedUpperCards.map((card, index) => (
+          <Frame key={`${card.id}-${index}`} body={card.body} footer={card.footer} star={card.star} />
         ))}
       </div>
       <div className="lower-framer">
-        {lowerCards.concat(lowerCards).map(card => (
-          <Frame key={card.id} body={card.body} footer={card.footer} star={card.star} />
+        {duplicatedLowerCards.map((card, index) => (
+          <Frame key={`${card.id}-${index}`} body={card.body} footer={card.footer} star={card.star} />
         ))}
       </div>
     </div>

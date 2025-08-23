@@ -1,10 +1,13 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import ResetPawword from "./ResetPassword";
+import Loading from '@/app/loadingComp';
 
 const page = () => {
   return (
     <>
-    <ResetPawword />
+      <Suspense fallback={<Loading />}>
+        <ResetPawword />
+      </Suspense>
   </>
   )
 }
