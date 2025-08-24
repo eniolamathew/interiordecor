@@ -2,8 +2,9 @@ package server
 
 import (
 	"log"
-	"mail/service"
 	"net"
+
+	"github.com/eniolamathew/interiordecor/backend/mail/service"
 
 	"google.golang.org/grpc"
 )
@@ -32,5 +33,5 @@ func (s *grpcServer) Run() error {
 	log.Printf("gRPC server is up and listening on %s", s.port)
 
 	// Start serving the gRPC server
-	return grpcServer.Serve(lis) 
+	return grpcServer.Serve(lis)
 }
