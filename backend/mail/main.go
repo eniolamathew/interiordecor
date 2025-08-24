@@ -2,7 +2,8 @@ package main
 
 import (
 	"log"
-	"mail/server"
+
+	"github.com/eniolamathew/interiordecor/backend/mail/server"
 )
 
 func main() {

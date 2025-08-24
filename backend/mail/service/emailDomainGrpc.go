@@ -4,9 +4,10 @@ import (
 	"context"
 	"fmt"
 	"log"
-	mail "mail/protoc"
 	"os"
 	"time"
+
+	mail "github.com/eniolamathew/interiordecor/backend/mail/protoc"
 
 	"github.com/joho/godotenv"
 	"github.com/mailgun/mailgun-go/v4"

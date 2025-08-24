@@ -1,4 +1,4 @@
-module mail
+module github.com/eniolamathew/interiordecor/backend/mail
 
 go 1.22
 
