@@ -126,6 +126,7 @@ class MicroserviceApi {
                 let payload = await result.json() as IMicroserviceApiResult<T>
                 if (result.status == 400) {
                     console.log(targetApiUrl)
+                    throw result
                   
                 }
                 payload.statusCode = result.status

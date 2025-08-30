@@ -98,7 +98,6 @@ const UserMenu: React.FC<UserMenuProps> = (props) => {
   });
 
   const onChange = (href: string, title: string) => {
-    console.log("aaa");
     if(title.toLowerCase() === "logout"){ 
         UserAuthManager.removeToken()
         removeCookieToken();
