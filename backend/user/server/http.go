@@ -16,9 +16,8 @@ import (
 	"user/repository"
 	"user/route"
 	"user/service"
-	"user/utils"
 
-	mailprotoc "mail/protoc" // import your generated mail package
+	mailprotoc "github.com/eniolamathew/interiordecor/backend/mail/protoc" // import your generated mail package
 
 	_ "github.com/lib/pq"
 )
@@ -63,9 +62,9 @@ func (s *userHttpServer) Serve() *gin.Engine {
 		log.Fatal("PORT environment variable is missing")
 	}
 
-	dbURL := os.Getenv("DB_URL")
+	dbURL := os.Getenv("DATABASE_URL")
 	if dbURL == "" {
-		log.Fatal("DB_URL environment variable is missing")
+		log.Fatal("DATABASE_URL environment variable is missing")
 	}
 
 	jwtKey := os.Getenv("JWT_KEY")
@@ -98,7 +97,6 @@ func (s *userHttpServer) Serve() *gin.Engine {
 
 	// Initialize the Gin router
 	server := gin.Default()
-	server.Use(utils.CORSMiddleware())
 
 	baseroute := server.Group("/user")
 
@@ -107,7 +105,6 @@ func (s *userHttpServer) Serve() *gin.Engine {
 
 	// Setup protected routes
 	protectedRoutes := baseroute.Group("/")
-	protectedRoutes.Use(utils.AuthMiddleware())
 	route.SetupAuthorizedRoutes(protectedRoutes, userController)
 
 	return server

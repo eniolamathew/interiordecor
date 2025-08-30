@@ -25,18 +25,24 @@ const Framer = () => {
   const duplicatedLowerCards = useMemo(() => lowerCards.concat(lowerCards), []);
 
   return (
-    <div className="framer-container">
-      <div className="upper-framer">
-        {duplicatedUpperCards.map((card, index) => (
-          <Frame key={`${card.id}-${index}`} body={card.body} footer={card.footer} star={card.star} />
-        ))}
+    <>
+      <div className="framer-header">
+        <h2 className="py-3 text-center">Why They Love Roomify</h2>
       </div>
-      <div className="lower-framer">
-        {duplicatedLowerCards.map((card, index) => (
-          <Frame key={`${card.id}-${index}`} body={card.body} footer={card.footer} star={card.star} />
-        ))}
+      <div className="framer-container">
+        <div className="upper-framer">
+        
+          {duplicatedUpperCards.map((card, index) => (
+            <Frame key={`${card.id}-${index}`} body={card.body} footer={card.footer} star={card.star} />
+          ))}
+        </div>
+        <div className="lower-framer">
+          {duplicatedLowerCards.map((card, index) => (
+            <Frame key={`${card.id}-${index}`} body={card.body} footer={card.footer} star={card.star} />
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

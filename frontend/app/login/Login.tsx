@@ -55,7 +55,7 @@ const Login = () => {
             UserAuthManager.setToken(result.payload.accesstoken)
             setCookieToken(result.payload.accesstoken)
             login(result.payload.accesstoken); 
-            toast.success("User Logged In!", {autoClose: 3000});
+            toast.success("Logged In!", {autoClose: 3000});
             setTimeout(() => { router.push("/design") }, 100)
         } else {
           toast.error(`Registration failed: ${result.errors[0]}`, {position: "top-right"});

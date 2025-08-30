@@ -163,10 +163,11 @@ func generateImage(prompt string) string {
 
 	// Create the request payload for DALL-E API
 	payload := map[string]interface{}{
-		"model":  "dall-e-3",
-		"prompt": prompt,
-		"n":      1,
-		"size":   "1024x1024",
+		"model":   "dall-e-3",
+		"quality": "hd",
+		"prompt":  prompt,
+		"n":       1,
+		"size":    "1024x1024",
 	}
 	payloadBytes, _ := json.Marshal(payload)
 

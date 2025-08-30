@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { CustomButton } from "../ui/buttons/button/customButton";
 import { usePathname, useRouter } from "next/navigation";
 import { NavbarContainer, NavItems, NavItem, NavButton, NavIcon, NavRight, NavGroup} from "./NavbarStyles"
+import { User, CreditCard, Lock, Settings, LogOut } from "lucide-react";
 import { useAuth } from "../../../shared/context/AuthContext";
 import ReactToggleSliderSwitch from "react-toggle-slider-switch";
 import Modal from "../ui/modal/Modal";
@@ -48,11 +49,11 @@ const HomeNavbar:React.FC<IHomeNavbarProps> = ({ transparentBackground }) => {
   }, [scrollY]);
 
   const menuItems = [
-    { title: "My Details", href: "/account/profile", imgSrc:`${url}/menu-item-my-details.svg` },
-    { title: "My Plan", href: "/account/plans", imgSrc:`${url}/menu-plan.svg`},
-    { title: "Change Password", href: "/changepassword", imgSrc:`${url}/instant-solid.svg` },
-    { title: "Setting", href:"#", imgSrc:`${url}/menu-settings-solid.png`} ,
-    { title: "Logout", href: "/", imgSrc:`${url}/menu-item-logout.svg`},
+    { title: "My Details", href: "/account/profile", icon: User },
+    { title: "My Plan", href: "/account/plans", icon: CreditCard },
+    { title: "Change Password", href: "/changepassword", icon: Lock },
+    { title: "Setting", href: "#", icon: Settings },
+    { title: "Logout", href: "/", icon: LogOut },
   ];
 
   const themeItems = [
@@ -120,39 +121,6 @@ const HomeNavbar:React.FC<IHomeNavbarProps> = ({ transparentBackground }) => {
           </NavItem>
         )}
         {isLoggedIn ? (
-          // <NavIcon>
-          //   <Image
-          //     className="themeIcon" 
-          //     alt="icon" 
-          //     src={"/moon-regular.svg"}
-          //     width={24}
-          //     height={24}
-          //     onClick={(e)=>{ setShowTheme(true);
-          //       setShowMenu(false)
-          //      }}
-          //     style={{ 
-          //         maxWidth: "24px", 
-          //         maxHeight: "24px", 
-          //         cursor: "pointer",
-          //         filter: "brightness(100%) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(100%) contrast(100%)"
-          //     }}
-          //   />
-          //   <div style={{width:"32px", display:"flex", alignItems:"center", justifyContent: "center", color: 'white'}}> | </div>
-          //   <Image
-          //     className="userIcon" 
-          //     alt="icon" 
-          //     src={"/user-regular.svg"}
-          //     width={24}
-          //     height={24}
-          //     onClick={(e)=>{ window.innerWidth > 800 ? handleShowMenu() : router.push("/account")}}
-          //     style={{ 
-          //         maxWidth: "24px", 
-          //         maxHeight: "24px", 
-          //         cursor: "pointer",
-          //         filter: "brightness(100%) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(100%) contrast(100%)"
-          //     }}
-          //   />
-          //   </NavIcon>
             <NavIcon>
               { isLightMode ?
                 <button 
@@ -190,44 +158,44 @@ const HomeNavbar:React.FC<IHomeNavbarProps> = ({ transparentBackground }) => {
                 <Icon id="cil-user" width={24} height={24} />
               </button>
             </NavIcon>
-        ) : ( pathname === "/" &&
-          <NavGroup>
-              { isLightMode ?
-                <button 
-                  className="btn btn-primary" 
-                  type="button"
-                  onClick={(e)=>{ setIsLightMode(false) }}
-                  style={{color : "white" , maxWidth: "20px"}}
-                >
-                  <Icon id="cil-moon" width={20} height={20} />
-                </button> :
-                <Image
-                  className="themeIcon" 
-                  alt="icon" 
-                  src={"/sun-regular.svg"}
-                  width={20}
-                  height={20}
-                  onClick={(e)=>{ setIsLightMode(true) }}
-                  style={{ 
-                      maxWidth: "20px", 
-                      maxHeight: "20px", 
-                      cursor: "pointer",
-                      filter: "brightness(100%) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(100%) contrast(100%)"
-                  }}
-                />
-            }
-            <div style={{width:"32px", display:"flex", alignItems:"center", justifyContent: "center", color: 'white'}}> | </div>
-            <NavButton>
-              <CustomButton onClick={(e) => {
-                e.preventDefault();
-                router.push("/login");
-                setIsLightMode(false);
-              }}> 
-              Sign In
-              </CustomButton>
-            </NavButton>
-          </NavGroup>
-        )}
+            ) : ( pathname === "/" &&
+              <NavGroup>
+                  { isLightMode ?
+                    <button 
+                      className="btn btn-primary" 
+                      type="button"
+                      onClick={(e)=>{ setIsLightMode(false) }}
+                      style={{color : "white" , maxWidth: "20px"}}
+                    >
+                      <Icon id="cil-moon" width={20} height={20} />
+                    </button> :
+                    <Image
+                      className="themeIcon" 
+                      alt="icon" 
+                      src={"/sun-regular.svg"}
+                      width={20}
+                      height={20}
+                      onClick={(e)=>{ setIsLightMode(true) }}
+                      style={{ 
+                          maxWidth: "20px", 
+                          maxHeight: "20px", 
+                          cursor: "pointer",
+                          filter: "brightness(100%) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(100%) contrast(100%)"
+                      }}
+                    />
+                }
+                <div style={{width:"32px", display:"flex", alignItems:"center", justifyContent: "center", color: 'white'}}> | </div>
+                <NavButton>
+                  <CustomButton onClick={(e) => {
+                    e.preventDefault();
+                    router.push("/login");
+                    setIsLightMode(false);
+                  }}> 
+                  Sign In
+                  </CustomButton>
+                </NavButton>
+              </NavGroup>
+            )}
       </NavItems>
     </NavbarContainer>
   </>

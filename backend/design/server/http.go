@@ -16,7 +16,6 @@ import (
 	"design/repository"
 	"design/route"
 	"design/service"
-	"design/utils"
 
 	_ "github.com/lib/pq"
 )
@@ -44,9 +43,9 @@ func (s *userHttpServer) Serve() *gin.Engine {
 		log.Fatal("PORT environment variable is missing")
 	}
 
-	dbURL := os.Getenv("DB_URL")
+	dbURL := os.Getenv("DATABASE_URL")
 	if dbURL == "" {
-		log.Fatal("DB_URL environment variable is missing")
+		log.Fatal("DATABASE_URL environment variable is missing")
 	}
 
 	jwtKey := os.Getenv("JWT_KEY")
@@ -81,8 +80,7 @@ func (s *userHttpServer) Serve() *gin.Engine {
 
 	// Initialize the Gin router
 	server := gin.Default()
-	server.Use(utils.CORSMiddleware())
-	//server.Use(utils.TrustedProxyMiddleware())
+
 	baseroute := server.Group("/design")
 
 	// Setup public routes
@@ -90,8 +88,7 @@ func (s *userHttpServer) Serve() *gin.Engine {
 
 	// Setup protected routes
 	protectedRoutes := baseroute.Group("/")
-	protectedRoutes.Use(utils.AuthMiddleware())
-	route.SetupAuthorizedRoutes(baseroute, designController)
+	route.SetupAuthorizedRoutes(protectedRoutes, designController)
 
 	return server
 }

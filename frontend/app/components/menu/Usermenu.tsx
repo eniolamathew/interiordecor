@@ -6,16 +6,17 @@ import UserAuthManager from "@/shared/data/UserAuthManager";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/shared/context/AuthContext";
 import { removeCookieToken } from "@/shared/data/cookieManager";
+import { LucideProps } from "lucide-react";
 
 // Types for the props and menu item structure
-interface MenuItem {
+interface IMenuItem {
   title: string;
   href: string;
-  imgSrc: string;
+  icon: React.ForwardRefExoticComponent<Omit<LucideProps, "ref"> & React.RefAttributes<SVGSVGElement>>;
 }
 
 interface UserMenuProps {
-  menuItems: MenuItem[];
+  menuItems: IMenuItem[];
   showMenu: boolean;
   setShowMenu: React.Dispatch<React.SetStateAction<boolean>>;
   setShowSettingModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -126,20 +127,13 @@ const UserMenu: React.FC<UserMenuProps> = (props) => {
                     onClick={() => onChange(item.href, item.title)}
                     key={index}
                 >
-                    <Image
-                    className="imageIcon"
-                    alt="icon"
-                    src={item.imgSrc}
-                    width={16}
-                    height={16}
-                    style={{
-                        maxWidth: "16px",
-                        maxHeight: "16px",
-                        filter:
-                        "brightness(0) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(117%) contrast(100%)",
-                    }}
+                    <item.icon 
+                      className="imageIcon"
+                      size={16}
+                      style={{ width: "16px", height: "16px" }}
+                      color="#cfdadaff"
                     />
-                    <div className="ml-2" style={{color:"white"}}>{item.title}</div>
+                    <div className="ml-3" style={{color:"white"}}>{item.title}</div>
                 </DropdownItem>
                 ) : (
                 <React.Fragment key={index}>
@@ -147,20 +141,13 @@ const UserMenu: React.FC<UserMenuProps> = (props) => {
                     <DropdownItem $isLightMode={isLightMode}
                         onClick={() => onChange(item.href, item.title)}
                     >
-                    <Image
-                        className="imageIcon"
-                        alt="icon"
-                        src={item.imgSrc}
-                        width={16}
-                        height={16}
-                        style={{
-                        maxWidth: "16px",
-                        maxHeight: "16px",
-                        filter:
-                            "brightness(0) saturate(100%) invert(98%) sepia(78%) saturate(155%) hue-rotate(164deg) brightness(117%) contrast(100%)",
-                        }}
+                    <item.icon 
+                      className="imageIcon"
+                      size={12}
+                      style={{ width: "16px", height: "16px" }}
+                      color="#cfdadaff"
                     />
-                    <div className="ml-2" style={{color: "white"}}>{item.title}</div>
+                    <div className="ml-3" style={{color: "white"}}>{item.title}</div>
                     </DropdownItem>
                 </React.Fragment>
                 )))}
