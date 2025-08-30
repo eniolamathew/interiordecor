@@ -54,6 +54,11 @@ services:
       - POSTGRES_DB=user_db
     volumes:
       - user_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U user_user -d user_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     networks:
       - interior_design_network
     ports:
@@ -68,6 +73,11 @@ services:
       - POSTGRES_DB=generatedimage_db
     volumes:
       - generatedimage_db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U generatedimage_user -d generatedimage_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
     networks:
       - interior_design_network
     ports:
@@ -100,9 +110,6 @@ services:
       - DATABASE_USER=generatedimage_user
       - DATABASE_PASSWORD=imageinterior
       - DATABASE_URL=postgres://generatedimage_user:imageinterior@generatedImageDb:5432/generatedimage_db?sslmode=disable
-    depends_on:
-      - generatedImageDb
-      - kafka
     build:
       context: ./backend/design
       dockerfile: dockerfile
@@ -114,6 +121,11 @@ services:
       - ./backend/design/.env  
     volumes:
       - ./backend/design/.env:/app/.env
+    depends_on:
+      generatedImageDb:
+        condition: service_healthy
+      kafka:
+        condition: service_started
     
   imagegeneration-interior-service:
     container_name: interior_imagegeneration_container
@@ -149,30 +161,31 @@ services:
     volumes:
       - ./backend/imageResponse/.env:/app/.env
   
-  # user-interior-service:
-  #   container_name: interior_user_container
-  #   image: interior_user_image
-  #   build:
-  #     context: ./backend/user
-  #     dockerfile: dockerfile
-  #   environment:
-  #     - PORT=7071
-  #     - DATABASE_HOST=userInteriorDb
-  #     - DATABASE_PORT=5432
-  #     - DATABASE_NAME=user_db
-  #     - DATABASE_USER=user_user
-  #     - DATABASE_PASSWORD=userinterior
-  #     - DATABASE_URL=postgres://user_user:userinterior@userInteriorDb:5432/user_db?sslmode=disable
-  #   depends_on:
-  #     - userInteriorDb
-  #   networks:
-  #     - interior_design_network
-  #   ports:
-  #     - "7071:7071"
-  #   env_file:
-  #     - ./backend/user/.env  
-  #   volumes:
-  #     - ./backend/user/.env:/app/.env
+  user-interior-service:
+    container_name: interior_user_container
+    image: interior_user_image
+    build:
+      context: ./backend/user
+      dockerfile: dockerfile
+    environment:
+      - PORT=7071
+      - DATABASE_HOST=userInteriorDb
+      - DATABASE_PORT=5432
+      - DATABASE_NAME=user_db
+      - DATABASE_USER=user_user
+      - DATABASE_PASSWORD=userinterior
+      - DATABASE_URL=postgres://user_user:userinterior@userInteriorDb:5432/user_db?sslmode=disable
+    depends_on:
+      userInteriorDb:
+        condition: service_healthy
+    networks:
+      - interior_design_network
+    ports:
+      - "7071:7071"
+    env_file:
+      - ./backend/user/.env  
+    volumes:
+      - ./backend/user/.env:/app/.env
 
   frontend:
     build:
@@ -184,6 +197,28 @@ services:
       - NODE_ENV=production
     env_file:
       - ./frontend/.env.production 
+    networks:
+      - interior_design_network
+  
+  api-gateway:
+    build:
+      context: ./backend/apiGateway
+      dockerfile: Dockerfile
+    image: api_gateway_image
+    container_name: api_gateway_container
+    env_file:
+      - ./backend/apiGateway/.env  
+    environment:
+      - PORT=8080
+      - USER_SERVICE_URL=http://interior_user_container:7071
+      - DESIGN_SERVICE_URL=http://interior_design_container:7073
+      - IMAGEGEN_SERVICE_URL=http://interior_imagegeneration_container:7074
+      - IMAGERESPONSE_SERVICE_URL=http://interior_imageresponse_container:7075
+    ports:
+      - "8080:8080"
+    depends_on:
+      - user-interior-service
+      - design-interior-service
     networks:
       - interior_design_network
 

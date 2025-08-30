@@ -12,7 +12,7 @@ import (
 	"user/utils"
 	"user/view"
 
-	mailprotoc "mail/protoc"
+	mailprotoc "github.com/eniolamathew/interiordecor/backend/mail/protoc"
 
 	"github.com/golang-jwt/jwt"
 	"golang.org/x/crypto/bcrypt"

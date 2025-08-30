@@ -1,4 +1,4 @@
-import { IMicroserviceApiError } from "../shared/api/microserviceApi";
+import { IMicroserviceApiError, IMicroserviceApiResult } from "../shared/api/microserviceApi";
 
 export interface ISignUpPayload {
     email: string
@@ -29,6 +29,8 @@ export interface IGetUserByIdResult {
     subscribed: boolean,
     createdat: string
 }
+
+export type IGetUsersResult = IGetUserByIdResult[]
 
 export interface IGetUserProfileByEmailResult {
     Id: number,

@@ -10,6 +10,7 @@ import { useAuth } from "@/shared/context/AuthContext";
 import Modal from "../components/ui/modal/Modal";
 import { RightContainerText } from "./AccountStyles";
 import { removeCookieToken } from "@/shared/data/cookieManager";
+import { User, CreditCard, Lock, Settings, LogOut } from "lucide-react";
 import Loading from '@/app/loadingComp';
 
 const Account = () => {       
@@ -21,11 +22,11 @@ const Account = () => {
   const [isMounted, setIsMounted] = useState<boolean>(false);
 
   const profileLayout = [
-    { title: "Your Details", href: "/account/profile", imgSrc:`${url}/menu-item-my-details.svg` },
-    { title: "Plan", href: "/account/plans", imgSrc:`${url}/menu-plan.svg` },
-    { title: "Change Password", href: "/changepassword", imgSrc:`${url}/instant-solid.svg` },
-    { title: "Setting", href:"#", imgSrc:`${url}/menu-settings-solid.png`},
-    { title: "Logout", href: "/", imgSrc:`${url}/menu-item-logout.svg` },
+    { title: "Your Details", href: "/account/profile",  icon: User },
+    { title: "Plan", href: "/account/plans", icon: CreditCard },
+    { title: "Change Password", href: "/changepassword", icon: Lock },
+    { title: "Setting", href:"#", icon: Settings },
+    { title: "Logout", href: "/", icon: LogOut },
   ];
 
   // Get window width after component mounts
@@ -94,17 +95,14 @@ const Account = () => {
                     >
                       <div style={{ width: "100%", display: "flex", alignItems:"center" }}>
                         <div className="left-container" style={{ width: "45%" }}>
-                          <Image 
-                            className="imageIcon" 
-                            alt="icon" 
-                            src={item.imgSrc}
-                            width={windowWidth >= 800 ? 20 : 16}
-                            height={windowWidth >= 800 ? 20 : 16}
+                          <item.icon 
+                            className="imageIcon"
+                            size={windowWidth >= 800 ? 20 : 16}
                             style={{ 
                               width: `${windowWidth >= 800 ? "20px" : "16px"}`, 
                               height: `${windowWidth >= 800 ? "20px" : "16px"}`,
-                              filter: "invert(100%) brightness(100%) contrast(100%)",
                             }}
+                            color="#ffffffff"
                           />
                         </div>
                       <div className="right-container" style={{ width: "55%" }}>

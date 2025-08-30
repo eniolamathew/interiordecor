@@ -2,12 +2,12 @@
 import { useState, useEffect } from "react";
 import  "./faq.css";
 
-interface FAQItem {
+interface IFAQItem {
   question: string;
   answer: string;
 }
 
-const faqData: FAQItem[] = [
+const faqData: IFAQItem[] = [
   {
     question: "What is your refund policy?",
     answer: "We offer a 30-day money-back guarantee on all plans. Simply contact our support team for assistance.",

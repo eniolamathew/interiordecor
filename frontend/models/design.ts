@@ -16,3 +16,7 @@ export interface IGenratedImageResult {
     Imagestatus: string
     Useremail: string
 }
+
+export interface IUpdateStatusResult {
+    messsge: string
+}

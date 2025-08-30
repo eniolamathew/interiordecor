@@ -3,7 +3,7 @@ import { Heading } from "../../style/topography"
 import { useEffect, useRef, useState } from "react"
 import { useAuth } from "@/shared/context/AuthContext";
 import styled from "styled-components"
-import Image from "next/image";
+import { X } from "lucide-react";
 
 const ModalHolder = styled.div<React.HTMLAttributes<HTMLDivElement>>`
     position: fixed;
@@ -38,7 +38,6 @@ const ModalDiv = styled.div<IModalDivProps>`
     overflow-y:auto;
 
     @media screen and (max-width: ${theme.breakpoints.md}px) {
-        position: fixed;
         width:100%;
         height:100%;
         max-height:none;
@@ -94,7 +93,6 @@ export interface IModalProps {
 }
 
 const Modal = (props: IModalProps) => {
-    let url = process.env.NEXT_PUBLIC_CLOUDFLARE_URL_PROD ?? process.env.NEXT_PUBLIC_CLOUDFLARE_URL_DEV;
     const { isLightMode } = useAuth();
     const html = document.getElementsByTagName('html')[0]
     const modalHolderRef = useRef<HTMLDivElement>(null)
@@ -125,16 +123,10 @@ const Modal = (props: IModalProps) => {
                 <ModalHeader hasBorder={!!props.title}>
                     <ModalHeading style={{padding: "0rem", cursor: "pointer"}} >{props.title}</ModalHeading>
                     <CloseButton onClick={props.onClose}>
-                        <Image 
-                            alt="close" 
-                            src={`${url}/x-solid.svg`}
-                            width={16}
-                            height={16}
-                            style={{ 
-                                maxWidth: "16px", 
-                                maxHeight: "16px",
-                                filter: isLightMode ? "invert(100%) brightness(0%) contrast(100%)" : "invert(100%) brightness(100%) contrast(100%)" 
-                            }}
+                        <X
+                            size={16}
+                            style={{ width: "16px", height: "16px" }}
+                            color="#ffffffff"
                         />
                     </CloseButton>
                 </ModalHeader>
